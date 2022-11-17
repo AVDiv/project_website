@@ -1,0 +1,14 @@
+{
+    "name": "AVDiv/project_website",
+    "type": "project",
+    "description": "A Furniture showcase website",
+    "authors": [
+        {
+            "name": "Avin Divakara",
+            "email": "divakaraavin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+    },
+}
