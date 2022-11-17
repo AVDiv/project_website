@@ -1,6 +1,7 @@
 {
     "name": "avdiv/project_website",
     "type": "project",
+    "license": "proprietary",
     "description": "A Furniture showcase website",
     "authors": [
         {
