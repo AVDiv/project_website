@@ -16,7 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
+    
+    - name: Composer Action
+      uses: MilesChou/composer-action@v1.0.2
+    
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
