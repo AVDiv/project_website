@@ -1,3 +1,8 @@
-<?php
-  echo PHP;
-?>
+<html>
+  <head>
+    <title>Web</title>
+  </head>
+  <body>
+    
+  </body>
+</html>
