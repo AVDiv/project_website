@@ -17,8 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Composer Action
-      uses: MilesChou/composer-action@v1.0.2
+    - name: Install dependencies
+      uses: php-actions/composer@v6
+      with:
+        dev: no
+        args: --profile --ignore-platform-reqs
     
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
