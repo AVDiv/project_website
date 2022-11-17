@@ -31,10 +31,6 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
-      
-    - name: Heroku Build
-      uses: behe/heroku-build@v1.1
-
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
