@@ -5,3 +5,11 @@
   text-decoration: none;
   font: Poppins;
 }
+body{
+  --color-white: #FFFFFF;
+  --color-gray: #CDD7E1;
+  --color-lite-blue: #71A0E6;
+  --color-blue: #0448DA;
+  --color-dark-blue: #051B3B;
+  --color-red: #E63946;
+}
