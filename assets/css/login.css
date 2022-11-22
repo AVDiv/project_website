@@ -4,6 +4,8 @@
   padding: 0;
 }
 .background{
+  height: 100%;
+  width: 100%;
   background-image: url(../media/images/login-banner.png);
   background-size: contain;
   background-repeat: repeat;
