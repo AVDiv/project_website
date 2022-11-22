@@ -14,8 +14,8 @@
   <title>Login | Pixihire</title>
 </head>
 <body>
-  <div class="background container-fluid h-100">
-    <div class="container login-section">
+  <div class="background">
+    <div class="login-section">
       <!-- Logo section -->
       <div class="logo-card">
         <img src="../assets/images/logo.png" alt="Pixihire Logo" class="logo"/>
