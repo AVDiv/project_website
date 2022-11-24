@@ -8,8 +8,8 @@ body{
 .background{
   height: 100%;
   width: 100%;
-  /* background-image: url(../media/images/login-banner.png); */
-  background-image: url('https://project-website1283791.herokuapp.com/assets/media/images/login-banner.png');
+  /* background-image: url(../media/images/login-banner.jpg); */
+  background-image: url('https://project-website1283791.herokuapp.com/assets/media/images/login-banner.jpg');
   background-size: contain;
   background-repeat: repeat;
 }
