@@ -14,6 +14,7 @@ class Links{
         // CSS files
         'bs_css'=> '/assets/bootstrap/css/bootstrap.min.css',
         'master_css'=> '/assets/css/master.css',
+        'home_css' => '/assets/css/home.css',
         'login_css'=> '/assets/css/login.css',
         'navbar_css'=> '/assets/css/navigation.css',
         // JS scripts
