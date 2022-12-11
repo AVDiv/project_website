@@ -1,0 +1,67 @@
+#hero > div{
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding-right: 32px;
+  padding-left: 32px;
+}
+#hero #Image{
+  height: 100%;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+}
+#hero > img{
+  height: 100vh;
+  position: absolute;
+  z-index: 0;
+}
+#hero #Context{
+  width: 35vw;
+  margin-left: 53px;
+}
+@media screen and (min-width: 1920px) {
+  #hero #Image{
+    width: 40vw;
+  }
+}
+@media screen and (max-width: 1200px){
+  #hero > div{
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-around!important;
+  }
+  #hero > img{
+    display: none;
+  }
+  #hero #Image{
+    width: 80vw;
+    height: auto;
+  }
+  #hero #Context{
+    margin-left: 0px;
+    width: 50vw;
+    text-align: center;
+  }
+  #hero #Context > p{
+    color: var(--color-lite-blue)!important;
+  }
+}
+@media screen and (max-width: 790px){
+  #hero #Context{
+    margin-top: 60px;
+    width: 80vw;
+  }
+  #hero > div{
+    justify-content: center!important;
+  }
+}
+@media screen and (max-width: 415px){
+  #hero #Context{
+    width: 90vw;
+  }
+  #hero #Image{
+    width: 90vw;
+  }
+}

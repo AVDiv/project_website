@@ -14,6 +14,7 @@ class Links{
         // CSS files
         'bs_css'=> '/assets/bootstrap/css/bootstrap.min.css',
         'master_css'=> '/assets/css/master.css',
+        'home_css' => '/assets/css/home.css',
         'login_css'=> '/assets/css/login.css',
         'navbar_css'=> '/assets/css/navigation.css',
         // JS scripts
@@ -21,7 +22,9 @@ class Links{
         'navbar_js' => '/assets/js/navigation.js',
         // Media
         'logo'=>'/assets/media/images/Logo.png',
-        'logo_fd'=>'/assets/media/images/Logo I.png'
+        'logo_fd'=>'/assets/media/images/Logo I.png',
+        'hero_bg' => '/assets/media/images/1.svg',
+        'hero_img' => '/assets/media/images/sofa-man.png'
     );
     function path($filename){
         return $this->project_domain.$this->links[$filename];
