@@ -21,7 +21,9 @@ class Links{
         'navbar_js' => '/assets/js/navigation.js',
         // Media
         'logo'=>'/assets/media/images/Logo.png',
-        'logo_fd'=>'/assets/media/images/Logo I.png'
+        'logo_fd'=>'/assets/media/images/Logo I.png',
+        'hero_bg' => '/assets/media/images/1.svg',
+        'hero_img' => '/assets/media/images/sofa-man.png'
     );
     function path($filename){
         return $this->project_domain.$this->links[$filename];

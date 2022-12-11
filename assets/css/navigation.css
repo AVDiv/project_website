@@ -63,6 +63,7 @@
 }
 .navbar{
   position: fixed;
+  z-index: 20;
   background-color: transparent;
   transition-duration: 0.5s;
 }
