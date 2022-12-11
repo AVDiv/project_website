@@ -11,6 +11,5 @@
     ],
     "require": {
         "php": ">=8.1",
-        "twbs/bootstrap": "^5.2"
     }
 }
