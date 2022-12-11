@@ -1,16 +1,21 @@
-
+body{
+  overflow: hidden;
+}
 .container, .container-fluid, .row, .col{
   margin: 0;
   padding: 0;
 }
 .background{
-  background-image: url(../media/images/login-banner.png);
+  height: 100%;
+  width: 100%;
+  /* background-image: url(../media/images/login-banner.jpg); */
+  background-image: url('https://project-website1283791.herokuapp.com/assets/media/images/login-banner.jpg');
   background-size: contain;
   background-repeat: repeat;
 }
 .login-section {
   position:absolute;
-  width: 65%;
+  width: 50%;
   height: 100%;
   background-color: var(--color-white);
   right: 0!important;
@@ -24,7 +29,8 @@
 }
 .login-card{
   padding: 130px 0%;
-  height: 85%;
+  margin: auto;
+  height: auto;
 }
 .login-text{
   color: var(--color-dark-blue);
@@ -121,7 +127,10 @@
 }
 hr{
   width: 60%;
-  border: 1px solid var(--color-lite-blue);
+  border: none;
+  border-radius: 5px;
+  background-color: var(--color-lite-blue);
+  padding: 1px 0;
 }
 .log-with{
   display: flex;
@@ -163,4 +172,22 @@ hr{
 }
 .no-account{
   text-align: center;
+}
+/* Width based responsive edits */
+@media screen and (max-width: 2160px) {
+  .login-section{
+    width: 65%;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .login-section{
+    width: 100%;
+  }
+}
+/* Height based responsive edits */
+@media screen and (max-height: 840px) {
+  .login-card{
+    height: auto;
+    padding: 50px 0;
+  }
 }
