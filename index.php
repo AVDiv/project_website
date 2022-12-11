@@ -1,8 +1,13 @@
 <html>
-  <head>
-    <title>Web</title>
-  </head>
-  <body>
-    <h1>Hello!</h1>
-  </body>
+<head>
+    <?php
+        include 'components/essentials.php'
+    ?>
+    <title>Home | Pixihire</title>
+</head>
+<body>
+<!-- Navigation bar -->
+<?php include 'components/navigation_bar.php' ?>
+<!-- Hero -->
+</body>
 </html>
