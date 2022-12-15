@@ -4,7 +4,7 @@ class Links{
     /* For production
        $project_domain = "www.pixihire.com"
     */
-    public $project_domain = "http://localhost:8080/project_website";
+    public $project_domain = "http://localhost:880/project_website";
     public $links = array(
         // Pages
         'home_page'=> '/',
@@ -24,7 +24,8 @@ class Links{
         'logo'=>'/assets/media/images/Logo.png',
         'logo_fd'=>'/assets/media/images/Logo I.png',
         'hero_bg' => '/assets/media/images/1.svg',
-        'hero_img' => '/assets/media/images/sofa-man.png'
+        'hero_img' => '/assets/media/images/sofa-man.png',
+        'login_img' => '/assets/media/images/login-banner.jpg'
     );
     function path($filename){
         return $this->project_domain.$this->links[$filename];
