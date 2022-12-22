@@ -3,12 +3,13 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 body{
   --color-white: #FFFFFF;
-  --color-gray: #CDD7E1;
+  --color-gray: #9bacba;
   --color-lite-blue: #71A0E6;
   --color-blue: #0448DA;
   --color-dark-blue: #051B3B;

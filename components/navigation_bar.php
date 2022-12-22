@@ -3,7 +3,6 @@
     $links = new Links();
     $navigation_component ='
     <link rel="stylesheet" href="'. $links->path('navbar_css') .'">
-    <script src="'. $links->path('navbar_js') .'"></script>
     <nav id="navbar" class="navbar navbar-light navbar-expand-md py-3" style="width: 100%;padding-right: 32px;padding-left: 32px;">
         <div class="container-fluid"><a class="navbar-brand d-flex align-items-center" href="#"><img src="'. $link->path('logo') .'" style="height: 37px;"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-3">
@@ -20,11 +19,12 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item signup-link" style="background: var(--bs-blue);color: var(--bs-body-bg);border-radius: 100px;padding: 3px 5px;margin-right: 10px;"><a class="nav-link" href="#" style="font-weight: 600;height: 100%;width: 100%;color: var(--bs-white);font-size: 16px;padding: 0px;padding-left: 15px;padding-bottom: 5px;padding-right: 15px;padding-top: 5px;letter-spacing: 0.5px;">Signup</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" style="font-weight: 600;font-size: 16px;font-family: Poppins, sans-serif;letter-spacing: 0.5px;">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="'. $links->path('login_page') .'" style="font-weight: 600;font-size: 16px;font-family: Poppins, sans-serif;letter-spacing: 0.5px;">Login</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <script src="'. $links->path('navbar_js') .'"></script>
     ';
     echo $navigation_component;
 ?>
