@@ -1,1 +1,1 @@
-web: /bin/heroku-php-nginx -c conf/nginx/main.conf
+web: $(composer config bin-dir)/heroku-php-nginx -c conf/nginx/main.conf
