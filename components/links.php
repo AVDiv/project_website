@@ -1,10 +1,10 @@
 <?php
 // Class with links
 class Links{
-    /* For production
-       $project_domain = "www.pixihire.com"
-    */
-    public $project_domain = "http://localhost:880/project_website";
+    // For production
+       public $project_domain = "https://pixihire.cf";
+
+//    public $project_domain = "http://localhost:880/project_website";
     private $links = array(
         // Pages
         'home_page'=> '/',
