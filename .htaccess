@@ -1,0 +1,12 @@
+  RewriteEngine on
+    # Hiding directory listing
+    Options -Indexes
+    # Redirect all requests to HTTPS
+    RewriteCond %{HTTPS} !=on
+        RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+        RewriteCond %{HTTP_REFERER} !^$
+    # domains that can link to your content (images here)
+    # add as many as you want
+    RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?pixihire.cf [NC]
+        # show no image when hotlinked
+        RewriteRule \.(jpg|png|gif)$ – [NC,F,L]
