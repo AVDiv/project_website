@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     include_once 'components/page_processing.php';
 //    setcookie('test', '9823d9m8jsts9nhrmjfnm8d9m024jt', time() + 180);
     var_dump($_COOKIE);
