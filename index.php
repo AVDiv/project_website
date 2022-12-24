@@ -1,6 +1,5 @@
 <?php
     session_start();
-    include_once 'components/https_redirection.php'; # Redirects to https
 ?>
 
 <html>
