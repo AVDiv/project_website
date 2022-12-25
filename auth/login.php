@@ -1,24 +1,22 @@
-<?php
 
+<?php
+  include '../components/links.php';
+  $link = new Links();
 ?>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script type="text/javascript" src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
-  <link href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="../assets/css/master.css" rel="stylesheet"/>
-  <link href="../assets/css/login.css" rel="stylesheet"/>
   <?php 
-    include '../components/fa-config/fa_script.php'; // Fontawesome icon scripts
+  include '../components/essentials.php'
   ?>
+  <link href="../assets/css/login.css" rel="stylesheet"/>
   <title>Login | Pixihire</title>
 </head>
 <body>
-  <div class="background container-fluid h-100">
+  <div style="background-image: url('<?php echo $link->path('login_img'); ?>');" class="background container-fluid h-100">
     <div class="container login-section">
       <!-- Logo section -->
       <div class="logo-card">
-        <img src="../assets/images/logo.png" alt="Pixihire Logo" class="logo"/>
+        <img src="<?php echo $link->path('logo'); ?>" alt="Pixihire Logo" class="logo"/>
       </div>
       <!-- Login card -->
       <div class="login-card">

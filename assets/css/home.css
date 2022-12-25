@@ -1,0 +1,148 @@
+/* Hero section */
+#hero > div{
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding-right: 32px;
+  padding-left: 32px;
+}
+#hero #Image{
+  height: 100%;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+}
+#hero > img{
+  height: 100vh;
+  position: absolute;
+  z-index: 0;
+}
+#hero #Context{
+  width: 35vw;
+  margin-left: 53px;
+}
+@media screen and (min-width: 1920px) {
+  #hero #Image{
+    width: 40vw;
+  }
+}
+@media screen and (max-width: 1200px){
+  #hero > div{
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-around!important;
+  }
+  #hero > img{
+    display: none;
+  }
+  #hero #Image{
+    width: 80vw;
+    height: auto;
+  }
+  #hero #Context{
+    margin-left: 0px;
+    width: 50vw;
+    text-align: center;
+  }
+  #hero #Context > p{
+    color: var(--color-lite-blue)!important;
+  }
+}
+@media screen and (max-width: 790px){
+  #hero #Context{
+    margin-top: 60px;
+    width: 80vw;
+  }
+  #hero > div{
+    justify-content: center!important;
+  }
+}
+@media screen and (max-width: 415px){
+  #hero #Context{
+    width: 90vw;
+  }
+  #hero #Image{
+    width: 90vw;
+  }
+}
+/* Skill section */
+
+#skill {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 10px;
+}
+
+#skill > h1 {
+  font-weight: 600;
+  font-size: xx-large;
+  padding-bottom: 20px;
+  margin-top: 28px;
+  color: var(--color-dark-blue);
+}
+
+#skill p {
+  font-size: 16px;
+  font-weight: 600;
+}
+#skill > p {
+  padding: 0 4px;
+  font-size: 18px;
+  color: var(--color-gray);
+}
+#skill > div{
+  width: 100%;
+  max-width: 1200px;
+  justify-items: center;
+}
+.raw {
+  margin-top: 20px;
+  flex-direction: column;
+  display: initial;
+  justify-content: space-between;
+}
+.skill.class {
+  width: 500px;
+  height: 200px;
+  background-color: #D5E6FF;
+  border-radius: 30px;
+  box-sizing: border-box;
+  padding: 20px 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+.skill.class > svg{
+  font-size: 70px;
+  color: var(--color-white);
+  stroke-width: 10;
+  stroke: var(--color-lite-blue);
+}
+.skill.class > h1{
+  text-align: center;
+  font-weight: 600;
+  margin: 0;
+  margin-top: 17px;
+  font-size: 20px;
+  color: var(--color-dark-blue);
+}
+.skill.class > p{
+  margin-top: 11px;
+  margin-right: 10px;
+  font-size: 16px;
+    color: var(--color-lite-blue);
+}
+.skill.class > p > svg{
+  color: var(--color-blue);
+  margin-right: 3px;
+}
+
+@media screen and (max-width: 500px) {
+  .skill.class {
+    width: 100%;
+  }
+}
+
+
+

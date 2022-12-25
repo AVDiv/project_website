@@ -1,0 +1,2 @@
+PHPSESSID -> Auto-Generated cookie by PHP
+LOGSESSID -> A cookie which is set at an successful login by the user, This cookie is used to identify the user and to check if the user a any existing login sessions.
