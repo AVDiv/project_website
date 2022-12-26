@@ -68,7 +68,7 @@ form > div > div > div > div{
     border-radius: 0px;
     border-bottom: 3px solid #71A0E6;
     color: #0448DA;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     padding: 5px;
     opacity: 100%;
@@ -89,7 +89,7 @@ form > div > div > div > div{
 }
 .float-placeholder{
     transition-duration: 0.3s;
-    font-size: 16px;
+    font-size: 18px;
     margin: 0;
     font-weight: 600;
     position: absolute;
@@ -160,7 +160,7 @@ input[type=date]:focus {
     width: 131px;
     height: 37px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 18px;
     background-color: transparent;
     color: black;
     font-weight: 600;
@@ -190,14 +190,14 @@ input[type=date]:focus {
 
 .sm {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     text-decoration: none;
     color: #000000;
 }
 
 .about {
     color: #71A0E6;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     margin-left: 70px;
     width: 401.8px;
@@ -231,7 +231,7 @@ input[type=date]:focus {
     width: 131px;
     height: 37px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 5px;
 }
 
@@ -242,7 +242,7 @@ input[type=date]:focus {
 }
 
 #login {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #71A0E6;
     margin-left: 5px;

@@ -1,4 +1,3 @@
-
 <?php
   include '../components/links.php';
   $link = new Links();
@@ -8,7 +7,7 @@
   <?php 
   include '../components/essentials.php'
   ?>
-  <link href="../assets/css/login.css" rel="stylesheet"/>
+  <link href="<?php echo $link->path('login_css'); ?>" rel="stylesheet"/>
   <title>Login | Pixihire</title>
 </head>
 <body>
@@ -68,7 +67,7 @@
         </div>
         <!-- Create account -->
         <div class="no-account">
-          <p>Haven't got an account? <a href="#">Create account</a></p>
+          <p>Haven't got an account? <a href="<?php echo $link->path('signup_page'); ?>">Create account</a></p>
         </div>
       </div>
     </div>

@@ -37,7 +37,7 @@ body{
   margin: auto;
   height: auto;
 }
-.login-text{
+.login-text > p{
   color: var(--color-dark-blue);
   font-size: 32px;
   font-weight: 600;

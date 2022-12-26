@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
 *{
   margin: 0;
   padding: 0;
-  font-family: Poppins, serif;
+  font-family: 'Maven Pro', sans-serif;
   font-size: 16px;
   scroll-behavior: smooth;
 }

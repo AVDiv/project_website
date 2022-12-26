@@ -1,9 +1,9 @@
 <?php
-    session_start();
+//    session_start();
+//    include_once 'components/page_processing.php';
+//    $pp = new page_processor();
+//    $pp->is_logged_in($_COOKIE); // Check if user is logged in
 
-    include_once 'components/page_processing.php';
-//    setcookie('test', '9823d9m8jsts9nhrmjfnm8d9m024jt', time() + 180);
-    var_dump($_COOKIE);
 ?>
 
 <html>
@@ -18,7 +18,10 @@
 </head>
 <body>
 <!-- Navigation bar -->
-<?php include 'components/navigation_bar.php' ?>
+<?php
+include 'components/navigation_bar.php';
+echo navbar_component(false);
+?>
 <!-- Hero -->
 <section id="hero" style="width: 100%;height: 100%;z-index: 0;"><img src=<?php echo $link->path('hero_bg'); ?>>
     <div class="justify-content-between align-items-xl-center">
