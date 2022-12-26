@@ -48,12 +48,17 @@
     <title>Signup | Pixihire</title>
 </head>
 <body>
+<!-- Navigation bar -->
+<?php
+    include '../components/navigation_bar.php';
+    echo navbar_component($pp->logged_in);
+?>
 <div id="signup" class="d-xxl-flex">
     <div id="imageCol" style="background-image: url(<?php echo $link->path('signup_img'); ?>);">
     </div>
     <div class="col d-xl-flex d-xxl-flex align-items-xxl-center">
         <div class="container">
-            <h1 class="d-flex justify-content-center mainHead" style="text-align: center;color: #051B3B;margin-top: 30px;">Join Pixihire.</h1>
+            <h1 class="d-flex justify-content-center mainHead" style="text-align: center;color: #051B3B;margin-top: 90px;">Join Pixihire.</h1>
             <h1 class="secondHead" style="margin-top: 40px;">Sign up with</h1>
             <div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center buttonContainer">
                 <a class="sm" href="#" style="padding-bottom: 0px;"><button class="btn btn-primary d-xxl-flex justify-content-xxl-center align-items-xxl-center smBtn" type="button"><i class="fa-brands fa-google" style="font-size: 20px;"></i>Google</button></a>
