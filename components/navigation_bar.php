@@ -20,7 +20,7 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav"><li class="nav-item signup-link" style="background: var(--bs-blue);color: var(--bs-body-bg);border-radius: 100px;padding: 3px 5px;margin-right: 10px;"><a class="nav-link" href="'. $links->path('signup_page') .'" style="font-weight: 600;height: 100%;width: 100%;color: var(--bs-white);font-size: 16px;padding: 0px;padding-left: 15px;padding-bottom: 5px;padding-right: 15px;padding-top: 5px;letter-spacing: 0.5px;">Signup</a></li>
-                            <li class="nav-item"><a class="nav-link" href="'. $links->path('login_page') .'" style="font-weight: 600;font-size: 16px;font-family: Poppins, sans-serif;letter-spacing: 0.5px;">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="'. $links->path('login_page') .'" style="font-weight: 600;font-size: 16px;letter-spacing: 0.5px;">Login</a></li>
                         </ul>
                     </div>
                 </div>

@@ -67,7 +67,7 @@
             <h1 class="d-flex d-xxl-flex justify-content-center justify-content-xxl-center secondHead" style="margin-top: 30px;">Or</h1>
             <h1 class="secondHead" style="margin-top: 40px;margin-bottom: 20px;">Create account by giving these details</h1>
             <p class="about">Give accurate information as it will be taken for futher verifications of your profile.<br></p>
-            <h1 class="secondHead" style="margin-top: 40px;margin-bottom: 4px;font-size: 14px;"><span style="color: rgb(255, 0, 0);">*</span> for required fields</h1>
+            <h1 class="secondHead" style="margin-top: 40px;margin-bottom: 4px;font-size: 16px;"><span style="color: rgb(255, 0, 0);">*</span> for required fields</h1>
             <form class="signupForm" method="POST" action="">
                 <div style="overflow: visible;">
                     <div>
@@ -100,7 +100,7 @@
                         <div class="d-xxl-flex justify-content-xxl-evenly">
                             <div class="d-xxl-flex align-items-xxl-center" style="width: 190px;"><button class="btn btn-primary submitBtn" id="submitBtn" type="submit" style="margin-right: 0px;margin-left: 10px;">Next</button></div>
                             <div class="d-xxl-flex align-items-xxl-center">
-                                <h1 class="secondHead" style="margin-top: 0px;margin-bottom: 0px;font-size: 14px;padding-left: 0px;"><strong>Already got an account?</strong><a id="login" href="<?php echo $link->path('login_page') ?>" style="padding-bottom: 0px;">Login</a></h1>
+                                <h1 class="secondHead" style="margin-top: 0px;margin-bottom: 0px;font-size: 16px;padding-left: 0px;"><strong>Already got an account?</strong><a id="login" href="<?php echo $link->path('login_page') ?>" style="padding-bottom: 0px;">Login</a></h1>
                             </div>
                         </div>
                     </div>
