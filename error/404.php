@@ -13,7 +13,7 @@
     <?php
         include '../components/essentials.php'
     ?>
-    <link rel="stylesheet" href="<?php echo $link->path('404_css')?>">
+    <link rel="stylesheet" href="<?php echo $link->path('404_css'); ?>">
     <title>404 Not Found | Pixihire</title>
 </head>
 <body>
