@@ -3,8 +3,8 @@
 class Links{
     // For production
        public $project_domain = "https://pixihire.cf";
-
-//    public $project_domain = "http://localhost:880/project_website";
+    // For development
+//    public $project_domain = "http://localhost:881/project_website";
     private $links = array(
         // Pages
         'home_page'=> '/',

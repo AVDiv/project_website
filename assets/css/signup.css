@@ -1,3 +1,15 @@
+#signup{
+    width: 100%;
+    height: 100%;
+}
+#imageCol{
+    width: 50%;
+    height: 100%;
+    background-size: 90%;
+    background-position: center;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+}
 .row {
     height: 100%;
     width: 100%;
@@ -13,8 +25,106 @@ html {
 }
 
 .container {
-    height: 85%;
     width: 80%;
+}
+svg{
+    color: var(--color-lite-blue);
+    margin: 0px 10px;
+}
+form{
+    padding-top: 10px;
+}
+form > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+form > div > div{
+    width: 80%;
+}
+form > div > div > div > div{
+    padding: 20px;
+}
+.error-text{
+  display: none;
+}
+.error{
+  padding-bottom: 0px
+}
+.error .error-text{
+  display: block;
+  width: 100%;
+  color: var(--color-red);
+  font-size: 12px;
+  padding: 0px 4px;
+  padding-left: 3px;
+}
+.error .inputf:valid ~ .error-text{
+  color: transparent;
+}
+.inputf {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 3px solid #71A0E6;
+    color: #0448DA;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    opacity: 100%;
+}
+
+.inputf:focus {
+    color: #0448da;
+    box-shadow: none;
+    border-bottom-color: #0448da;
+}
+.inputf::placeholder {
+    transition-duration: 0.3s;
+    opacity: 0;
+}
+.inputf:focus::placeholder {
+    transition-duration: 0.3s;
+    opacity: 0.5;
+}
+.float-placeholder{
+    transition-duration: 0.3s;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 600;
+    position: absolute;
+    transform: translateY(-35px);
+    pointer-events: none;
+    padding-left: 15px;
+    color: var(--color-lite-blue);
+}
+.float-placeholder > span{
+    transition-duration: 0.3s;
+    color: var(--color-red);
+}
+
+input:focus ~ .float-placeholder,
+input:valid ~ .float-placeholder{
+    transition-duration: 0.3s;
+    padding: 0;
+    transform: translateY(-55px);
+    font-size: 12px;
+    color: var(--color-blue);
+}
+input:focus ~ .float-placeholder span,
+input:valid ~ .float-placeholder span{
+    transition-duration: 0.3s;
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--color-blue);
+}
+input[type=date]:required:invalid {
+    color: transparent;
+    transition-duration: 0.3s;
+}
+input[type=date]:focus {
+    color: var(--color-blue)!important;
+    transition-duration: 0.3s;
 }
 
 @media (max-width: 768px) {
@@ -111,71 +221,10 @@ html {
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 1399px) {
     #imageCol {
         display: none;
     }
-}
-
-table {
-    margin-left: 60px;
-    padding: 0px;
-    width: 70%;
-    overflow: hidden;
-}
-
-tr {
-    width: 100%;
-}
-
-td {
-    width: 230px;
-    border: none;
-    height: 70px;
-}
-
-.inputf {
-    border: none;
-    border-radius: 0px;
-    border-bottom: 3px solid #71A0E6;
-    color: #0448DA;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 5px;
-    opacity: 100%;
-}
-
-.inputf:focus {
-    color: #0448da;
-    box-shadow: none;
-    border-bottom-color: #0448da;
-}
-
-.inputf:focus::placeholder {
-    color: transparent;
-}
-
-.inputf::placeholder {
-    color: #71A0E6;
-    font-size: 14px;
-    padding: 5px;
-    font-weight: 600;
-    opacity: 100%;
-    transition: 0.3s;
-}
-
-.inputHead {
-    margin: 0px;
-    padding-left: 10px;
-    color: #0448da;
-    font-weight: 600;
-    font-size: 11px;
-    color: transparent;
-}
-
-.inputHead:focus-within {
-    transition: 0.4s;
-    color: #0448da;
 }
 
 #submitBtn {

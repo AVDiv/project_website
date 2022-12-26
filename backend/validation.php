@@ -1,18 +1,38 @@
 <?php
 
 class Validation{
+    // Mitigations, sanitizations and verifications
+    // Html mitigation
+    function html_mitigation($data){
+        $data = str_replace(' ', ' ', $data); // Replace non-breaking space with space
+        $data = trim($data); // Remove whitespace from both sides
+        $data = stripslashes($data); // Remove backslashes
+        $data = htmlspecialchars($data); // Convert special characters to HTML entities
+        return $data;
+    }
+    function unicode_verifier($data){
+        $is_pass = false;
+        if(preg_match("/^[\x{20}-\x{7E} ]*$/u", $data)){
+            $is_pass = true;
+        }
+        return $is_pass;
+    }
+    // Validations
     // Validate names
     function validate_name($name){
         /*
          * Notes:                                                                       Implemented | Tested
-         *     1. Names can only contain letters                                           ✓            -
-         *     2. Names must be between 2 and 40 characters                                -            -
-         *     3. Names cannot start or end with a space                                   -            -
+         *     1. Names can only contain letters                                           ✓            ✓
+         *     2. Names must be between 2 and 40 characters                                ✓            ✓
+         *     3. Names cannot have a space                                                ✓            ✓
          */
         $is_pass = false;
         if(!empty($name)){
-            if(preg_match("/^[a-zA-Z]*$/", $name)){
+            if(preg_match("/^[a-zA-Z]{2,40}$/", $name)){
                 $is_pass = true;
+            }
+            if(!($this->unicode_verifier($name))){
+                $is_pass = false;
             }
         }
         return $is_pass;
@@ -21,14 +41,17 @@ class Validation{
     function validate_username($username){
         /*
          * Notes:                                                                           Implemented | Tested
-         *     1. Usernames can only contain letters, numbers, underscores and dashes           ✓           -
-         *     2. Usernames must be between 5 and 20 characters                                 -           -
-         *     3. Usernames cannot start or end with a space                                    ✓           -
+         *     1. Usernames can only contain letters, numbers, underscores and dashes           ✓           ✓
+         *     2. Usernames must be between 2 and 20 characters                                 ✓           ✓
+         *     3. Usernames cannot start or end with a space                                    ✓           ✓
          */
         $is_pass = false;
         if(!empty($username)){
-            if(preg_match("/^[a-zA-Z0-9_-]*$/", $username)){
+            if(preg_match("/^[a-zA-Z0-9_-]{2,20}$/", $username)){
                 $is_pass = true;
+            }
+            if(!($this->unicode_verifier($username))){
+                $is_pass = false;
             }
         }
         return $is_pass;
@@ -37,14 +60,20 @@ class Validation{
     function validate_email($email){
         /*
          * Notes:                                                                           Implemented | Tested
-         *     1. Email must be a valid email address                                           ✓           -
-         *     2. Email must be between 5 and 50 characters                                     -           -
-         *     3. Email cannot start or end with a space                                        ✓           -
+         *     1. Email must be a valid email address                                           ✓           ✓
+         *     2. Email must be between 5 and 50 characters                                     ✓           ✓
+         *     3. Email cannot start or end with a space                                        ✓           ✓
          */
         $is_pass = false;
         if(!empty($email)){
             if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                if (preg_match("/^[[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]]{5,50}$/", $email)){
+                    $is_pass = true;
+                }
                 $is_pass = true;
+            }
+            if(!($this->unicode_verifier($email))){
+                $is_pass = false;
             }
         }
         return $is_pass;
@@ -53,14 +82,17 @@ class Validation{
     function validate_phone($phone){
         /*
          * Notes:                                                                           Implemented | Tested
-         *     1. Phone number can only contain numbers and +                                   ✓           -
-         *     2. Phone number must be between 10 and 13 characters                             -           -
-         *     3. Phone number should start with +                                              ✓           -
+         *     1. Phone number can only contain numbers and +                                   ✓           ✓
+         *     2. Phone number must be between 10 and 13 characters                             ✓           ✓
+         *     3. Phone number should start with +                                              ✓           ✓
          */
         $is_pass = false;
         if(!empty($phone)){
-            if(preg_match("/^[+][0-9]*$/", $phone)){
+            if(preg_match("/^[+][0-9]{2,3}\s[(][0-9]{3}[)]\s[0-9]{3}\s[0-9]{4}$/", $phone)){
                 $is_pass = true;
+            }
+            if(!($this->unicode_verifier($phone))){
+                $is_pass = false;
             }
         }
         return $is_pass;
@@ -69,15 +101,67 @@ class Validation{
     function validate_dob($dob){
         /*
          * Notes:                                                                        Implemented | Tested
-         *     1. Date of birth must be in the past                                         -           -
-         *     2. Date of birth must be in the format of YYYY-MM-DD                         ✓           -
-         *     3. Date of birth must be at least 18 years ago                               -           -
-         *     4. Date of birth must be at most 100 years ago                               -           -
+         *     1. Date of birth must be in the past                                         ✓           ✓
+         *     2. Date of birth must be in the format of YYYY-MM-DD                         ✓           ✓
+         *     3. Date of birth must be at least 13 years ago                               ✓           ✓
+         *     4. Date of birth must be at most 100 years ago                               ✓           ✓
          */
         $is_pass = false;
         if(!empty($dob)){
-            if(preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/", $dob)){
+            if(!($this->unicode_verifier($dob))){
+                return false;
+
+            }
+            if(preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/", $dob)){
+                $today = time(); // or your date as well
+                $dob_date = strtotime($dob);
+                $year_diff = floor(round(($today - $dob_date)/ (60 * 60 * 24))/365);
+                if($year_diff > 100){
+                    return -1; // Age is too old
+                }else if($year_diff < 13){
+                    return -2; // Age is too young
+                }
                 $is_pass = true;
+            }
+        }
+        return $is_pass;
+    }
+    // Validate password
+function validate_password($password, $confirm_password){
+        /*
+         * Notes:                                                                               Implemented | Tested
+         *     1. Password must be between 3 and 20 characters                                      ✓           ✓
+         *     2. Password can contain uppercase letters, lowercase letters, symbols, numbers       ✓           ✓
+         *     3. Password cannot start or end with a space                                         ✓           ✓
+         */
+        $is_pass = false;
+        if (empty($password)){
+            return -2; // Password is empty
+        } else if (empty($confirm_password)){
+            return -3; // Confirm password is empty
+        } else if($password !== $confirm_password){
+            return -1; // Passwords do not match
+        }else if(!($this->unicode_verifier($password))){
+            return false;
+        }else if(preg_match("/^[\x{20}-\x{7E} ]{3,20}$/", $password)){
+            $is_pass = true;
+        }
+        return $is_pass;
+    }
+    function validate_cookie_string($cookie_string){
+        /*
+         * Notes:                                                                        Implemented | Tested
+         *     1. Cookie string must be a string                                           ✓           -
+         *     2. Cookie string must be in a length of 32 chars                            ✓           -
+         *     3. Cookie string must be alphanumeric                                       ✓           -
+         */
+        $is_pass = false;
+        if(!empty($cookie_string)){
+            if(preg_match("/^[a-zA-Z0-9]*$/", $cookie_string) && strlen($cookie_string) == 32){
+                $is_pass = true;
+            }
+            if(!($this->unicode_verifier($cookie_string))){
+                $is_pass = false;
             }
         }
         return $is_pass;
