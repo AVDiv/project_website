@@ -1,0 +1,31 @@
+#hed {
+  color: var(--bs-red);
+}
+
+#text {
+  color: var(--bs-yellow);
+}
+
+#box {
+  color: var(--bs-purple);
+}
+
+#tc {
+  text-align: center;
+  color: #71A0E6;
+  font-size: 32px;
+  font-weight: 800;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+#p {
+  font-weight: 500;
+  padding: 60px;
+  font-size: 18px;
+}
+
+#h {
+  font-weight: 700;
+  font-size: 28px;
+}
+

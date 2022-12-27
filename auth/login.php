@@ -47,7 +47,7 @@
 </head>
 <body>
   <div style="background-image: url('<?php echo $link->path('login_img'); ?>');" class="background container-fluid h-100">
-    <div class="container login-section">
+    <div class="login-section">
       <!-- Logo section -->
       <div class="logo-card">
         <img src="<?php echo $link->path('logo'); ?>" alt="Pixihire Logo" class="logo"/>
@@ -57,7 +57,6 @@
         <!-- Log in text -->
         <div class="login-text <?php echo $error_code!==0?'error':'' ?>">
           <p>Login to Pixihire</p>
-
             <p class="error-text"><i class="fa-solid fa-circle-exclamation"></i>&nbsp;
             <?php
                 if ($error_code === 1) {

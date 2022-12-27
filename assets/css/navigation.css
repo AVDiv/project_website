@@ -99,3 +99,17 @@
   opacity: 0.8;
   transition-duration: 0.5s;
 }
+
+.navbar.dark .navbar-brand svg path{
+  fill: var(--color-white)!important;
+}
+.navbar.dark .navbar-brand svg path.cls-3{
+  fill: transparent!important;
+  stroke: var(--color-white)!important;
+}
+.navbar.dark .nav-link{
+  color: var(--color-white)!important;
+}
+.navbar.dark .dropdown svg{
+  color: var(--color-white);
+}

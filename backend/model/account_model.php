@@ -140,7 +140,7 @@
             try{
                 $stmt = $this->connection->prepare("INSERT INTO login_sessions (u_ID, cookie_string) VALUES (:u_id, :cookie_string)");
                 $stmt->bindParam(":u_id", $u_id);
-                $stmt->bindParam(":session_id", $cookie_string);
+                $stmt->bindParam(":cookie_string", $cookie_string);
                 $stmt->execute();
                 // Fetch the session ID
                 $stmt = $this->connection->prepare("SELECT ID FROM login_sessions WHERE cookie_string = :cookie_string");
