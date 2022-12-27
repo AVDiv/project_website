@@ -24,7 +24,7 @@
     ?>
     <div class="d-flex">
         <div class="d-flex text-container">
-            <h1>404</h1>
+            <h1 class="hero glitch layers" data-text="404"><span>404</span></h1>
             <p class="mid-text">Page not found</p>
             <p class="below-text">The page you are finding for does not exist!</p>
         </div>
