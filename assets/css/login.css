@@ -44,6 +44,18 @@ body{
   text-align: center;
   margin-bottom: 30px;
 }
+.error > p{
+  margin-bottom: 7px;
+}
+.error-text{
+  display: none;
+}
+.error > .error-text{
+  display: block;
+  color: var(--color-red);
+  font-size: 16px;
+  margin-bottom: 7px;
+}
 .credentials{
   width: 500px;
 }
