@@ -1,12 +1,12 @@
 <?php
     include_once 'links.php';
 
-    function navbar_component($is_logged_in){
+    function navbar_component($is_logged_in, $dark_theme = false) {
         $links = new Links();
         $navigation_component ='
             <link rel="stylesheet" href="'. $links->path('navbar_css') .'">
-            <nav id="navbar" class="navbar navbar-light navbar-expand-md py-3" style="width: 100%;padding-right: 32px;padding-left: 32px;">
-                <div class="container-fluid"><a class="navbar-brand d-flex align-items-center" href="'. $links->path('home_page') .'"><img src="'. $links->path('logo') .'" style="height: 37px;" alt="Logo"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <nav id="navbar" class="navbar navbar-light navbar-expand-md py-3'. ($dark_theme?' dark':'') .'" style="width: 100%;padding-right: 32px;padding-left: 32px;">
+                <div class="container-fluid"><a class="navbar-brand d-flex align-items-center" href="'. $links->path('home_page') .'"><div style="height: 37px;>'.  file_get_contents($links->path('logo_svg'))  .'</div></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navcol-3">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item dropdown" style="font-weight: 600;padding: 0px 20px;letter-spacing: 0.5px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Work</a><i class="fa-solid fa-caret-down"></i>
@@ -27,7 +27,7 @@
                                 <div class="dropdown-menu" style="box-shadow: 5px 5px #CDD7E1;">
                                     <a class="dropdown-item" href="#">Who are we</a>
                                     <a class="dropdown-item" href="#">Contact us</a>
-                                    <a class="dropdown-item" href="#">Our University</a>
+                                    <a class="dropdown-item" href="'. $links->path('nsbm_page') .'">Our University</a>
                                     <a class="dropdown-item" href="'. $links->path('terms_page') .'">Terms &amp; Conditions</a>
                                     <a class="dropdown-item" href="#">Privacy Policy</a>
                                 </div>
