@@ -18,6 +18,7 @@ class Links{
         'about_page'=> '/about/about.php',
         'forgot_password_page'=> '/auth/forgot_password.php',
         'email_verify_page'=> '/verify/email_verify.php',
+        'privacy_policy_page'=> '/about/privacy.php',
         // Components
         'navbar'=> '/components/navigation_bar.php',
         // CSS files
@@ -46,6 +47,7 @@ class Links{
         'nsbm_img' => '/assets/media/images/nsbm.jpg',
         'nsbm_img2' => '/assets/media/images/nsbm2.png',
         'favicon_img' => '/assets/media/images/favicon.ico',
+        'email_img' => '/assets/media/images/email.png',
     );
     function path($filename){
         return $this->project_domain.$this->links[$filename];
