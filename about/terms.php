@@ -1,8 +1,10 @@
 <?php
     // Imports
     include '../components/links.php';
+    include '../components/page_processing.php';
     // Initializations
     $link = new Links();
+    $pp = new page_processor();
 ?>
 <html lang="en">
 <head>
