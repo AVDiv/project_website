@@ -2,16 +2,17 @@
 // Class with links
 class Links{
     // For production
-        public $project_domain = "https://pixihire.cf";
+    public $project_domain = "https://pixihire.cf";
     // For development
 //   public $project_domain = "http://localhost:881/project_website";
     private $links = array(
         // Pages
         'home_page'=> '/',
-        'login_page'=> '/auth/login',
-        'signup_page'=> '/auth/signup',
-        '404_page'=> '/error/404',
-        'terms_page'=> '/about/terms',
+        'login_page'=> '/auth/login.php',
+        'signup_page'=> '/auth/signup.php',
+        '404_page'=> '/error/404.php',
+        'terms_page'=> '/about/terms.php',
+        'nsbm_page'=> '/about/nsbm.php',
         // Components
         'navbar'=> '/components/navigation_bar.php',
         // CSS files
@@ -23,17 +24,21 @@ class Links{
         'navbar_css'=> '/assets/css/navigation.css',
         '404_css'=> '/assets/css/404.css',
         'terms_css'=> '/assets/css/terms.css',
+        'nsbm_css'=> '/assets/css/nsbm.css',
         // JS scripts
         'bs_js' => '/assets/bootstrap/js/bootstrap.min.js',
         'navbar_js' => '/assets/js/navigation.js',
         // Media
         'logo'=>'/assets/media/images/Logo.png',
         'logo_fd'=>'/assets/media/images/Logo I.png',
+        'logo_svg' => '/assets/media/images/Logo.svg',
         'hero_bg' => '/assets/media/images/1.svg',
         'hero_img' => '/assets/media/images/sofa-man.png',
         'login_img' => '/assets/media/images/login-banner.jpg',
         'signup_img' => '/assets/media/images/signup_bg.png',
-        '404_img' => '/assets/media/images/404.svg'
+        '404_img' => '/assets/media/images/404.svg',
+        'nsbm_img' => '/assets/media/images/nsbm.jpg',
+        'nsbm_img2' => '/assets/media/images/nsbm2.png',
     );
     function path($filename){
         return $this->project_domain.$this->links[$filename];
