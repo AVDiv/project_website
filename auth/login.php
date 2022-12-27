@@ -57,7 +57,6 @@
         <!-- Log in text -->
         <div class="login-text <?php echo $error_code!==0?'error':'' ?>">
           <p>Login to Pixihire</p>
-
             <p class="error-text"><i class="fa-solid fa-circle-exclamation"></i>&nbsp;
             <?php
                 if ($error_code === 1) {

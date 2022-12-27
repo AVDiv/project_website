@@ -1,0 +1,4 @@
+https://pixihire.cf/index.php
+https://pixihire.cf/auth/login.php
+https://pixihire.cf/auth/signup.php
+https://pixihire.cf/error/404.php

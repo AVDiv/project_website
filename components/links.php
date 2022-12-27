@@ -8,9 +8,10 @@ class Links{
     private $links = array(
         // Pages
         'home_page'=> '/',
-        'login_page'=> '/auth/login.php',
-        'signup_page'=> '/auth/signup.php',
-        '404_page'=> '/error/404.php',
+        'login_page'=> '/auth/login',
+        'signup_page'=> '/auth/signup',
+        '404_page'=> '/error/404',
+        'terms_page'=> '/about/terms',
         // Components
         'navbar'=> '/components/navigation_bar.php',
         // CSS files
@@ -21,6 +22,7 @@ class Links{
         'signup_css'=> '/assets/css/signup.css',
         'navbar_css'=> '/assets/css/navigation.css',
         '404_css'=> '/assets/css/404.css',
+        'terms_css'=> '/assets/css/terms.css',
         // JS scripts
         'bs_js' => '/assets/bootstrap/js/bootstrap.min.js',
         'navbar_js' => '/assets/js/navigation.js',
