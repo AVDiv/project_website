@@ -121,53 +121,64 @@ class Account
         return false;
     }
 
-    function create_login_session($email, $password)
+    function create_login_session($identity, $password)
     {
         // Error codes
-        // 0 - No error
+        // {Cookie string} - No error
         // 1 - Email/Password is incorrect
-        // 2 - Email does not exist
-        // 3 - Account is banned
-        // 4 - Cannot log in to account at this time
+        // 2 - Account is banned
+        // 3 - Cannot log in to account at this time
         // Validate login credentials
-        $is_valid_email = $this->verify->validate_email($email);
-        $is_valid_pass = $this->verify->validate_password($password, $password);
-        if ($is_valid_email && $is_valid_pass) {
-            // Check if email exists
-            $user_id = $this->model->check_email($email);
-            if ($user_id !== false && $user_id !== -1) {
-                // Check if password is correct
-                $associated_password = $this->model->get_password($user_id);
-                $password = hash('sha512', $password);
-                if ($associated_password === $password) {
-                    // Generate random string
-                    $permitted_cookie_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
-                    $string1 = substr(uniqid(), 0, 8);
-                    $string2 = substr(str_shuffle($permitted_cookie_chars), 6, 8);
-                    $string3 = substr(str_shuffle($permitted_cookie_chars), 2, 8);
-                    $string4 = substr(str_shuffle($permitted_cookie_chars), 15, 8);
-                    // Setting the cookie and login session
-                    $cookie_string = substr(sha1($string1 . $string2 . $string3 . $string4), 3, 32);
-                    $is_session_exists = $this->check_login_session($cookie_string);
-                    if ($is_session_exists !== -1 && $is_session_exists !== false) {
-                        $this->create_login_session($email, $password);
-                    } elseif ($is_session_exists === false) {
-                        $result = $this->model->set_login_session($user_id, $cookie_string);
-                        if ($result !== false && $result !== -1) {
-//                            setcookie($cookie_name, $cookie_string, time() + (86400 * 30), "/"); // 86400 = 1 day
-                            return $cookie_string;
-                        } else {
-                            return 4;
-                        }
-                    }
-                } else {
-                    return 1;
-                }
-            } elseif ($user_id === -1) {
-                return 4;
-            } else {
-                return 2;
+        $is_valid_email = $this->verify->validate_email($identity);
+        if(!$is_valid_email){
+            $is_valid_username = $this->verify->validate_username($identity);
+            if(!$is_valid_username){
+                return 1;
+            } else{
+                $user_id = $this->model->check_username($identity);
             }
+        } else {
+            $user_id = $this->model->check_email($identity);
+        }
+        // Check if email/username exists
+        if($user_id===false || $user_id===-1){
+            return 1;
+        }
+        // Check if account is banned
+        $is_banned = $this->model->check_ban($user_id);
+        if($is_banned){
+            return 2;
+        } elseif ($is_banned===-1) {
+            return 3;
+        }
+        $is_valid_pass = $this->verify->validate_password($password, $password);
+        if(!$is_valid_pass) return 1;
+        // Check if password is correct
+        $account_associated_password = $this->model->get_password($user_id);
+        $password = hash('sha512', $password);
+        if ($account_associated_password === $password) {
+            // Generate random string
+            $permitted_cookie_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $string1 = substr(uniqid(), 0, 8);
+            $string2 = substr(str_shuffle($permitted_cookie_chars), 6, 8);
+            $string3 = substr(str_shuffle($permitted_cookie_chars), 2, 8);
+            $string4 = substr(str_shuffle($permitted_cookie_chars), 15, 8);
+            // Setting the cookie and login session
+            $cookie_string = substr(sha1($string1 . $string2 . $string3 . $string4), 3, 32);
+            $is_session_exists = $this->check_login_session($cookie_string);
+            if ($is_session_exists !== -1 && $is_session_exists !== false) {
+                $this->create_login_session($identity, $password);
+            } elseif ($is_session_exists === false) {
+                $result = $this->model->set_login_session($user_id, $cookie_string);
+                if ($result !== false && $result !== -1) {
+//                            setcookie($cookie_name, $cookie_string, time() + (86400 * 30), "/"); // 86400 = 1 day
+                    return $cookie_string;
+                } else {
+                    return 3;
+                }
+            }
+        } else {
+            return 1;
         }
         return 1;
     }

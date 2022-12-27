@@ -1,6 +1,41 @@
 <?php
+  // Imports
   include '../components/links.php';
+  include_once '../components/page_processing.php';
+    include_once '../backend/account.php';
+  // Initializations
   $link = new Links();
+  $controller = new Account();
+  $pp = new page_processor();
+  $error_code = 0;
+  $cookie_name = 'LOGSESSID';
+  // Program
+  $pp->is_logged_in($_COOKIE); // Check if user is logged in
+  // If logged in, redirect to dashboard page
+  if($pp->logged_in){
+      header("Location: ".$link->path('dashboard_page')); // Redirect to dashboard page
+      die();
+  }
+  // If not logged in, Can create a new account
+  // Check if form is submitted
+  if(!empty($_POST)){
+      // Form is submitted
+      // Get all the data
+      $identity = $_POST['identity'];
+      $password = $_POST['pass'];
+      // Create account
+      $result = $controller->create_login_session($identity, $password);
+      if (is_string($result)){
+          // Login attempt successful
+          setcookie($cookie_name, $result, time() + (86400 * 30), "/"); // 86400 = 1 day, 86400 * 30 = 30 days
+          header("Location: ".!empty($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:$link->path('dashboard_page')); // Redirect to verification page
+          die();
+      }else{
+          // Login attempt failed
+          $error_code = $result;
+      }
+
+  }
 ?>
 <html>
 <head>
@@ -20,19 +55,30 @@
       <!-- Login card -->
       <div class="login-card">
         <!-- Log in text -->
-        <div class="login-text">
+        <div class="login-text <?php echo $error_code!==0?'error':'' ?>">
           <p>Login to Pixihire</p>
+
+            <p class="error-text"><i class="fa-solid fa-circle-exclamation"></i>&nbsp;
+            <?php
+                if ($error_code === 1) {
+                    echo 'Email/Username or Password is incorrect';
+                } elseif ($error_code === 2) {
+                    echo 'Account is banned';
+                } elseif ($error_code === 3) {
+                    echo 'Cannot log in to account at this time';
+                }
+            ?></p>
         </div>
         <!-- Login form -->
         <div class="row credentials">
           <form action="" method="post">
             <div class="input-field-holder">
               <div class="input-field">
-                <input type="text" name="username" required>
+                <input type="text" name="identity" required>
                 <label for="username">Username/Email</label>
               </div>
               <div class="input-field">
-                <input type="password" name="password" required>
+                <input type="password" name="pass" required>
                 <label for="password">Password</label>
               </div>
             </div>

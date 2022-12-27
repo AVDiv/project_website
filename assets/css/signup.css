@@ -101,6 +101,8 @@ form > div > div > div > div{
 .float-placeholder > span{
     transition-duration: 0.3s;
     color: var(--color-red);
+    font-weight: normal;
+    font-size: 20px;
 }
 
 input:focus ~ .float-placeholder,
@@ -115,7 +117,6 @@ input:focus ~ .float-placeholder span,
 input:valid ~ .float-placeholder span{
     transition-duration: 0.3s;
     font-size: 12px;
-    font-weight: normal;
     color: var(--color-blue);
 }
 input[type=date]:required:invalid {
