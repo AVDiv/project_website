@@ -1,0 +1,38 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  width: 566px;
+  height: 566px;
+  position: relative;
+  font-weight: 600;
+}
+
+.bg {
+  opacity: 30%;
+  height: 100%;
+}
+
+.txtContainer {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@media screen and (max-width: 1300px) {
+  .bg {
+    height: 70%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .txtContainer h1{
+    font-size: 32px!important;
+  }
+  .txtContainer p{
+    font-size: 16px!important;
+  }
+}
