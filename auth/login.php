@@ -1,7 +1,7 @@
 <?php
   // Imports
-  include '../components/links.php';
-  include_once '../components/page_processing.php';
+  include '../components/scripts/links.php';
+  include_once '../components/scripts/page_processing.php';
     include_once '../backend/account.php';
   // Initializations
   $link = new Links();
@@ -12,12 +12,21 @@
   // Program
   $pp->is_logged_in($_COOKIE); // Check if user is logged in
   // If logged in, redirect to dashboard page
-  if($pp->logged_in){
+  if($pp->logged_in && empty($_GET['redirect'])){
       header("Location: ".$link->path('dashboard_page')); // Redirect to dashboard page
       die();
   }
-  // If not logged in, Can create a new account
-  // Check if form is submitted
+
+  if(!empty($_SERVER['HTTP_REFERER']) && empty($_GET['redirect'])){
+      header("Location: ".$link->path('login_page').'?redirect='.$_SERVER['HTTP_REFERER']);// Redirect to the referer page
+      die();
+  } else if(empty($_SERVER['HTTP_REFERER'])){
+      header("Location: ".$link->path('login_page').'?redirect='.$link->path("dashboard_page"));// Redirect to the dashboard page
+      die();
+  }
+      $redirect = $_GET['redirect'];
+    // If not logged in, Can create a new account
+    // Check if form is submitted
   if(!empty($_POST)){
       // Form is submitted
       // Get all the data
@@ -28,7 +37,7 @@
       if (is_string($result)){
           // Login attempt successful
           setcookie($cookie_name, $result, time() + (86400 * 30), "/"); // 86400 = 1 day, 86400 * 30 = 30 days
-          header("Location: ".!empty($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:$link->path('dashboard_page')); // Redirect to verification page
+          header("Location: ".(!empty($_GET['redirect'])?$_GET['redirect']:$link->path('dashboard_page'))); // Redirect to verification page
           die();
       }else{
           // Login attempt failed
@@ -37,10 +46,10 @@
 
   }
 ?>
-<html>
+<html lang="en">
 <head>
-  <?php 
-  include '../components/essentials.php'
+  <?php
+  include '../components/scripts/essentials.php'
   ?>
   <link href="<?php echo $link->path('login_css'); ?>" rel="stylesheet"/>
   <title>Login | Pixihire</title>
@@ -74,7 +83,7 @@
             <div class="input-field-holder">
               <div class="input-field">
                 <input type="text" name="identity" required>
-                <label for="username">Username/Email</label>
+                <label for="identity">Username/Email</label>
               </div>
               <div class="input-field">
                 <input type="password" name="pass" required>

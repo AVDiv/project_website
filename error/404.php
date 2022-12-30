@@ -1,7 +1,7 @@
 <?php
     // Imports
-    include '../components/links.php';
-    include_once '../components/page_processing.php';
+    include '../components/scripts/links.php';
+    include_once '../components/scripts/page_processing.php';
 
     // Initializations
     $pp = new page_processor();
@@ -11,7 +11,7 @@
 
 <head>
     <?php
-        include '../components/essentials.php'
+    include '../components/scripts/essentials.php'
     ?>
     <link rel="stylesheet" href="<?php echo $link->path('404_css')?>">
     <title>404 Not Found | Pixihire</title>
@@ -19,8 +19,8 @@
 <body>
     <!-- Navigation bar -->
     <?php
-        include '../components/navigation_bar.php';
-        echo navbar_component(false);
+        include '../components/sections/navigation_bar.php';
+        echo navbar_component($pp->logged_in, "");
     ?>
     <div class="d-flex">
         <div class="d-flex text-container">

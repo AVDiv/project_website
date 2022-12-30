@@ -1,22 +1,35 @@
 <?php
-    // Imports
-    include '../components/links.php';
-    include '../components/page_processing.php';
-    // Initializations
-    $link = new Links();
-    $pp = new page_processor();
+session_start();
+// Imports
+include '../components/scripts/links.php';
+include '../components/scripts/page_processing.php';
+include '../backend/account.php';
+// Initializations
+$link = new Links();
+$pp = new page_processor();
+$controller = new Account();
+
+$pp->is_logged_in($_COOKIE); // Check if user is logged in
+// If logged in, check if account is verified
+if($pp->logged_in){
+    if(!$pp->is_verified_account($pp->user_id)){
+        // Account is not verified
+        header("Location: ".$link->path('email_verify_page')); // Redirect to verification page
+        die();
+    }
+}
 ?>
 <html lang="en">
 <head>
-    <?php include '../components/essentials.php'; ?>
+    <?php include '../components/scripts/essentials.php'; ?>
     <link rel="stylesheet" href="<?php echo $link->path('terms_css'); ?>">
     <title>Terms &amp; Conditions | Pixihire</title>
 </head>
 <body>
     <!-- Navigation bar -->
     <?php
-        include '../components/navigation_bar.php';
-        echo navbar_component(false);
+        include '../components/sections/navigation_bar.php';
+        echo navbar_component($pp->logged_in, $controller->get_user_details($pp->user_id)["profile_pic"]);
     ?>
     <section style="height: 350px; background-color: #D5E6FF;" class="d-flex justify-content-center align-items-center">
         <h1 id="tc">Terms &amp; Conditions</h1>

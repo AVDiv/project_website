@@ -33,7 +33,7 @@ body{
   width: auto;
 }
 .login-card{
-  padding: 130px 0%;
+  padding: 130px 0;
   margin: auto;
   height: auto;
 }
@@ -85,8 +85,8 @@ body{
 }
 .input-field label{
   pointer-events: none;
-  top: 13;
-  left: 25;
+  top: 13px;
+  left: 25px;
   z-index: 0;
   color: var(--color-gray);
   padding: 3px 15px;
@@ -97,8 +97,8 @@ body{
 .input-field input:valid ~ label, .input-field input:focus ~ label{
   color: var(--color-white);
   background-color: var(--color-dark-blue);
-  top: -15;
-  left: 10;
+  top: -15px;
+  left: 10px;
   transform: scale(0.6);
   border-radius: 10px;
   letter-spacing: 2px;

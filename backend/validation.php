@@ -3,7 +3,8 @@
 class Validation{
     // Mitigations, sanitizations and verifications
     // Html mitigation
-    function html_mitigation($data){
+    function html_mitigation($data): string
+    {
         $data = str_replace(' ', ' ', $data); // Replace non-breaking space with space
         $data = trim($data); // Remove whitespace from both sides
         $data = stripslashes($data); // Remove backslashes
@@ -161,6 +162,24 @@ function validate_password($password, $confirm_password){
                 $is_pass = true;
             }
             if(!($this->unicode_verifier($cookie_string))){
+                $is_pass = false;
+            }
+        }
+        return $is_pass;
+    }
+    function validate_otp($otp){
+        /*
+         * Notes:                                                                        Implemented | Tested
+         *     1. OTP must be a string                                                     ✓           -
+         *     2. OTP must be in a length of 6 chars                                       ✓           -
+         *     3. OTP must be numeric                                                      ✓           -
+         */
+        $is_pass = false;
+        if(!empty($otp)){
+            if(preg_match("/^[0-9]*$/", $otp) && strlen($otp) == 6){
+                $is_pass = true;
+            }
+            if(!($this->unicode_verifier($otp))){
                 $is_pass = false;
             }
         }

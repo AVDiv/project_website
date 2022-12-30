@@ -1,24 +1,37 @@
 <?php
-    // Imports
-    include '../components/links.php';
-    include '../components/page_processing.php';
-    // Initializations
-    $link = new Links();
-    $pp = new page_processor();
+session_start();
+// Imports
+include '../components/scripts/links.php';
+include '../components/scripts/page_processing.php';
+include '../backend/account.php';
+// Initializations
+$link = new Links();
+$pp = new page_processor();
+$controller = new Account();
+
+$pp->is_logged_in($_COOKIE); // Check if user is logged in
+// If logged in, check if account is verified
+if($pp->logged_in){
+    if(!$pp->is_verified_account($pp->user_id)){
+        // Account is not verified
+        header("Location: ".$link->path('email_verify_page')); // Redirect to verification page
+        die();
+    }
+}
 ?>
 <html lang="en">
 <head>
-    <?php include '../components/essentials.php'; ?>
+    <?php include '../components/scripts/essentials.php'; ?>
     <title>Privacy Policy | Pixihire</title>
 </head>
 <body style="width: 100vw;">
     <!-- Navigation bar -->
     <?php
-        include '../components/navigation_bar.php';
-        echo navbar_component(false);
+        include '../components/sections/navigation_bar.php';
+        echo navbar_component($pp->logged_in, $controller->get_user_details($pp->user_id)["profile_pic"]);
     ?>
     <div class="d-flex justify-content-center align-items-center align-items-xxl-center" style="width: 100vw;height: 438px;background: #D5E6FF;">
-        <p style="position: absolute;text-align: center;font-family: Poppins, sans-serif;font-size: 36px;color: #71A0E6;font-weight: bold;text-shadow: 0px 4px 4px;">Privacy Policy</p>
+        <p style="position: absolute;text-align: center;font-family: Poppins, sans-serif;font-size: 36px;color: #71A0E6;font-weight: bold;text-shadow: 0 4px 4px;">Privacy Policy</p>
     </div>
     <div class="d-flex justify-content-center" style="width: 100%;margin: 45px 0;">
         <p class="fw-bold text-start d-inline mx-sm-auto" style="font-family: Poppins, sans-serif;color: #CDD7E1;margin: 0 auto;">Last updated: 23/12/2022 5:08 PM</p>
