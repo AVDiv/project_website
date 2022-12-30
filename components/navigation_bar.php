@@ -29,7 +29,7 @@
                                     <a class="dropdown-item" href="#">Contact us</a>
                                     <a class="dropdown-item" href="'. $links->path('nsbm_page') .'">Our University</a>
                                     <a class="dropdown-item" href="'. $links->path('terms_page') .'">Terms &amp; Conditions</a>
-                                    <a class="dropdown-item" href="#">Privacy Policy</a>
+                                    <a class="dropdown-item" href="'. $links->path('privacy_policy_page') .'">Privacy Policy</a>
                                 </div>
                             </li>
                         </ul>
