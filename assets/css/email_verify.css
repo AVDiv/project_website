@@ -23,6 +23,96 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.txtContainer form div{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.txtContainer form .resend-holder{
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+.input-field{
+  height: 50px;
+  width: 50%;
+  position: relative;
+}
+.input-field input{
+  height: 100%;
+  width: 100%;
+  border: solid 2px;
+  border-color: var(--color-gray);
+  border-radius: 100px 0px 0px 100px;
+  padding: 0 40px;
+  outline: none;
+  z-index: 1;
+}
+.input-field label{
+  pointer-events: none;
+  top: 13px;
+  left: 25px;
+  z-index: 2;
+  color: var(--color-gray);
+  padding: 3px 15px;
+  font-size: 18px;
+  position: absolute;
+  transition: 0.5s;
+}
+.input-field input:valid ~ label, .input-field input:focus ~ label{
+  color: var(--color-white);
+  background-color: var(--color-gray);
+  top: -15px;
+  left: 10px;
+  transform: scale(0.6);
+  border-radius: 10px;
+  letter-spacing: 2px;
+  transition: 0.5s;
+}
+
+.txtContainer form .otp-holder > input{
+  height: 50px;
+  width: 80px;
+  border-radius: 0 100px 100px 0;
+  outline: none;
+  color: var(--color-dark-blue);
+  border: solid 2px var(--color-gray);
+  border-left: none;
+  font-weight: 600;
+  background-color: var(--color-white);
+  transition-duration: 0.3s;
+}
+.txtContainer form .otp-holder > input:disabled{
+  color: var(--color-gray);
+}
+.txtContainer form .otp-holder > input:hover:not(:disabled){
+  transition-duration: 0.3s;
+  color: var(--color-white);
+  background-color: var(--color-gray);
+}
+.txtContainer form .resend-holder button{
+  padding : 10px 20px;
+  transition-duration: 0.3s;
+  outline: none;
+  border: solid 2px var(--color-gray);
+  border-radius: 100px;
+  background-color: var(--color-white);
+  font-weight: 600;
+}
+.txtContainer form .resend-holder button:hover:not(:disabled){
+  transition-duration: 0.3s;
+  color: var(--color-white);
+  background-color: var(--color-gray);
+}
+.txtContainer form .error-holder{
+  display: none;
+  color: var(--color-red);
+  font-size: 14px;
+  margin-top: 10px;
+}
+.txtContainer form .error-holder.error{
+  display: block;
+}
 @media screen and (max-width: 1300px) {
   .bg {
     height: 70%;

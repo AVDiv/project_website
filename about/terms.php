@@ -1,22 +1,35 @@
 <?php
-    // Imports
-    include '../components/links.php';
-    include '../components/page_processing.php';
-    // Initializations
-    $link = new Links();
-    $pp = new page_processor();
+session_start();
+// Imports
+include_once '../components/scripts/links.php';
+include_once '../components/scripts/page_processing.php';
+include_once '../backend/account.php';
+// Initializations
+$link = new Links();
+$pp = new page_processor();
+$controller = new Account();
+
+$pp->is_logged_in($_COOKIE); // Check if user is logged in
+// If logged in, check if account is verified
+if($pp->logged_in){
+    if(!$pp->is_verified_account($pp->user_id)){
+        // Account is not verified
+        header("Location: ".$link->path('email_verify_page')); // Redirect to verification page
+        die();
+    }
+}
 ?>
 <html lang="en">
 <head>
-    <?php include '../components/essentials.php'; ?>
+    <?php include_once '../components/scripts/essentials.php'; ?>
     <link rel="stylesheet" href="<?php echo $link->path('terms_css'); ?>">
     <title>Terms &amp; Conditions | Pixihire</title>
 </head>
 <body>
     <!-- Navigation bar -->
     <?php
-        include '../components/navigation_bar.php';
-        echo navbar_component(false);
+        include '../components/sections/navigation_bar.php';
+        echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_details($pp->user_id)["profile_pic"]:""));
     ?>
     <section style="height: 350px; background-color: #D5E6FF;" class="d-flex justify-content-center align-items-center">
         <h1 id="tc">Terms &amp; Conditions</h1>
@@ -97,6 +110,11 @@
                 <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
             </svg>exclude any of our or your liabilities that may not be excluded under applicable law.<br><br>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.<br><br>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.<br><br></p>
     </div>
+    <!-- Footer -->
+    <?php
+    include dirname(__DIR__).'/components/sections/footer.php';
+    echo footer_component();
+    ?>
 </body>
 
 </html>

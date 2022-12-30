@@ -1,17 +1,31 @@
 <?php
-//    session_start();
-//    include_once 'components/page_processing.php';
-//    $pp = new page_processor();
-//    $pp->is_logged_in($_COOKIE); // Check if user is logged in
+session_start();
+// Imports
+include_once 'components/scripts/links.php';
+include_once 'components/scripts/page_processing.php';
+include_once 'backend/account.php';
+// Initializations
+$link = new Links();
+$pp = new page_processor();
+$controller = new Account();
 
+$pp->is_logged_in($_COOKIE); // Check if user is logged in
+// If logged in, check if account is verified
+if($pp->logged_in){
+    if(!$pp->is_verified_account($pp->user_id)){
+        // Account is not verified
+        header("Location: ".$link->path('email_verify_page')); // Redirect to verification page
+        die();
+    }
+}
 ?>
 
-<html>
+<html lang="en">
 <head>
-    <?php include_once 'components/essentials.php'; ?>
+    <?php include_once 'components/scripts/essentials.php'; ?>
     <title>Home | Pixihire</title>
     <?php
-    include_once 'components/links.php';
+    include_once 'components/scripts/links.php';
     $link = new Links();
     echo '<link rel="stylesheet" href="'. $link->path('home_css') .'">';
     ?>
@@ -19,18 +33,18 @@
 <body>
 <!-- Navigation bar -->
 <?php
-include 'components/navigation_bar.php';
-echo navbar_component(false);
+include 'components/sections/navigation_bar.php';
+echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_details($pp->user_id)["profile_pic"]:""));
 ?>
 <!-- Hero -->
-<section id="hero" style="width: 100%;height: 100%;z-index: 0;"><img src=<?php echo $link->path('hero_bg'); ?>>
+<section id="hero" style="width: 100%;height: 100%;z-index: 0;"><img src="<?php echo $link->path('hero_bg'); ?>" alt="background_image">
     <div class="justify-content-between align-items-xl-center">
         <div id="Context">
             <h1 class="fw-bold" style="color: var(--color-dark-blue);font-size: 45px;font-weight: 600;">Want to get some task done?</h1>
-            <p class="fw-bold" style="color: var(--color-white);font-size: 22px;margin: 30px 0px;font-weight: 600;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis molestie mi vel erat blandit dignissim. Donec quis imperdiet eros, a facilisis ligula.&nbsp;<br></p>
+            <p class="fw-bold" style="color: var(--color-white);font-size: 22px;margin: 30px 0;font-weight: 600;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis molestie mi vel erat blandit dignissim. Donec quis imperdiet eros, a facilisis ligula.&nbsp;<br></p>
             <div id="Button"><a class="text-uppercase fw-bold" href="#" style="color: var(--color-white);text-decoration: none;background: var(--color-dark-blue);padding: 10px 20px;border-radius: 5px;border-style: none;font-size: 17px;font-weight: 600;">get started&nbsp;<i class="fa-solid fa-arrow-right"></i></a></div>
         </div>
-        <div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center" id="Image"><img src=<?php echo $link->path('hero_img'); ?> style="width: 100%;"></div>
+        <div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center" id="Image"><img src="<?php echo $link->path('hero_img'); ?>" style="width: 100%;" alt="image"></div>
     </div>
 </section>
 <section class="d-flex flex-column justify-content-center align-items-center Skills" id="skill" style="width: 100%;max-width: none;">
@@ -63,5 +77,10 @@ echo navbar_component(false);
         </div>
     </div>
 </section>
+<!-- Footer -->
+<?php
+include 'components/sections/footer.php';
+echo footer_component();
+?>
 </body>
 </html>

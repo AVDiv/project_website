@@ -1,8 +1,7 @@
 <?php
 include_once 'model/account_model.php';
 include_once 'validation.php';
-class Account
-{
+class Account{
     private $model;
     private $verify;
 
@@ -111,7 +110,29 @@ class Account
         }
         return 0;
     }
-
+    function get_user_details($user_id)
+    {
+        // Error codes
+        // {User details} - No error
+        // 1 - User does not exist
+        // 2 - User details could not be retrieved at the moment
+        $result_users = $this->model->get_user_details($user_id);
+        $result_user_dp = $this->model->get_user_profile_picture($user_id);
+        if ($result_users === -1 || $result_user_dp === -1) return 2; // User details could not be retrieved at the moment
+        if (!$result_users) return 1; // User does not exist
+        $user_details = array(
+            'user_id' => $result_users['ID'],
+            'firstname' => $result_users['firstname'],
+            'lastname' => $result_users['lastname'],
+            'username' => $result_users['username'],
+            'email' => $result_users['email_address'],
+            'phone' => $result_users['phone_no'],
+            'dob' => $result_users['DOB'],
+            'created_at' => $result_users['creation_date'],
+            'profile_pic' => ($result_user_dp?:"")
+        );
+        return $user_details;
+    }
     function check_login_session($cookie_string)
     {
         $is_valid = $this->verify->validate_cookie_string($cookie_string) && $this->verify->unicode_verifier($cookie_string);
@@ -121,7 +142,7 @@ class Account
         return false;
     }
 
-    function create_login_session($identity, $password)
+    function create_login_session($identity, $password): int|string
     {
         // Error codes
         // {Cookie string} - No error
@@ -181,5 +202,82 @@ class Account
             return 1;
         }
         return 1;
+    }
+    // Check if the email associated with the account is verified
+    function check_email_verification($user_id): bool
+    {
+        $is_verified = $this->model->get_email_verification_status($user_id);
+        if($is_verified===false || $is_verified===-1){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    // Create email verification
+    function create_email_verification($user_id): int|string
+    {
+        // Error codes
+        // {OTP code} - No error
+        // 1 - Email is already verified
+        // 2 = No. of OTP requests for the day exceeded
+        // 3 - Cannot create email verification at this time (5 attempts/day)
+
+        // Check whether the email is already verified
+        $is_verified = $this->check_email_verification($user_id);
+        if($is_verified){
+            return 1;
+        }
+        // Check if the user has exceeded the number of OTP requests for the day
+        $request_attempts = $this->model->get_no_of_email_verification_requests($user_id);
+        if($request_attempts===-1){
+            return 3;
+        } elseif($request_attempts>=5){
+            return 2;
+        }
+        // Generate random 6-digit OTP code
+        $valid_nums = '0123456789';
+        $digit1 = substr(str_shuffle($valid_nums), 0, 1);
+        $digit2 = substr(str_shuffle($valid_nums), 1, 1);
+        $digit3 = substr(str_shuffle($valid_nums), 2, 1);
+        $digit4 = substr(str_shuffle($valid_nums), 3, 1);
+        $digit5 = substr(str_shuffle($valid_nums), 4, 1);
+        $digit6 = substr(str_shuffle($valid_nums), 5, 1);
+        $otp_code = $digit1.$digit2.$digit3.$digit4.$digit5.$digit6;
+        // Create email verification
+        $result = $this->model->set_email_verification_request($user_id, $otp_code);
+        if ($result !== -1) {
+            return $otp_code;
+        } else {
+            return 3;
+        }
+    }
+    // Check if the email verification code is valid
+    function verify_otp($user_id, $otp){
+        // Error codes
+        // 0 - No error
+        // 1 - OTP code is incorrect
+        // 2 - OTP code has expired
+        // 3 - Cannot verify OTP code at this time
+        $is_valid_otp = $this->verify->validate_otp($otp);
+        if(!$is_valid_otp){
+            return 1;
+        }
+        $available_request = $this->model->get_email_verification_request($user_id);
+        if($available_request===false || $available_request===-1){
+            return 3;
+        }
+        if(((strtotime("now")-strtotime($available_request['create_time']))/60)>15){ // Valid for 15 minutes from the time of creation of the OTP code
+            return 2;
+        }
+        if($available_request['OTP']===$otp){
+            $result = $this->model->set_email_is_verified($user_id, $otp);
+            if($result===-1){
+                return 3;
+            } else {
+                return 0;
+            }
+        } else {
+            return 1;
+        }
     }
 }

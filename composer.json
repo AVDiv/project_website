@@ -11,6 +11,8 @@
     ],
     "require": {
         "php": ">=8.1",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+        "phpmailer/phpmailer": "^6.7",
+        "sendinblue/api-v3-sdk": "^8.3.1"
     }
 }

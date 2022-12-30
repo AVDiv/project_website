@@ -189,7 +189,7 @@
         // Model function to get the user's details
         function get_user_details($u_id){
             try{
-                $stmt = $this->connection->prepare("SELECT * FROM users WHERE u_ID = :u_id");
+                $stmt = $this->connection->prepare("SELECT * FROM users WHERE ID = :u_id");
                 $stmt->bindParam(":u_id", $u_id);
                 $stmt->execute();
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -206,7 +206,7 @@
         // Model function to get the user's profile picture
         function get_user_profile_picture($u_id){
             try{
-                $stmt = $this->connection->prepare("SELECT path FROM users WHERE u_ID = :u_id AND is_active = 1");
+                $stmt = $this->connection->prepare("SELECT path FROM user_profile_picture WHERE u_ID = :u_id AND is_active = 1");
                 $stmt->bindParam(":u_id", $u_id);
                 $stmt->execute();
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -269,6 +269,86 @@
                 $stmt->execute();
                 return 0;
             } catch (PDOException $e) {
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get the email verification request time
+        function get_email_verification_request($u_id){
+            try{
+                $stmt = $this->connection->prepare("SELECT ID, u_ID, OTP, create_time FROM email_verification WHERE u_ID = :u_id AND is_verified = 0 ORDER BY create_time DESC LIMIT 1");
+                $stmt->bindParam(":u_id", $u_id);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to set the user's email verification request
+        function set_email_verification_request($u_id, $otp) : int{
+            try{
+                // Set the email verification request
+                $stmt = $this->connection->prepare("INSERT INTO email_verification (u_ID, OTP) VALUES (:u_id, :otp)");
+                $stmt->bindParam(":u_id", $u_id);
+                $stmt->bindParam(":otp", $otp);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get the user's email verification status
+        function get_email_verification_status($u_id){
+            try{
+                $stmt = $this->connection->prepare("SELECT ID FROM email_verification WHERE u_ID = :u_id AND is_verified = 1 ORDER BY create_time DESC LIMIT 1");
+                $stmt->bindParam(":u_id", $u_id);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result['ID'];
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to set the user's email is verified status
+        function set_email_is_verified($u_id, $otp) : int{
+            try{
+                // Set the new email verification status
+                $stmt = $this->connection->prepare("UPDATE email_verification SET is_verified = 1, verify_time=CURRENT_TIMESTAMP WHERE u_ID = :id AND OTP = :otp");
+                $stmt->bindParam(":id", $u_id);
+                $stmt->bindParam(":otp", $otp);
+                $stmt->execute();
+                echo 'abc';
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get the no of email verification requests for the day
+        function get_no_of_email_verification_requests($u_id){
+            try{
+                $stmt = $this->connection->prepare("SELECT COUNT(ID) AS no_of_requests FROM email_verification WHERE u_ID = :u_id AND DATE(create_time) = CURDATE()");
+                $stmt->bindParam(":u_id", $u_id);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result['no_of_requests'];
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
                 echo "PDO(MySQL) Error: " . $e->getMessage();
                 return -1;
             }
