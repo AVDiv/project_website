@@ -1,9 +1,9 @@
 <?php
     session_start();
     // Imports
-    include '../components/scripts/links.php';
-    include '../components/scripts/page_processing.php';
-    include '../backend/account.php';
+    include_once dirname(__DIR__).'/components/scripts/links.php';
+    include_once dirname(__DIR__).'/components/scripts/page_processing.php';
+    include_once dirname(__DIR__).'/backend/account.php';
     // Initializations
     $link = new Links();
     $pp = new page_processor();
@@ -21,15 +21,15 @@
 ?>
 <html lang="en">
 <head>
-    <?php include_once '../components/scripts/essentials.php'; ?>
+    <?php include_once dirname(__DIR__).'/components/scripts/essentials.php'; ?>
     <title>Our University | Pixihire</title>
     <link rel="stylesheet" href="<?php echo $link->path('nsbm_css'); ?>">
 </head>
 <body>
     <!-- Navigation bar -->
     <?php
-        include '../components/sections/navigation_bar.php';
-        echo navbar_component($pp->logged_in, $controller->get_user_details($pp->user_id)["profile_pic"], true);
+        include dirname(__DIR__).'/components/sections/navigation_bar.php';
+        echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_details($pp->user_id)["profile_pic"]:""), true);
     ?>
     <header class="masthead d-flex justify-content-center align-items-center" style="background-image:url('<?php echo $link->path('nsbm_img'); ?>'); background-size: cover; background-repeat: no-repeat;height: 100vh;">
         <h1 style="text-align: center;color: var(--color-white); font-size: 64px;font-weight: 600;">About NSBM</h1>
@@ -64,6 +64,11 @@
             </div>
         </div>
     </div>
+    <!-- Footer -->
+    <?php
+    include dirname(__DIR__).'/components/sections/footer.php';
+    echo footer_component();
+    ?>
 </body>
 
 </html>

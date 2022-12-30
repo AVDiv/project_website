@@ -6,6 +6,7 @@
   font-family: 'Maven Pro', sans-serif;
   font-size: 16px;
   scroll-behavior: smooth;
+  image-rendering: smooth;
 }
 body{
   --color-white: #FFFFFF;

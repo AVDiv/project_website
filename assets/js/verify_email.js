@@ -24,14 +24,16 @@ pincode_input.addEventListener('input', function(){
 });
 
 function resendOtp(){
-    if(!resend_button.disabled){
-        const req = new XMLHttpRequest();
-        req.onload = function(){
-            // reload the page
-            location.reload();
-        }
-        req.open('POST', resend_button.dataset.url);
-        req.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
-        req.send("email="+resend_button.dataset.email);
+    console.log('Initiation of resend otp');
+    const req = new XMLHttpRequest();
+    req.onload = function(){
+        // reload the page
+        // location.reload();
+        console.log(this.responseText);
     }
+    req.open('POST', resend_button.dataset.url);
+    req.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+    req.send("email="+resend_button.dataset.email);
+    console.log('Resend otp request sent');
+
 }

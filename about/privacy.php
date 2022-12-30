@@ -1,9 +1,9 @@
 <?php
 session_start();
 // Imports
-include '../components/scripts/links.php';
-include '../components/scripts/page_processing.php';
-include '../backend/account.php';
+include_once dirname(__DIR__).'/components/scripts/links.php';
+include_once dirname(__DIR__).'/components/scripts/page_processing.php';
+include_once dirname(__DIR__).'/backend/account.php';
 // Initializations
 $link = new Links();
 $pp = new page_processor();
@@ -21,14 +21,14 @@ if($pp->logged_in){
 ?>
 <html lang="en">
 <head>
-    <?php include '../components/scripts/essentials.php'; ?>
+    <?php include_once dirname(__DIR__).'/components/scripts/essentials.php'; ?>
     <title>Privacy Policy | Pixihire</title>
 </head>
 <body style="width: 100vw;">
     <!-- Navigation bar -->
     <?php
-        include '../components/sections/navigation_bar.php';
-        echo navbar_component($pp->logged_in, $controller->get_user_details($pp->user_id)["profile_pic"]);
+        include dirname(__DIR__).'/components/sections/navigation_bar.php';
+        echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_details($pp->user_id)["profile_pic"]:""));
     ?>
     <div class="d-flex justify-content-center align-items-center align-items-xxl-center" style="width: 100vw;height: 438px;background: #D5E6FF;">
         <p style="position: absolute;text-align: center;font-family: Poppins, sans-serif;font-size: 36px;color: #71A0E6;font-weight: bold;text-shadow: 0 4px 4px;">Privacy Policy</p>
@@ -135,6 +135,11 @@ if($pp->logged_in){
         <h1>Contact Us</h1>
         <p>If you have any questions about this Privacy Policy, You can contact us:<br><br>By email: pixihire@gmail.com</p>
     </div>
+    <!-- Footer -->
+    <?php
+    include dirname(__DIR__).'/components/sections/footer.php';
+    echo footer_component();
+    ?>
 </body>
 
 </html>

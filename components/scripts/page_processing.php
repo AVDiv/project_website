@@ -1,10 +1,10 @@
 <?php
-    include_once '../backend/account.php';
+    include_once dirname(__DIR__, 2).'/backend/account.php';
 
     class page_processor{
     public bool $logged_in = false;
     public int $user_id = 0;
-    private $controller;
+    private Account $controller;
     function __construct(){
         $this->controller = new Account();
     }

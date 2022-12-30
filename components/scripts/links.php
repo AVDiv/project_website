@@ -2,9 +2,9 @@
 // Class with links
 class Links{
     // For production
-//    public $project_domain = "https://pixihire.cf";
+    public $project_domain = "https://pixihire.cf";
     // For development
-   public $project_domain = "http://localhost:881/project_website";
+//   public $project_domain = "http://localhost:881/project_website";
     private $links = array(
         // Pages
         'home_page'=> '/',
@@ -19,8 +19,9 @@ class Links{
         'forgot_password_page'=> '/auth/forgot_password.php',
         'email_verify_page'=> '/auth/verify/email_verify.php',
         'privacy_policy_page'=> '/about/privacy.php',
+        'profile_edit_page' => '/account/edit_profile.php',
         // APIs
-        'otp_resend_api'=> '/api/otp.php',
+        'otp_resend_api'=> '/api/send_otp.php',
         // Components
         'navbar'=> '/components/navigation_bar.php',
         // CSS files

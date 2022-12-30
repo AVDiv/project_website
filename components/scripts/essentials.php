@@ -1,5 +1,5 @@
 <?php
-  include_once 'links.php';
+  include_once dirname(__DIR__).'/scripts/links.php';
   $link = new Links();
   $files='
     <meta charset="utf-8">

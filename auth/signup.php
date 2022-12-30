@@ -1,13 +1,14 @@
 <?php
     session_start();
-    include '../components/scripts/links.php';
-    include_once '../components/scripts/page_processing.php';
-    include_once '../backend/account.php';
+    include dirname(__DIR__, 1).'/components/scripts/links.php';
+    include_once dirname(__DIR__, 1).'/components/scripts/page_processing.php';
+    include_once dirname(__DIR__, 1).'/backend/account.php';
     // Initializations
     $pp = new page_processor();
     $link = new Links();
     $controller = new Account();
     $error_code = 0;
+    $cookie_name = 'LOGSESSID';
     // Program
     $pp->is_logged_in($_COOKIE); // Check if user is logged in
     // If logged in, redirect to dashboard page
@@ -32,8 +33,13 @@
         $result = $controller->create_account($firstname, $lastname, $username, $email, $phone_no, $dob, $password, $confirm_password);
         if ($result===0){
             // Account created successfully
-            // Redirect to login page
-            header("Location: ".$link->path('email_verify_page')); // Redirect to verification page
+            // Create a login session and redirect to email verification page
+            $result = $controller->create_login_session($email, $password);
+            if (is_string($result)){
+                // Login attempt successful
+                setcookie($cookie_name, $result, time() + (86400 * 30), "/"); // 86400 = 1 day, 86400 * 30 = 30 days
+            }
+            header("Location: ".$link->path('email_verify_page')."?send_otp=true"); // Redirect to verification page
             die();
         } elseif($result>0) $error_code = $result;
     }
@@ -42,7 +48,7 @@
 <html lang="en">
 <head>
     <?php
-    include '../components/scripts/essentials.php'
+    include dirname(__DIR__, 1).'/components/scripts/essentials.php'
     ?>
     <link href="<?php echo $link->path('signup_css'); ?>" rel="stylesheet"/>
     <title>Signup | Pixihire</title>
@@ -50,7 +56,7 @@
 <body>
 <!-- Navigation bar -->
 <?php
-    include '../components/sections/navigation_bar.php';
+    include dirname(__DIR__, 1).'/components/sections/navigation_bar.php';
     echo navbar_component($pp->logged_in, $link->path('avatar_img'));
 ?>
 <div id="signup" class="d-xxl-flex">

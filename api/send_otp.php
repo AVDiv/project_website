@@ -6,11 +6,11 @@
 // 0 - Success
 // 1 - Email does not exist
 // Imports
-include_once '../backend/account.php';
-include_once '../components/scripts/links.php';
-include_once '../backend/validation.php';
-include_once '../backend/mail/send_mail.php';
-include_once '../components/scripts/page_processing.php';
+include_once dirname(__DIR__).'/backend/account.php';
+include_once dirname(__DIR__).'/components/scripts/links.php';
+include_once dirname(__DIR__).'/backend/validation.php';
+include_once dirname(__DIR__).'/backend/mail/send_mail.php';
+include_once dirname(__DIR__).'/components/scripts/page_processing.php';
 // Initializations
 $pp = new page_processor();
 $controller = new Account();

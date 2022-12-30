@@ -89,6 +89,13 @@
   left: 0;
   margin-top: var(--bs-dropdown-spacer);
 }
+.navbar  .dropdown:hover .dropdown-menu.dropdown-right, .navbar .dropdown-menu.dropdown-right:hover{
+    left: auto;
+    right: 0;
+}
+.navbar .dropdown .dropdown-menu svg{
+  color: var(--color-dark-blue)!important;
+}
 .navbar .dropdown svg{
   color: var(--color-lite-blue);
 }

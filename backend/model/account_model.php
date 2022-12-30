@@ -189,7 +189,7 @@
         // Model function to get the user's details
         function get_user_details($u_id){
             try{
-                $stmt = $this->connection->prepare("SELECT * FROM users WHERE u_ID = :u_id");
+                $stmt = $this->connection->prepare("SELECT * FROM users WHERE ID = :u_id");
                 $stmt->bindParam(":u_id", $u_id);
                 $stmt->execute();
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -206,7 +206,7 @@
         // Model function to get the user's profile picture
         function get_user_profile_picture($u_id){
             try{
-                $stmt = $this->connection->prepare("SELECT path FROM users WHERE u_ID = :u_id AND is_active = 1");
+                $stmt = $this->connection->prepare("SELECT path FROM user_profile_picture WHERE u_ID = :u_id AND is_active = 1");
                 $stmt->bindParam(":u_id", $u_id);
                 $stmt->execute();
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -322,12 +322,14 @@
             }
         }
         // Model function to set the user's email is verified status
-        function set_email_is_verified($u_id) : int{
+        function set_email_is_verified($u_id, $otp) : int{
             try{
                 // Set the new email verification status
-                $stmt = $this->connection->prepare("UPDATE email_verification SET is_verified = 1, verify_time=CURRENT_TIMESTAMP WHERE ID = :id");
+                $stmt = $this->connection->prepare("UPDATE email_verification SET is_verified = 1, verify_time=CURRENT_TIMESTAMP WHERE u_ID = :id AND OTP = :otp");
                 $stmt->bindParam(":id", $u_id);
+                $stmt->bindParam(":otp", $otp);
                 $stmt->execute();
+                echo 'abc';
                 return 0;
             } catch(PDOException $e){
                 echo "PDO(MySQL) Error: " . $e->getMessage();

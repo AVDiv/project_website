@@ -1,5 +1,5 @@
 <?php
-include_once '../scripts/links.php';
+include_once dirname(__DIR__).'/scripts/links.php';
 
 function footer_component()
 {

@@ -1,14 +1,21 @@
 <?php
     // Imports
-    include '../components/scripts/links.php';
-    include '../components/scripts/page_processing.php';
-    include '../backend/account.php';
+    include_once dirname(__DIR__, 2).'/components/scripts/links.php';
+    include_once dirname(__DIR__, 2).'/components/scripts/page_processing.php';
+    include_once dirname(__DIR__, 2).'/backend/account.php';
     // Initializations
     $link = new Links();
     $pp = new page_processor();
     $controller = new Account();
     $error_code = 0;
     $email = "";
+    $profile_pic = "";
+    if (empty($_GET['send_otp'])){
+        $_GET=array('send_otp'=>'false');
+    } elseif ($_GET['send_otp']!=="true"){
+        $_GET['send_otp']='false';
+    }
+
     // Program
     $pp->is_logged_in($_COOKIE); // Check if user is logged in
     // If not logged in, Redirect to login page
@@ -32,16 +39,26 @@
                 $otp = $_POST['otp'];
                 // Verify the OTP
                 $result = $controller->verify_otp($pp->user_id, $otp);
+                echo $result;
                 if ($result===0){
                     // OTP verified successfully
                     // Redirect to dashboard page
-                    header("Location: ".$link->path('dashboard_page')); // Redirect to dashboard page
+                    header("Location: ".$link->path('home_page')); // Redirect to dashboard page
                     die();
-                } elseif($result>0) $error_code = $result;
+                } elseif($result>0) {
+                    $error_code = $result;
+                    // Get email address and assign to the data-email attribute for API support
+                    $user_dat = $controller->get_user_details($pp->user_id);
+                    $email = $user_dat['email'];
+                    $profile_pic = $user_dat['profile_pic'];
+                }
+                echo $error_code;
             } else {
                 // Form is not submitted
                 // Get email address and assign to the data-email attribute for API support
-                $email = $controller->get_user_details($pp->user_id)['email'];
+                $user_dat = $controller->get_user_details($pp->user_id);
+                $email = $user_dat['email'];
+                $profile_pic = $user_dat['profile_pic'];
             }
         }
     }
@@ -49,15 +66,15 @@
 <html class="text-center" lang="en">
 
 <head>
-    <?php include '../components/scripts/essentials.php'; ?>
+    <?php include dirname(__DIR__, 2).'/components/scripts/essentials.php'; ?>
     <link rel="stylesheet" href="<?php echo $link->path('email_verify_css'); ?>">
     <title>Verify your email address | Pixihire</title>
 </head>
-<body>
+<body <?php echo $_GET['send_otp']==='true'?"onload='resendOtp()'":""; ?> >
     <!-- Navigation bar -->
     <?php
-        include '../components/sections/navigation_bar.php';
-        echo navbar_component($pp->logged_in, "");
+        include dirname(__DIR__, 2).'/components/sections/navigation_bar.php';
+        echo navbar_component($pp->logged_in, $profile_pic);
     ?>
     <div class="text-nowrap fs-2 d-xxl-flex justify-content-center align-items-center align-self-center justify-content-xxl-center align-items-xxl-center h1" style="width: 100vw; height: 100vh">
         <div class="container d-flex justify-content-center align-items-center" style="width: 100%;height: 100%;">

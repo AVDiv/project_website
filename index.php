@@ -1,9 +1,9 @@
 <?php
 session_start();
 // Imports
-include 'components/scripts/links.php';
-include 'components/scripts/page_processing.php';
-include 'backend/account.php';
+include_once 'components/scripts/links.php';
+include_once 'components/scripts/page_processing.php';
+include_once 'backend/account.php';
 // Initializations
 $link = new Links();
 $pp = new page_processor();
@@ -34,7 +34,7 @@ if($pp->logged_in){
 <!-- Navigation bar -->
 <?php
 include 'components/sections/navigation_bar.php';
-echo navbar_component($pp->logged_in, $controller->get_user_details($pp->user_id)["profile_pic"]);
+echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_details($pp->user_id)["profile_pic"]:""));
 ?>
 <!-- Hero -->
 <section id="hero" style="width: 100%;height: 100%;z-index: 0;"><img src="<?php echo $link->path('hero_bg'); ?>" alt="background_image">

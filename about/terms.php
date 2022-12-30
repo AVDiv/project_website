@@ -1,9 +1,9 @@
 <?php
 session_start();
 // Imports
-include '../components/scripts/links.php';
-include '../components/scripts/page_processing.php';
-include '../backend/account.php';
+include_once '../components/scripts/links.php';
+include_once '../components/scripts/page_processing.php';
+include_once '../backend/account.php';
 // Initializations
 $link = new Links();
 $pp = new page_processor();
@@ -21,7 +21,7 @@ if($pp->logged_in){
 ?>
 <html lang="en">
 <head>
-    <?php include '../components/scripts/essentials.php'; ?>
+    <?php include_once '../components/scripts/essentials.php'; ?>
     <link rel="stylesheet" href="<?php echo $link->path('terms_css'); ?>">
     <title>Terms &amp; Conditions | Pixihire</title>
 </head>
@@ -29,7 +29,7 @@ if($pp->logged_in){
     <!-- Navigation bar -->
     <?php
         include '../components/sections/navigation_bar.php';
-        echo navbar_component($pp->logged_in, $controller->get_user_details($pp->user_id)["profile_pic"]);
+        echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_details($pp->user_id)["profile_pic"]:""));
     ?>
     <section style="height: 350px; background-color: #D5E6FF;" class="d-flex justify-content-center align-items-center">
         <h1 id="tc">Terms &amp; Conditions</h1>
@@ -110,6 +110,11 @@ if($pp->logged_in){
                 <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
             </svg>exclude any of our or your liabilities that may not be excluded under applicable law.<br><br>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.<br><br>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.<br><br></p>
     </div>
+    <!-- Footer -->
+    <?php
+    include dirname(__DIR__).'/components/sections/footer.php';
+    echo footer_component();
+    ?>
 </body>
 
 </html>

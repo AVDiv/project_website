@@ -1,18 +1,14 @@
 <?php
 include_once 'model/account_model.php';
 include_once 'validation.php';
-include_once '../components/scripts/links.php';
-class Account
-{
+class Account{
     private $model;
     private $verify;
-    private $links;
 
     function __construct()
     {
         $this->model = new AccountModel();
         $this->verify = new Validation();
-        $this->links = new Links();
     }
 
     // Create new account
@@ -131,9 +127,9 @@ class Account
             'username' => $result_users['username'],
             'email' => $result_users['email_address'],
             'phone' => $result_users['phone_no'],
-            'dob' => $result_users['dob'],
+            'dob' => $result_users['DOB'],
             'created_at' => $result_users['creation_date'],
-            'profile_pic' => (!$result_user_dp ? $result_user_dp:$this->links->path('avatar_img'))
+            'profile_pic' => ($result_user_dp?:"")
         );
         return $user_details;
     }
@@ -273,8 +269,8 @@ class Account
         if(((strtotime("now")-strtotime($available_request['create_time']))/60)>15){ // Valid for 15 minutes from the time of creation of the OTP code
             return 2;
         }
-        if($available_request['otp_code']===$otp){
-            $result = $this->model->set_email_is_verified($user_id);
+        if($available_request['OTP']===$otp){
+            $result = $this->model->set_email_is_verified($user_id, $otp);
             if($result===-1){
                 return 3;
             } else {
