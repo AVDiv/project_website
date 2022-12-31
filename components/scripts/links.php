@@ -14,12 +14,13 @@ class Links{
         'terms_page'=> '/about/terms.php',
         'nsbm_page'=> '/about/nsbm.php',
         'privacy_page'=> '/about/privacy.php',
-        'contact_page'=> '/about/contact.php',
+        'contact_page'=> '/about/contact_us.php',
         'team_page'=> '/about/team.php',
         'forgot_password_page'=> '/auth/forgot_password.php',
         'email_verify_page'=> '/auth/verify/email_verify.php',
         'privacy_policy_page'=> '/about/privacy.php',
         'profile_edit_page' => '/account/edit_profile.php',
+        'logout_page' => '/account/logout.php',
         // APIs
         'otp_resend_api'=> '/api/send_otp.php',
         // Components
@@ -54,6 +55,12 @@ class Links{
         'favicon_img' => '/assets/media/images/favicon.ico',
         'email_img' => '/assets/media/images/email.png',
         'avatar_img' => '/assets/media/images/avatar.png',
+        'email_temp_bg' => '/assets/media/images/email_bg.jpeg',
+        'email_temp_img' => '/assets/media/images/email_img.png',
+        'twitter_logo' => '/assets/media/images/twitter.png',
+        'fb_logo' => '/assets/media/images/fb.png',
+        'linkedin_logo' => '/assets/media/images/linkedin.png',
+        'instagram_logo' => '/assets/media/images/instagram.png',
     );
     function path($filename){
         return $this->project_domain.$this->links[$filename];

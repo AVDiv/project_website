@@ -203,6 +203,22 @@ class Account{
         }
         return 1;
     }
+    // Remove login session
+    function remove_login_session($cookie_string){
+        // Error codes
+        // 0 - Logout successful
+        // 1 - Cannot logout at the moment
+        $is_valid = $this->verify->validate_cookie_string($cookie_string);
+        if ($is_valid) {
+            $result = $this->model->logout_session($cookie_string);
+            if ($result !== -1) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+        return false;
+    }
     // Check if the email associated with the account is verified
     function check_email_verification($user_id): bool
     {
