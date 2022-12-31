@@ -28,6 +28,7 @@
         if($is_verified){
             // If email is verified, Redirect to 404 page
             header("HTTP/1.1 404 Not Found"); // Redirect to 404-page
+            header("Location: ".$link->path('404_page')); // Redirect to 404-page
             die();
         }
         else{

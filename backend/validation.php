@@ -185,4 +185,28 @@ function validate_password($password, $confirm_password){
         }
         return $is_pass;
     }
+    function validate_profile_picture($img_file){
+        /*
+         * Notes:                                                                        Implemented | Tested
+         *     1. Image file must be a file, in format of jpg, png, or gif                   ✓            -
+         *     2. Image file must be less than 2MB                                           ✓            -
+         *
+         */
+//        $imageData = file_get_contents($img_file);
+        $imageSize = strlen($img_file);
+        $is_pass = false;
+        if ($imageSize > 2097152) {
+            return -1; // Image is too large
+        }
+        if(!empty($img_file)){
+            $img_type = exif_imagetype($img_file);
+            if($img_type == IMAGETYPE_JPEG || $img_type == IMAGETYPE_PNG || $img_type == IMAGETYPE_GIF){
+                $is_pass = true;
+            }
+
+        }else{
+            return -2; // Image is invalid
+        }
+        return $is_pass;
+    }
 }
