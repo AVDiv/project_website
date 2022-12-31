@@ -177,7 +177,7 @@
         // Model function to log out of the current session
         function logout_session($cookie_string): int{
             try{
-                $stmt = $this->connection->prepare("UPDATE login_sessions SET is_active = 0 WHERE cookie_string = :cookie_string");
+                $stmt = $this->connection->prepare("UPDATE login_sessions SET is_active = 0, session_end=CURRENT_TIMESTAMP WHERE cookie_string = :cookie_string");
                 $stmt->bindParam(":cookie_string", $cookie_string);
                 $stmt->execute();
                 return 0;

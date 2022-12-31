@@ -12,7 +12,8 @@
   // Program
   $pp->is_logged_in($_COOKIE); // Check if user is logged in
   // If logged in, redirect to dashboard page
-  if($pp->logged_in && empty($_GET['redirect'])){
+  if($pp->logged_in){
+
       header("Location: ".$link->path('dashboard_page')); // Redirect to dashboard page
       die();
   }
@@ -20,7 +21,7 @@
   if(!empty($_SERVER['HTTP_REFERER']) && empty($_GET['redirect'])){
       header("Location: ".$link->path('login_page').'?redirect='.$_SERVER['HTTP_REFERER']);// Redirect to the referer page
       die();
-  } else if(empty($_SERVER['HTTP_REFERER'])){
+  } else if(empty($_SERVER['HTTP_REFERER']) && empty($_GET['redirect'])){
       header("Location: ".$link->path('login_page').'?redirect='.$link->path("dashboard_page"));// Redirect to the dashboard page
       die();
   }
