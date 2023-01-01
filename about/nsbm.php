@@ -3,11 +3,11 @@
     // Imports
     include_once dirname(__DIR__).'/components/scripts/links.php';
     include_once dirname(__DIR__).'/components/scripts/page_processing.php';
-    include_once dirname(__DIR__).'/backend/account.php';
+    include_once dirname(__DIR__) . '/backend/controller.php';
     // Initializations
     $link = new Links();
     $pp = new page_processor();
-    $controller = new Account();
+    $controller = new Controller();;
 
     $pp->is_logged_in($_COOKIE); // Check if user is logged in
     // If logged in, check if account is verified

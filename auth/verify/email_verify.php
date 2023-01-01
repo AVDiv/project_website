@@ -2,11 +2,11 @@
     // Imports
     include_once dirname(__DIR__, 2).'/components/scripts/links.php';
     include_once dirname(__DIR__, 2).'/components/scripts/page_processing.php';
-    include_once dirname(__DIR__, 2).'/backend/account.php';
+    include_once dirname(__DIR__, 2) . '/backend/controller.php';
     // Initializations
     $link = new Links();
     $pp = new page_processor();
-    $controller = new Account();
+    $controller = new Controller();;
     $error_code = 0;
     $email = "";
     $profile_pic = "";
@@ -28,6 +28,7 @@
         if($is_verified){
             // If email is verified, Redirect to 404 page
             header("HTTP/1.1 404 Not Found"); // Redirect to 404-page
+            header("Location: ".$link->path('404_page')); // Redirect to 404-page
             die();
         }
         else{

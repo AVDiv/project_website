@@ -222,7 +222,7 @@ class SendMail{
                     <tr>
                       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px 12px;font-family:Raleway,sans-serif;" align="left">
                 
-                  <h1 style="margin: 0px; color: #3b4d63; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: Poppins, sans-serif; font-size: 41px;"><strong><span style="text-decoration: underline;">2</span> <span style="text-decoration: underline;">3</span> <span style="text-decoration: underline;">4</span> <span style="text-decoration: underline;">5</span> <span style="text-decoration: underline;">2</span> <span style="text-decoration: underline;">7</span></strong></h1>
+                  <h1 style="margin: 0px; color: #3b4d63; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: Poppins, sans-serif; font-size: 41px;"><strong><span style="text-decoration: underline;">'. substr((string)$otp, 0, 1) .'</span> <span style="text-decoration: underline;">'. substr((string)$otp, 1, 1) .'</span> <span style="text-decoration: underline;">'. substr((string)$otp, 2, 1) .'</span> <span style="text-decoration: underline;">'. substr((string)$otp, 3, 1) .'</span> <span style="text-decoration: underline;">'. substr((string)$otp, 4, 1) .'</span> <span style="text-decoration: underline;">'. substr((string)$otp, 5, 1) .'</span></strong></h1>
                 
                       </td>
                     </tr>

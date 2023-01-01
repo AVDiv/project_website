@@ -6,14 +6,14 @@
 // 0 - Success
 // 1 - Email does not exist
 // Imports
-include_once dirname(__DIR__).'/backend/account.php';
+include_once dirname(__DIR__) . '/backend/controller.php';
 include_once dirname(__DIR__).'/components/scripts/links.php';
 include_once dirname(__DIR__).'/backend/validation.php';
 include_once dirname(__DIR__).'/backend/mail/send_mail.php';
 include_once dirname(__DIR__).'/components/scripts/page_processing.php';
 // Initializations
 $pp = new page_processor();
-$controller = new Account();
+$controller = new Controller();;
 $validator = new Validation();
 $smtp = new SendMail();
 $link = new Links();
@@ -45,7 +45,7 @@ if($pp->logged_in){
 } else{
     // If not logged in, show a 404 error
     header("HTTP/1.1 404 Not Found"); // Redirect to 404-page
-    // header("Location: ".$link->path('404_page')); // Redirect to 404 page
+    header("Location: ".$link->path('404_page')); // Redirect to 404 page
     die();
 }
 

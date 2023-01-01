@@ -37,10 +37,13 @@ class Links{
         'terms_css'=> '/assets/css/terms.css',
         'nsbm_css'=> '/assets/css/nsbm.css',
         'email_verify_css'=> '/assets/css/email_verify.css',
+        'profile_css' => '/assets/css/profile.css',
         // JS scripts
         'bs_js' => '/assets/bootstrap/js/bootstrap.min.js',
         'navbar_js' => '/assets/js/navigation.js',
         'email_verify_js' => '/assets/js/verify_email.js',
+        'profile_edit_js' => '/assets/js/edit_profile.js',
+        'signup_js' => '/assets/js/signup.js',
         // Media
         'logo'=>'/assets/media/images/Logo.png',
         'logo_fd'=>'/assets/media/images/Logo I.png',

@@ -2,10 +2,10 @@
   // Imports
   include '../components/scripts/links.php';
   include_once '../components/scripts/page_processing.php';
-    include_once '../backend/account.php';
+    include_once '../backend/controller.php';
   // Initializations
   $link = new Links();
-  $controller = new Account();
+  $controller = new Controller();;
   $pp = new page_processor();
   $error_code = 0;
   $cookie_name = 'LOGSESSID';
