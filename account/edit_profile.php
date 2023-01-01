@@ -3,11 +3,11 @@ session_start();
 // Imports
 include_once dirname(__DIR__).'/components/scripts/links.php';
 include_once dirname(__DIR__).'/components/scripts/page_processing.php';
-include_once dirname(__DIR__).'/backend/account.php';
+include_once dirname(__DIR__) . '/backend/controller.php';
 // Initializations
 $link = new Links();
 $pp = new page_processor();
-$controller = new Account();
+$controller = new Controller();;
 
 $pp->is_logged_in($_COOKIE); // Check if user is logged in
 // If logged in, check if account is verified
@@ -54,7 +54,7 @@ if($pp->logged_in){
     </section>
     <section id="achivements" style="width: 100%;padding-top: 50px;">
         <div class="container" id="description" style="margin-top: 30px;">
-            <p></p><textarea class="form-control" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor neque vitae tempus quam. Turpis massa sed elementum tempus egestas sed. Sed cras ornare arcu dui vivamus arcu felis bibendum. Porttitor lacus luctus accumsan tortor posuere ac ut. Vitae nunc sed velit dignissim sodales ut. Mi proin sed libero enim sed faucibus turpis in eu. Augue eget arcu dictum varius duis at consectetur lorem donec. Diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Quis commodo odio aenean sed. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Varius sit amet mattis vulputate enim nulla aliquet. Pretium lectus quam id leo in. Ut ornare lectus sit amet est placerat in egestas erat. Quam quisque id diam vel quam elementum pulvinar etiam non. Aliquam ut porttitor leo a diam. Suscipit tellus mauris a diam. Lacus vestibulum sed arcu non odio euismod lacinia at quis. Et netus et malesuada fames ac turpis egestas." placeholder="Describe yourself."></textarea>
+            <p></p><textarea class="form-control" placeholder="Describe yourself."></textarea>
         </div>
         <div class="container" id="portfolio" style="margin-top: 30px;padding: 20px;background: #eff4ff;border-radius: 30px;box-shadow: 3px 5px 10px rgba(33,37,41,0.1);">
             <h3 style="font-weight: bold;border-color: rgb(5,27,59);margin-left: 20px;">Portfolio</h3>

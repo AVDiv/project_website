@@ -2,11 +2,11 @@
     session_start();
     include dirname(__DIR__, 1).'/components/scripts/links.php';
     include_once dirname(__DIR__, 1).'/components/scripts/page_processing.php';
-    include_once dirname(__DIR__, 1).'/backend/account.php';
+    include_once dirname(__DIR__, 1) . '/backend/controller.php';
     // Initializations
     $pp = new page_processor();
     $link = new Links();
-    $controller = new Account();
+    $controller = new Controller();;
     $error_code = 0;
     $cookie_name = 'LOGSESSID';
     // Program
@@ -106,7 +106,7 @@
                         <div class="d-xxl-flex justify-content-xxl-evenly">
                             <div class="d-xxl-flex align-items-xxl-center" style="width: 190px;"><button class="btn btn-primary submitBtn" id="submitBtn" type="submit" style="margin-right: 0;margin-left: 10px;">Next</button></div>
                             <div class="d-xxl-flex align-items-xxl-center">
-                                <h1 class="secondHead" style="margin-top: 0;margin-bottom: 0;font-size: 16px;padding-left: 0;"><strong>Already got an account?</strong><a id="login" href="<?php echo $link->path('login_page') ?>" style="padding-bottom: 0;">Login</a></h1>
+                                <h1 class="secondHead" style="margin-top: 0;margin-bottom: 0;font-size: 16px;padding-left: 0;">Already got an account?<a id="login" href="<?php echo $link->path('login_page') ?>" style="padding-bottom: 0;">Login</a></h1>
                             </div>
                         </div>
                     </div>

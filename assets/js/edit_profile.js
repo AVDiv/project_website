@@ -1,6 +1,4 @@
 const input_profile_image = document.getElementById('image-input-profile');
-const edit_tagline = document.getElementById('tagline_edit_button');
-const input_tagline = document.getElementById('profile-tagline');
 
 // Profile picture edit
 input_profile_image.addEventListener('change', () => {
@@ -17,22 +15,17 @@ input_profile_image.addEventListener('change', () => {
     };
 
 });
-// Profile tagline edit
-edit_tagline.addEventListener('click', () => {
-    input_tagline.disabled = false;
-    input_tagline.focused = true;
-    input_tagline.focus();
-});
 // Common Add item button animations
 // Portfolio
 let add_item_button_portfolio = document.getElementById('add-item-button-portfolio');
 let items_portfolio =  "";
-let items_portfolio_element = `
-    <div class="portfolio-item" style="transition: all 0.5s ease-out;height: 200px;background: #ffffff;border-radius: 30px;box-shadow: 3px 5px 10px rgba(33,37,41,0.1);width: 180px;margin: 25px;position: relative;"><button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center remove-item-portfolio" type="button" style="position: absolute;border-radius: 100px;padding: 4px 4px;top: -10px;right: -10px;background: #E63946;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);z-index: 10;border-style: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-96 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 14px;pointer-events: none;">
+let items_portfolio_element = `    
+    <div class="p-item portfolio-item" style="transition: all 0.5s ease-out;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
+        <button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center remove-item-portfolio" type="button" style="position: absolute;border-radius: 100px;padding: 4px 4px;top: -10px;right: -10px;background: #E63946;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);z-index: 10;border-style: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-96 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 14px;pointer-events: none;">
                 <path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
             </svg></button><img src="" alt="" style="width: 100%;height: 75%;">
-        <div class="d-flex d-xxl-flex justify-content-center align-items-center" style="height: 25%;border-top: 1px solid rgb(205,215,225) ;">
-            <h6 style="font-weight: bold;color: rgb(113,160,230);">Portfolio item name</h6>
+        <div class="d-flex justify-content-center align-items-center p-text-container">
+            <p class="d-xxl-flex" style="margin-bottom:0;height: auto;color: #71a0e6;font-size: 14px;">Portfolio Item</p>
         </div>
     </div>
 `;
@@ -87,18 +80,19 @@ add_item_button_portfolio.addEventListener('click', () => {
 let add_item_button_experience = document.getElementById('add-item-button-experience');
 let items_experience =  "";
 let items_experience_element = `
-    <div class="d-flex align-items-center experience-item" style="transition: all 0.5s ease-out;height: 100px;background: #ffffff;width: 580px;border-radius: 20px;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);position: relative;margin-bottom: 25px;margin-right: 25px;">
-        <div style="height: 60px;margin-left: 30px;">
-            <div class="d-flex position-details">
-                <h5 class="company-name" style="font-weight: bold;margin-right: 10px;color: rgb(5,27,59);">Sample Corp.</h5>
-                <h5 style="font-weight: bold;margin-right: 10px;color: #CDD7E1;">•</h5>
-                <h5 class="position-name" style="font-weight: bold;margin-right: 10px;color: rgb(113,160,230);">Position</h5>
-            </div>
-            <p style="font-weight: bold;color: rgb(205,215,225);">From 2XXX to 2XXX</p>
-        </div><button class="btn btn-primary d-flex justify-content-center align-items-center remove-item-experience" type="button" style="position: absolute;border-radius: 100px;padding: 4px 4px;top: -10px;right: -10px;background: #E63946;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);z-index: 10;border-style: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-96 0 512 512" width="1em" height="1em" fill="currentColor" style="pointer-events: none;font-size: 14px;">
+    <div class="d-flex align-items-center e-item experience-item" style="transition: all 0.5s ease-out;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
+        <button class="btn btn-primary d-flex justify-content-center align-items-center remove-item-experience" type="button" style="position: absolute;border-radius: 100px;padding: 4px 4px;top: -10px;right: -10px;background: #E63946;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);z-index: 10;border-style: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-96 0 512 512" width="1em" height="1em" fill="currentColor" style="pointer-events: none;font-size: 14px;">
                 <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
                 <path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
             </svg></button>
+        <div class="e-txt-container" style="margin-left: 45px;">
+            <div class="e-txt-heading" style="font-size: 18px;margin-bottom: 3px;">
+                <p class="e-txt-heading-item" style="margin-left:0;">Sample Corp.</p>
+                <p class="e-txt-heading-item" style="color: #cdd7e1;"><strong>•</strong></p>
+                <p class="e-txt-heading-item" style="color: #71a0e6;">Position</p>
+            </div>
+            <p style="margin-bottom:0;margin-left:0;font-size: 15px;color: #cdd7e1;">From 2XXX to 2XXX</p>
+        </div>
     </div>
 `;
 let remove_item_experience = Array();
@@ -151,20 +145,21 @@ add_item_button_experience.addEventListener('click', () => {
 // Education
 let add_item_button_education = document.getElementById('add-item-button-education');
 let items_education =  "";
-let items_education_element = `
-    <div class="d-flex align-items-center education-item" style="transition: all 0.5s ease-out;height: 140px;background: #ffffff;width: 580px;border-radius: 20px;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);position: relative;margin-bottom: 25px;margin-right: 25px;">
-        <div style="height: 80px;margin-left: 30px;">
-            <div class="d-flex position-details">
-                <h5 class="company-name" style="font-weight: bold;margin-right: 10px;color: rgb(5,27,59);">BSc. in ABCDEFG</h5>
-                <h5 style="font-weight: bold;margin-right: 10px;color: #CDD7E1;">•</h5>
-                <h5 class="position-name" style="font-weight: bold;margin-right: 10px;color: rgb(205,215,225);">4 years</h5>
+let items_education_element = ` 
+    <div class="d-flex align-items-center ed-item education-item" style="transition: all 0.5s ease-out;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);position: relative;">
+        <div class="e-txt-container" style="margin-left: 45px;">
+            <div class="e-txt-heading" style="font-size: 18px;margin-bottom: 3px;">
+                <p class="e-txt-heading-item" style="margin-left:0;">BSc. in Mokak hari ekak</p>
+                <p class="e-txt-heading-item" style="color: #cdd7e1;"><strong>•</strong></p>
+                <p class="e-txt-heading-item" style="color: #cdd7e1;">4 Years</p>
             </div>
-            <p style="color: rgb(113,160,230);margin-bottom: 0px;">NSBM Green University - Sri Lanka</p>
-            <p style="color: rgb(113,160,230);margin-bottom: 0px;">From 2XXX to 2XXX</p>
-        </div><button class="btn btn-primary d-flex justify-content-center align-items-center remove-item-education" type="button" style="position: absolute;border-radius: 100px;padding: 4px 4px;top: -10px;right: -10px;background: #E63946;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);z-index: 10;border-style: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-96 0 512 512" width="1em" height="1em" fill="currentColor" style="pointer-events: none;font-size: 14px;">
-                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
-                <path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
-            </svg></button>
+            <p style="margin-bottom: 3px;margin-left:0;font-size: 15px;color: #71a0e6;">NSBM Green University - Sri Lanka</p>
+            <p style="margin-bottom:0;margin-left:0;font-size: 15px;color: #71a0e6;">2XXX - 2XXX</p>
+        </div>
+        <button class="btn btn-primary d-flex justify-content-center align-items-center remove-item-education" type="button" style="position: absolute;border-radius: 100px;padding: 4px 4px;top: -10px;right: -10px;background: #E63946;box-shadow: 3px 5px 10px rgba(0,0,0,0.1);z-index: 10;border-style: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-96 0 512 512" width="1em" height="1em" fill="currentColor" style="pointer-events: none;font-size: 14px;">
+            <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+            <path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
+        </svg></button>
     </div>
 `;
 let remove_item_education = Array();
@@ -216,9 +211,6 @@ add_item_button_education.addEventListener('click', () => {
 });
 // Common document events
 document.addEventListener('click', event => {
-    if (!(event.target === input_tagline || event.target === edit_tagline.children[0])) {
-        input_tagline.disabled = true;
-    }
     for (let i = 0; i < remove_item_portfolio.length; i++) {
         if (event.target === remove_item_portfolio[i]) {
             items_portfolio[i].style.width = '0px';

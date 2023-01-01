@@ -1,13 +1,13 @@
 <?php
-include_once 'model/account_model.php';
+include_once 'model/model.php';
 include_once 'validation.php';
-class Account{
+class Controller{
     private $model;
     private $verify;
 
     function __construct()
     {
-        $this->model = new AccountModel();
+        $this->model = new Model();
         $this->verify = new Validation();
     }
 
@@ -295,5 +295,23 @@ class Account{
         } else {
             return 1;
         }
+    }
+    // Getting user id from username
+    function get_from_username($username){
+        $is_valid = $this->verify->validate_username($username);
+        if ($is_valid){
+            $result = $this->model->check_username($username);
+            if ($result===false){
+                return false;
+            } else{
+                return $result;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function update_profile(){
+
     }
 }

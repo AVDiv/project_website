@@ -37,6 +37,7 @@ class Links{
         'terms_css'=> '/assets/css/terms.css',
         'nsbm_css'=> '/assets/css/nsbm.css',
         'email_verify_css'=> '/assets/css/email_verify.css',
+        'profile_css' => '/assets/css/profile.css',
         // JS scripts
         'bs_js' => '/assets/bootstrap/js/bootstrap.min.js',
         'navbar_js' => '/assets/js/navigation.js',

@@ -2,7 +2,7 @@
     include_once "config/db.php";
 
     // Class with the connection to the _database and functions to interact with the _database
-    class AccountModel{
+    class Model{
         // Variables for the connection to the _database
         private PDO $connection;
         private string $_servername = HOST; // Host or Server address
@@ -329,7 +329,6 @@
                 $stmt->bindParam(":id", $u_id);
                 $stmt->bindParam(":otp", $otp);
                 $stmt->execute();
-                echo 'abc';
                 return 0;
             } catch(PDOException $e){
                 echo "PDO(MySQL) Error: " . $e->getMessage();
@@ -353,5 +352,138 @@
                 return -1;
             }
         }
-
+        // Model function to add a portfolio item
+        function add_portfolio_item($u_ID, $portfolio_title, $portfolio_description, $portfolio_img){
+            try{
+                $stmt = $this->connection->prepare("INSERT INTO user_portfolio (u_ID, portfolio_title, portfolio_description, portfolio_img_path) VALUES (:u_id, :port_title, :port_desc, :port_img)");
+                $stmt->bindParam(":u_id", $u_id);
+                $stmt->bindParam(":port_title", $portfolio_title);
+                $stmt->bindParam(":port_desc", $portfolio_description);
+                $stmt->bindParam(":port_img", $portfolio_img);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get a portfolio item
+        function get_portfolio_items($u_ID){
+            try{
+                $stmt = $this->connection->prepare("SELECT (ID, u_ID, portfolio_title, portfolio_description, portfolio_img_path) FROM user_portfolio WHERE u_ID = :u_id AND is_active = 1 ORDER BY added_time");
+                $stmt->bindParam(":u_id", $u_ID);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to remove a portfolio item
+        function remove_portfolio_item($ID){
+            try{
+                $stmt = $this->connection->prepare("UPDATE user_portfolio SET is_active = 0 WHERE ID = :id");
+                $stmt->bindParam(":id", $ID);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to add a experience item
+        function add_experience_item($u_ID, $experience_company, $experience_position, $begin_year, $end_year){
+            try{
+                $stmt = $this->connection->prepare("INSERT INTO user_experience (u_ID, company,  position, begin_year, end_year) VALUES (:u_id, :xp_comp, :xp_posi, :xp_byear, xp_eyear)");
+                $stmt->bindParam(":u_id", $u_id);
+                $stmt->bindParam(":xp_comp", $experience_company);
+                $stmt->bindParam(":xp_posi", $experience_position);
+                $stmt->bindParam(":xp_byear", $begin_year);
+                $stmt->bindParam(":xp_eyear", $end_year);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get a experience item
+        function get_experience_items($u_ID){
+            try{
+                $stmt = $this->connection->prepare("SELECT (ID, u_ID, company,  position, begin_year, end_year) FROM user_experience WHERE u_ID = :u_id AND is_active = 1 ORDER BY added_time");
+                $stmt->bindParam(":u_id", $u_ID);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to remove a experience item
+        function remove_experience_item($ID){
+            try{
+                $stmt = $this->connection->prepare("UPDATE user_experience SET is_active = 0 WHERE ID = :id");
+                $stmt->bindParam(":id", $ID);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to add a education item
+        function add_education_item($u_ID, $education_title, $education_institute, $begin_year, $end_year){
+            try{
+                $stmt = $this->connection->prepare("INSERT INTO user_experience (u_ID, edu_name, edu_institute, begin_year, end_year) VALUES (:u_id, :edu_name, :edu_institute, :edu_byear, edu_eyear)");
+                $stmt->bindParam(":u_id", $u_id);
+                $stmt->bindParam(":edu_name", $experience_company);
+                $stmt->bindParam(":edu_institute", $experience_position);
+                $stmt->bindParam(":edu_byear", $begin_year);
+                $stmt->bindParam(":edu_eyear", $end_year);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get a education item
+        function get_education_items($u_ID){
+            try{
+                $stmt = $this->connection->prepare("SELECT (ID, u_ID, edu_name, edu_institute, begin_year, end_year) FROM user_education WHERE u_ID = :u_id AND is_active = 1 ORDER BY added_time");
+                $stmt->bindParam(":u_id", $u_ID);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to remove a education item
+        function remove_education_item($ID){
+            try{
+                $stmt = $this->connection->prepare("UPDATE user_education SET is_active = 0 WHERE ID = :id");
+                $stmt->bindParam(":id", $ID);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
     }

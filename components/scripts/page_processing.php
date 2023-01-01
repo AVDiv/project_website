@@ -1,12 +1,12 @@
 <?php
-    include_once dirname(__DIR__, 2).'/backend/account.php';
+    include_once dirname(__DIR__, 2) . '/backend/controller.php';
 
     class page_processor{
     public bool $logged_in = false;
     public int $user_id = 0;
-    private Account $controller;
+    private Controller $controller;
     function __construct(){
-        $this->controller = new Account();
+        $this->controller = new Controller();;
     }
     function is_logged_in($cookie): void
     {
