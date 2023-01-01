@@ -32,10 +32,10 @@ if (!empty($_GET['u'])){
     }
 } else {
     // Redirect to 404 page
-    echo "asda";
-//    header("HTTP/1.1 404 Not Found");
-//    header("Location: ". $link->path('404_page'));
-//    die();
+//    echo "asda";
+    header("HTTP/1.1 404 Not Found");
+    header("Location: ". $link->path('404_page'));
+    die();
 }
 ?>
 <html lang="en">
@@ -68,44 +68,52 @@ echo navbar_component($pp->logged_in, $controller->get_user_details($pp->user_id
         <p style="color: #051b3b;font-size: 20px;margin-left: 15px;margin-bottom: 40px;">Portfolio</p>
         <div class="p-row">
             <div class="p-item" style="box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
-                <div class="d-xxl-flex justify-content-xxl-center p-text-container">
+                <img src="" alt="" style="width: 100%;height: 75%;">
+                <div class="d-flex justify-content-center align-items-center p-text-container">
                     <p class="d-xxl-flex" style="margin-bottom: 0px;height: auto;color: #71a0e6;font-size: 14px;">Portfolio Item 1</p>
                 </div>
             </div>
             <div class="p-item" style="box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
-                <div class="d-xxl-flex justify-content-xxl-center p-text-container">
+                <img src="" alt="" style="width: 100%;height: 75%;">
+                <div class="d-flex justify-content-center align-items-center p-text-container">
                     <p class="d-xxl-flex" style="margin-bottom: 0px;height: auto;color: #71a0e6;font-size: 14px;">Portfolio Item 2</p>
                 </div>
             </div>
             <div class="p-item" style="box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
-                <div class="d-xxl-flex justify-content-xxl-center p-text-container">
+                <img src="" alt="" style="width: 100%;height: 75%;">
+                <div class="d-flex justify-content-center align-items-center p-text-container">
                     <p class="d-xxl-flex" style="margin-bottom: 0px;height: auto;color: #71a0e6;font-size: 14px;">Portfolio Item 3</p>
                 </div>
             </div>
             <div class="p-item" style="box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
-                <div class="d-xxl-flex justify-content-xxl-center p-text-container">
+                <img src="" alt="" style="width: 100%;height: 75%;">
+                <div class="d-flex justify-content-center align-items-center p-text-container">
                     <p class="d-xxl-flex" style="margin-bottom: 0px;height: auto;color: #71a0e6;font-size: 14px;">Portfolio Item 1</p>
                 </div>
             </div>
         </div>
         <div class="p-row">
             <div class="p-item" style="box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
-                <div class="d-xxl-flex justify-content-xxl-center p-text-container">
+                <img src="" alt="" style="width: 100%;height: 75%;">
+                <div class="d-flex justify-content-center align-items-center p-text-container">
                     <p class="d-xxl-flex" style="margin-bottom: 0px;height: auto;color: #71a0e6;font-size: 14px;">Portfolio Item 1</p>
                 </div>
             </div>
             <div class="p-item" style="box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
-                <div class="d-xxl-flex justify-content-xxl-center p-text-container">
+                <img src="" alt="" style="width: 100%;height: 75%;">
+                <div class="d-flex justify-content-center align-items-center p-text-container">
                     <p class="d-xxl-flex" style="margin-bottom: 0px;height: auto;color: #71a0e6;font-size: 14px;">Portfolio Item 1</p>
                 </div>
             </div>
             <div class="p-item" style="box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
-                <div class="d-xxl-flex justify-content-xxl-center p-text-container">
+                <img src="" alt="" style="width: 100%;height: 75%;">
+                <div class="d-flex justify-content-center align-items-center p-text-container">
                     <p class="d-xxl-flex" style="margin-bottom: 0px;height: auto;color: #71a0e6;font-size: 14px;">Portfolio Item 1</p>
                 </div>
             </div>
             <div class="p-item" style="box-shadow: 3px 5px 10px rgba(0,0,0,0.1);">
-                <div class="d-xxl-flex justify-content-xxl-center p-text-container">
+                <img src="" alt="" style="width: 100%;height: 75%;">
+                <div class="d-flex justify-content-center align-items-center p-text-container">
                     <p class="d-xxl-flex" style="margin-bottom: 0px;height: auto;color: #71a0e6;font-size: 14px;">Portfolio Item 1</p>
                 </div>
             </div>

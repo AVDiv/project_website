@@ -1,0 +1,114 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 600;
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  position: relative;
+  height: 25em;
+}
+
+.headerBack {
+  background-color: #E7EEF9;
+  width: 100%;
+  height: 75%;
+}
+
+.pfpContainer {
+  width: 230px;
+  position: absolute;
+  height: 280px;
+  margin-left: 130px;
+  background-color: white;
+  border-radius: 10px 30px 30px 10px;
+  top: 100px;
+}
+
+.pfp {
+  width: auto;
+  border-radius: 10px 30px 30px 10px;
+}
+
+.nt {
+  position: absolute;
+  top: 170px;
+  left: 425px;
+}
+
+.content {
+  margin-left: 130px;
+}
+
+.description {
+  font-size: 14px;
+  color: #051B3B;
+}
+
+.portfolioSec {
+  background-color: #EFF4FF;
+  border-radius: 30px;
+  height: auto;
+  padding: 40px;
+}
+
+.p-row {
+  margin: 10px 20px;
+}
+
+.p-item {
+  width: 200px;
+  height: 220px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  display: inline-block;
+  margin: 20px;
+  position: relative;
+}
+
+.p-text-container {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 75%;
+  padding: 15px;
+  border-top: 1px solid #CDD7E1;
+}
+
+.e-item {
+  width: 450px;
+  height: 85px;
+  margin: 20px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  display: inline-block;
+  position: relative;
+}
+
+.e-txt-heading-item {
+  display: inline;
+  margin: 0px 3px;
+}
+
+.ed-item {
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  width: 450px;
+  height: 110px;
+}
+
+.r-item {
+  width: 450px;
+  height: 132px;
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 23px;
+}
+
+#fw-less {
+  font-weight: 300;
+}
+
