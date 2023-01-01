@@ -311,7 +311,48 @@ class Controller{
         }
     }
 
-    function update_profile(){
+//    function update_profile(){
+//
+//    }
 
+    function create_project($user_id, $title, $description, $budget)
+    {
+        // Error codes
+        // {project shortlink} - No error
+        // 1 - Project title is invalid
+        // 2 - Project description is invalid
+        // 3 - Project budget is invalid
+        // 4 - Cannot create project at this time
+        // Validate all the data
+        $is_valid_title = $this->verify->validate_project_title($title);
+        $is_valid_description = $this->verify->validate_project_description($description);
+        $budget = (int)str_replace(',', '', substr($budget, 3));
+        $is_valid_budget = $this->verify->validate_project_budget($budget);
+        if ($is_valid_title && $is_valid_description && $is_valid_budget) {
+            // Create random string of 10 chars for the project shortlink
+            $valid_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $char1 = substr(str_shuffle($valid_chars), 0, 2);
+            $char2 = substr(str_shuffle($valid_chars), 1, 2);
+            $char3 = substr(str_shuffle($valid_chars), 2, 2);
+            $char4 = substr(str_shuffle($valid_chars), 3, 2);
+            $char5 = substr(str_shuffle($valid_chars), 4, 2);
+            $shortlink = $char1 . $char2 . $char3 . $char4 . $char5;
+            // Check if short link already exists
+            $is_shortlink_exists = $this->model->get_project_from_shortlink($shortlink);
+            if ($is_shortlink_exists === false) {
+                // Create project
+                $result = $this->model->set_project($user_id, $title, $description, $budget, $shortlink);
+                if ($result !== -1) {
+                    return $shortlink;
+                } else{
+                    return 4;
+                }
+            } elseif ($is_shortlink_exists === -1) {
+                return 4;
+            } else{
+                $this->create_project($user_id, $title, $description, $budget);
+            }
+            return 4;
+        }
     }
 }

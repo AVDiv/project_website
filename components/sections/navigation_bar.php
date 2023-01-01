@@ -16,13 +16,13 @@
                             </li>
                             <li class="nav-item dropdown" style="font-weight: 600;padding: 0 20px;letter-spacing: 0.5px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Services</a><i class="fa-solid fa-caret-down"></i>
                                 <div class="dropdown-menu" style="box-shadow: 5px 5px #CDD7E1;">
-                                    <a class="dropdown-item" href="#">Post Project</a>
+                                    <a class="dropdown-item" href="'. $links->path('post_project_page') .'">Post Project</a>
                                     <a class="dropdown-item" href="#">Find Freelancer</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown" style="font-weight: 600;padding: 0 20px;letter-spacing: 0.5px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">About us</a><i class="fa-solid fa-caret-down"></i>
                                 <div class="dropdown-menu" style="box-shadow: 5px 5px #CDD7E1;">
-                                    <a class="dropdown-item" href="#">Our Team</a>
+                                    <a class="dropdown-item" href="'. $links->path('team_page') .'">Our Team</a>
                                     <a class="dropdown-item" href="'. $links->path('contact_us_page') .'">Contact us</a>
                                     <a class="dropdown-item" href="'. $links->path('nsbm_page') .'">Our University</a>
                                     <a class="dropdown-item" href="'. $links->path('terms_page') .'">Terms &amp; Conditions</a>

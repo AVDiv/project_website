@@ -486,4 +486,66 @@
                 return -1;
             }
         }
+        // Model function to add a project
+        function set_project($u_ID, $project_title, $project_description, $budget, $shortlink){
+            try{
+                $stmt = $this->connection->prepare("INSERT INTO projects (u_ID, project_title, project_description, budget, shortlink) VALUES (:u_id, :project_title, :project_description, :budget, :shortlink)");
+                $stmt->bindParam(":u_id", $u_ID);
+                $stmt->bindParam(":project_title", $project_title);
+                $stmt->bindParam(":project_description", $project_description);
+                $stmt->bindParam(":budget", $budget);
+                $stmt->bindParam(":shortlink", $shortlink);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get a project from short link
+        function get_project_from_shortlink($short_link){
+            try{
+                $stmt = $this->connection->prepare("SELECT * FROM projects WHERE shortlink = :shortlink AND is_active = 1 ORDER BY created_date");
+                $stmt->bindParam(":shortlink", $short_link);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get projects from user ID
+        function get_projects_from_userid($u_ID){
+            try{
+                $stmt = $this->connection->prepare("SELECT * FROM user_project WHERE u_ID = :u_id AND is_active = 1 ORDER BY created_date");
+                $stmt->bindParam(":u_id", $u_ID);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to remove a project item
+        function remove_project($ID){
+            try{
+                $stmt = $this->connection->prepare("UPDATE project SET is_active = 0 WHERE ID = :id");
+                $stmt->bindParam(":id", $ID);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
     }

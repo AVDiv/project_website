@@ -22,6 +22,9 @@ class Links{
         'profile_edit_page' => '/account/edit_profile.php',
         'logout_page' => '/account/logout.php',
         'contact_us_page' => '/about/contact_us.php',
+        'post_project_page' => '/post_project.php',
+        'project_page' => '/projects.php',
+        'search_page' => '/search.php',
         // APIs
         'otp_resend_api'=> '/api/send_otp.php',
         // Components
@@ -47,6 +50,7 @@ class Links{
         'email_verify_js' => '/assets/js/verify_email.js',
         'profile_edit_js' => '/assets/js/edit_profile.js',
         'signup_js' => '/assets/js/signup.js',
+        'post_project_js' => '/assets/js/project_form.js',
         // Media
         'logo'=>'/assets/media/images/Logo.png',
         'logo_fd'=>'/assets/media/images/Logo I.png',
