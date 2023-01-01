@@ -20,6 +20,7 @@ if($pp->logged_in){
 }
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <?php include_once 'components/scripts/essentials.php'; ?>
