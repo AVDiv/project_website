@@ -209,4 +209,59 @@ function validate_password($password, $confirm_password){
         }
         return $is_pass;
     }
+    function validate_project_title($title){
+        /*
+         * Notes:                                                                        Implemented | Tested
+         *     1. Project title must be a string                                           ✓            -
+         *     2. Project title must be in a length of 8 to 60 chars                        ✓            -
+         *     3. Project title must be alphanumeric                                       ✓            -
+         */
+        $is_pass = false;
+        if(!empty($title)){
+            if(preg_match("/^[a-zA-Z0-9 ]*$/", $title) && strlen($title) >= 8 && strlen($title) <= 60){
+                $is_pass = true;
+            }
+            if(!($this->unicode_verifier($title))){
+                $is_pass = false;
+            }
+        }
+        return $is_pass;
+    }
+    function validate_project_description($description){
+        /*
+         * Notes:                                                                        Implemented | Tested
+         *     1. Project description must be a string                                     ✓            -
+         *     2. Project description must be in a length of 8 to 120 chars                ✓            -
+         *     3. Project description must be alphanumeric                                 ✓            -
+         */
+        $is_pass = false;
+        if(!empty($description)){
+            if(preg_match("/^[a-zA-Z0-9 ]*$/", $description) && strlen($description) >= 8 && strlen($description) <= 120){
+                $is_pass = true;
+            }
+            if(!($this->unicode_verifier($description))){
+                $is_pass = false;
+            }
+        }
+        return $is_pass;
+    }
+    function validate_project_budget($budget)
+    {
+        /*
+         * Notes:                                                                       Implemented | Tested
+         *    1. Project budget must be a number                                           ✓            -
+         *    2. Project budget must be greater than 500 and less than 1000000             ✓            -
+         */
+        $is_pass = false;
+        if(!empty($budget)){
+            if(preg_match("/^[0-9]*$/", $budget) && $budget >= 500 && $budget <= 1000000){
+                $is_pass = true;
+            }
+            if(!($this->unicode_verifier($budget))){
+                $is_pass = false;
+            }
+        }
+        return $is_pass;
+    }
+
 }
