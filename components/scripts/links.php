@@ -21,6 +21,7 @@ class Links{
         'privacy_policy_page'=> '/about/privacy.php',
         'profile_edit_page' => '/account/edit_profile.php',
         'logout_page' => '/account/logout.php',
+        'contact_us_page' => '/about/contact_us.php',
         // APIs
         'otp_resend_api'=> '/api/send_otp.php',
         // Components
@@ -38,6 +39,8 @@ class Links{
         'nsbm_css'=> '/assets/css/nsbm.css',
         'email_verify_css'=> '/assets/css/email_verify.css',
         'profile_css' => '/assets/css/profile.css',
+        'contact_us_css' => '/assets/css/contact.css',
+        'bs_grid_images_css' => '/assets/css/Projects-Grid-images.css',
         // JS scripts
         'bs_js' => '/assets/bootstrap/js/bootstrap.min.js',
         'navbar_js' => '/assets/js/navigation.js',

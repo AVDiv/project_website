@@ -23,7 +23,7 @@
                             <li class="nav-item dropdown" style="font-weight: 600;padding: 0 20px;letter-spacing: 0.5px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">About us</a><i class="fa-solid fa-caret-down"></i>
                                 <div class="dropdown-menu" style="box-shadow: 5px 5px #CDD7E1;">
                                     <a class="dropdown-item" href="#">Our Team</a>
-                                    <a class="dropdown-item" href="'. $links->path('contact_page') .'">Contact us</a>
+                                    <a class="dropdown-item" href="'. $links->path('contact_us_page') .'">Contact us</a>
                                     <a class="dropdown-item" href="'. $links->path('nsbm_page') .'">Our University</a>
                                     <a class="dropdown-item" href="'. $links->path('terms_page') .'">Terms &amp; Conditions</a>
                                     <a class="dropdown-item" href="'. $links->path('privacy_policy_page') .'">Privacy Policy</a>
@@ -39,7 +39,6 @@
                                 <div class="dropdown-menu dropdown-right" style="box-shadow: 5px 5px #CDD7E1;">
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-chart-line"></i>&nbsp;Dashboard</a>
                                     <a class="dropdown-item" href="'. $links->path('profile_edit_page') .'"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit profile</a>
-                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-coins"></i>&nbsp;Billing</a>
                                     <a class="dropdown-item" href="'. $links->path('logout_page') .'"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a>
                                 </div>
                             </li>'
