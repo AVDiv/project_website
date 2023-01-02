@@ -13,7 +13,7 @@ class Validation{
     }
     function unicode_verifier($data){
         $is_pass = false;
-        if(preg_match("/^[\x{20}-\x{7E} ]*$/u", $data)){
+        if(preg_match("/^[\x{20}-\x{7E} \n]*$/u", $data)){
             $is_pass = true;
         }
         return $is_pass;
@@ -236,7 +236,7 @@ function validate_password($password, $confirm_password){
          */
         $is_pass = false;
         if(!empty($description)){
-            if(preg_match("/^[\x{20}-\x{7E}]*$/", $description) && strlen($description) >= 120 && strlen($description) <= 800){
+            if(preg_match("/^[\x{20}-\x{7E}\n]*$/", $description) && strlen($description) >= 120 && strlen($description) <= 800){
                 $is_pass = true;
             }
             if(!($this->unicode_verifier($description))){
@@ -290,7 +290,7 @@ function validate_password($password, $confirm_password){
          */
         $is_pass = false;
         if(!empty($proposal)){
-            if(preg_match("/^[\x{20}-\x{7E}]*$/", $proposal) && strlen($proposal) >= 100 && strlen($proposal) <= 800){
+            if(preg_match("/^[\x{20}-\x{7E}\n]*$/", $proposal) && strlen($proposal) >= 100 && strlen($proposal) <= 800){
                 $is_pass = true;
             }
             if(!($this->unicode_verifier($proposal))){
