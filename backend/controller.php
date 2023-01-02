@@ -314,7 +314,7 @@ class Controller{
 //    function update_profile(){
 //
 //    }
-
+    // Create a project
     function create_project($user_id, $title, $description, $budget)
     {
         // Error codes
@@ -353,6 +353,71 @@ class Controller{
                 $this->create_project($user_id, $title, $description, $budget);
             }
             return 4;
+        } elseif (!$is_valid_title) {
+            return 1;
+        } elseif (!$is_valid_description) {
+            return 2;
+        } elseif (!$is_valid_budget) {
+            return 3;
+        }
+    }
+    // Propose for a project
+    function propose_project($user_id, $project_shortlink, $email, $proposal, $budget){
+        // Error codes
+        // 0 - No error
+        // 1 - Project shortlink is invalid
+        // 2 - Proposal is invalid
+        // 3 - Cannot propose for project at this time
+        $is_valid_shortlink = $this->verify->validate_project_shortlink($project_shortlink);
+        $is_valid_proposal = $this->verify->validate_project_proposal($proposal);
+        if($is_valid_shortlink && $is_valid_proposal){
+            $project_details = $this->model->get_project_from_shortlink($project_shortlink);
+            if($project_details===false || $project_details===-1){
+                return 3;
+            }
+            $budget = (int)str_replace(',', '', substr($budget, 3));
+            $result = $this->model->set_project_proposal($user_id, $project_details['ID'], $proposal, $budget, $email);
+            if($result===-1){
+                return 3;
+            } else {
+                return 0;
+            }
+        } else {
+            if(!$is_valid_shortlink){
+                return 1;
+            } elseif(!$is_valid_proposal){
+                return 2;
+            }
+        }
+    }
+    // Get project details
+    function get_project_details($project_shortlink){
+        // Error codes
+        // {project details} - No error
+        // 1 - Project shortlink is invalid
+        // 2 - Cannot get project details at this time
+        $is_valid_shortlink = $this->verify->validate_project_shortlink($project_shortlink);
+        if($is_valid_shortlink){
+            $project_details = $this->model->get_project_from_shortlink($project_shortlink);
+            if($project_details===false || $project_details===-1){
+                return 2;
+            } else{
+                return $project_details;
+            }
+        } else {
+            return 1;
+        }
+    }
+    // Get project proposals associated with a user
+    function get_project_proposal_by_user($user_id, $project_id){
+        // Error codes
+        // {project proposals} - No error
+        // 1 - Cannot get project proposals at this time
+        $project_proposals = $this->model->get_project_proposal_from_project_and_user($user_id, $project_id);
+        if($project_proposals===false || $project_proposals===-1){
+            return 1;
+        } else{
+            return $project_proposals;
         }
     }
 }

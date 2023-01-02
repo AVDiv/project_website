@@ -218,7 +218,7 @@ function validate_password($password, $confirm_password){
          */
         $is_pass = false;
         if(!empty($title)){
-            if(preg_match("/^[a-zA-Z0-9 ]*$/", $title) && strlen($title) >= 8 && strlen($title) <= 60){
+            if(preg_match("/^[\x{20}-\x{7E}]*$/", $title) && strlen($title) >= 8 && strlen($title) <= 60){
                 $is_pass = true;
             }
             if(!($this->unicode_verifier($title))){
@@ -231,12 +231,12 @@ function validate_password($password, $confirm_password){
         /*
          * Notes:                                                                        Implemented | Tested
          *     1. Project description must be a string                                     ✓            -
-         *     2. Project description must be in a length of 8 to 120 chars                ✓            -
+         *     2. Project description must be in a length of 120 to 800 chars                ✓            -
          *     3. Project description must be alphanumeric                                 ✓            -
          */
         $is_pass = false;
         if(!empty($description)){
-            if(preg_match("/^[a-zA-Z0-9 ]*$/", $description) && strlen($description) >= 8 && strlen($description) <= 120){
+            if(preg_match("/^[\x{20}-\x{7E}]*$/", $description) && strlen($description) >= 120 && strlen($description) <= 800){
                 $is_pass = true;
             }
             if(!($this->unicode_verifier($description))){
@@ -263,5 +263,40 @@ function validate_password($password, $confirm_password){
         }
         return $is_pass;
     }
-
+    function validate_project_shortlink($shortlink){
+        /*
+         * Notes:                                                                       Implemented | Tested
+         *    1. Project shortlink must be a string                                        ✓            -
+         *    2. Project shortlink must be in a length of 10 chars                         ✓            -
+         *    3. Project shortlink can't have any special characters                       ✓            -
+         */
+        $is_pass = false;
+        if(!empty($shortlink)){
+            if(preg_match("/^[a-zA-Z0-9]*$/", $shortlink) && strlen($shortlink) == 10){
+                $is_pass = true;
+            }
+            if(!($this->unicode_verifier($shortlink))){
+                $is_pass = false;
+            }
+        }
+        return $is_pass;
+    }
+    function validate_project_proposal($proposal){
+        /*
+         * Notes:                                                                      Implemented | Tested
+         *   1. Project proposal must be a string                                          ✓            -
+         *   2. Project proposal must be in a length of 20 to 100 chars                    ✓            -
+         *   3. Project proposal can contain letters, numbers, and special characters      ✓            -
+         */
+        $is_pass = false;
+        if(!empty($proposal)){
+            if(preg_match("/^[\x{20}-\x{7E}]*$/", $proposal) && strlen($proposal) >= 100 && strlen($proposal) <= 800){
+                $is_pass = true;
+            }
+            if(!($this->unicode_verifier($proposal))){
+                $is_pass = false;
+            }
+        }
+        return $is_pass;
+    }
 }

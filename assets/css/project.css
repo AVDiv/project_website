@@ -1,0 +1,54 @@
+div {
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  #title {
+    text-align: center!important;
+    padding-left: 0!important;
+    bottom: 200px!important;
+  }
+}
+
+@media (max-width: 620px) {
+  .container {
+    text-align: center!important;
+  }
+}
+
+#submit-btn:not:disabled {
+  width: auto;
+  color: #FFFFFF;
+  background-color: #2678ef;
+  padding: 10px 25px;
+  border-radius: 8px;
+  border: none;
+  transition-duration: 0.5s;
+}
+#submit-btn:disabled{
+  width: auto;
+  color: var(--color-blue);
+  background-color: var(--color-gray);
+  padding: 10px 25px;
+  border-radius: 8px;
+  border: none;
+}
+#submit-btn:hover:not:disabled {
+  background-color: #3656f0;
+  transition-duration: 0.5s;
+}
+
+@media (max-width: 768px) {
+  #project_heading {
+    padding-left: 0!important;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  #user-details {
+    justify-content: center;
+  }
+}
+

@@ -548,4 +548,38 @@
                 return -1;
             }
         }
+        // Model function to add a project proposal
+        function set_project_proposal($u_ID, $project_ID, $proposal_description, $proposal_budget, $callback_email){
+            try {
+                $stmt = $this->connection->prepare("INSERT INTO project_proposals (u_ID, p_ID, proposal, budget, email) VALUES (:u_id, :project_id, :proposal_description, :proposal_budget, :callback_email)");
+                $stmt->bindParam(":u_id", $u_ID);
+                $stmt->bindParam(":project_id", $project_ID);
+                $stmt->bindParam(":proposal_description", $proposal_description);
+                $stmt->bindParam(":proposal_budget", $proposal_budget);
+                $stmt->bindParam(":callback_email", $callback_email);
+                $stmt->execute();
+                return 0;
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get project proposals from project ID and user ID
+        function get_project_proposal_from_project_and_user($user_id, $project_id){
+            try{
+                $stmt = $this->connection->prepare("SELECT * FROM project_proposals WHERE u_ID = :u_id AND p_ID = :project_id AND is_active = 1 ORDER BY created_time DESC LIMIT 1");
+                $stmt->bindParam(":u_id", $user_id);
+                $stmt->bindParam(":project_id", $project_id);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
     }
