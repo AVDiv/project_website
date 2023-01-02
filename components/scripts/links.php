@@ -25,6 +25,7 @@ class Links{
         'post_project_page' => '/post_project.php',
         'project_page' => '/projects.php',
         'search_page' => '/search.php',
+        'profile_page' => '/user.php',
         // APIs
         'otp_resend_api'=> '/api/send_otp.php',
         // Components
@@ -44,13 +45,15 @@ class Links{
         'profile_css' => '/assets/css/profile.css',
         'contact_us_css' => '/assets/css/contact.css',
         'bs_grid_images_css' => '/assets/css/Projects-Grid-images.css',
+        'project_css' => '/assets/css/project.css',
         // JS scripts
         'bs_js' => '/assets/bootstrap/js/bootstrap.min.js',
         'navbar_js' => '/assets/js/navigation.js',
         'email_verify_js' => '/assets/js/verify_email.js',
         'profile_edit_js' => '/assets/js/edit_profile.js',
         'signup_js' => '/assets/js/signup.js',
-        'post_project_js' => '/assets/js/project_form.js',
+        'post_project_js' => '/assets/js/post_project_form.js',
+        'propose_project_js' => '/assets/js/propose_project_form.js',
         // Media
         'logo'=>'/assets/media/images/Logo.png',
         'logo_fd'=>'/assets/media/images/Logo I.png',
@@ -71,6 +74,7 @@ class Links{
         'fb_logo' => '/assets/media/images/fb.png',
         'linkedin_logo' => '/assets/media/images/linkedin.png',
         'instagram_logo' => '/assets/media/images/instagram.png',
+        'project_wall_img' => '/assets/media/images/wall.png',
     );
     function path($filename){
         return $this->project_domain.$this->links[$filename];
