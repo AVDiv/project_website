@@ -4,6 +4,7 @@ session_start();
 include_once 'components/scripts/links.php';
 include_once 'components/scripts/page_processing.php';
 include_once 'backend/controller.php';
+include_once 'backend/mitigator.php';
 // Initializations
 $link = new Links();
 $pp = new page_processor();
@@ -85,17 +86,17 @@ echo navbar_component($pp->logged_in, (!empty($user_details['profile_pic'])?$use
                 </div></div>
         </div>
         <div id="project_heading" style="border-color: rgb(255,255,255);color: rgb(255,255,255);position: absolute;bottom: 140px;padding-left: 110px;">
-            <h1 id="title" style="text-align: left;font-weight: bold;width: 100%;"><?php echo $project_details['project_title']?></h1>
+            <h1 id="title" style="text-align: left;font-weight: bold;width: 100%;"><?php echo html_mitigation($project_details['project_title']); ?></h1>
             <div class="d-flex align-items-center" id="user-details" style="color: inherit;width: 100%;"><img src="<?php echo ($project_user_details['profile_pic']===''?$link->path('avatar_img'):$project_user_details['profile_pic']); ?>" style="width: 50px;height: 50px;border-radius: 123px;">
-                <a href="<?php echo $link->path('profile_page')."?u=".$project_user_details['username']; ?>" style="color: inherit; text-decoration: none;"><h5 id="project_user" style="padding-left: 20px;">@<?php echo $project_user_details['username']?></h5></a>
+                <a href="<?php echo $link->path('profile_page')."?u=".html_mitigation($project_user_details['username']); ?>" style="color: inherit; text-decoration: none;"><h5 id="project_user" style="padding-left: 20px;">@<?php echo $project_user_details['username']?></h5></a>
             </div>
         </div>
     </div>
 </header>
 <div class="container" style="min-height: 350px;">
-    <h1 id="budget-text" style="font-weight: bold;margin: 30px 0px;color: var(--color-dark-blue);">Budget: Rs. <?php echo $project_details['budget']?></h1>
+    <h1 id="budget-text" style="font-weight: bold;margin: 30px 0px;color: var(--color-dark-blue);">Budget: Rs. <?php echo html_mitigation($project_details['budget']); ?></h1>
     <h2 style="font-weight: bold;margin: 30px 0px;color: var(--color-dark-blue);">Project description:</h2>
-    <p style="margin: 30px 0px;color: var(--color-dark-blue);"><?php echo $project_details['project_description']?></p>
+    <p style="margin: 30px 0px;color: var(--color-dark-blue);"><?php echo html_mitigation($project_details['project_description']); ?></p>
 </div>
 <div class="container" style="margin-bottom: 30px;">
     <?php
@@ -122,7 +123,7 @@ echo navbar_component($pp->logged_in, (!empty($user_details['profile_pic'])?$use
             <div class="d-flex justify-content-center" style="height: auto;margin-top: 30px;"><input id="submit-btn" class="form-control" type="submit" name="submit" value="Send" /></div>
         </form>
         ';
-    } elseif ($ui_mode == 3) {
+    } elseif ($ui_mode == 2) {
         echo '<form method="post" style="padding: 32px;border-radius: 10px;border: 1px solid rgb(197,197,197);box-shadow: 0px 5px 10px rgba(33,37,41,0.05);color: var(--color-dark-blue);">
             <h2 style="text-align: center; font-weight: 600;">Project proposal</h2>
             <div style="height: auto;margin-top: 30px;">
@@ -136,7 +137,7 @@ echo navbar_component($pp->logged_in, (!empty($user_details['profile_pic'])?$use
             </div>
             <div class="d-flex justify-content-center" style="height: auto;margin-top: 30px;"><input id="submit-btn" class="form-control" type="submit" name="submit" value="Send" disabled/></div>
         </form>';
-    } elseif ($ui_mode == 2) {
+    } elseif ($ui_mode == 3) {
         echo '';
     }
     ?>

@@ -4,6 +4,7 @@ session_start();
 include_once 'components/scripts/links.php';
 include_once 'components/scripts/page_processing.php';
 include_once 'backend/controller.php';
+include_once 'backend/mitigator.php';
 // Initializations
 $link = new Links();
 $pp = new page_processor();
@@ -54,8 +55,8 @@ echo navbar_component($pp->logged_in, $controller->get_user_details($pp->user_id
     <div class="position-relative d-md-flex flex-md-row" style="padding-top: 120px">
         <div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center pfpContainer" style="box-shadow: 3px 5px 10px rgba(0,0,0,0.15);overflow: hidden;"><img class="pfp" src="<?php echo (($profile_user['profile_pic']==='')?$link->path('avatar_img'):$profile_user['profile_pic']); ?>"></div>
         <div class="nt">
-            <p style="font-size: 25px;margin-bottom: 7px;color: #051b3b;"><?php echo $profile_user['firstname']." ".$profile_user["lastname"]; ?></p>
-            <p style="font-size: 18px;color: #71a0e6;">@<?php echo $profile_user['username']; ?></php></p>
+            <p style="font-size: 25px;margin-bottom: 7px;color: #051b3b;"><?php echo html_mitigation($profile_user['firstname']." ".$profile_user["lastname"]); ?></p>
+            <p style="font-size: 18px;color: #71a0e6;">@<?php echo html_mitigation($profile_user['username']); ?></php></p>
         </div>
     </div>
     <div class="headerBack" style="width: 100vw;"></div>

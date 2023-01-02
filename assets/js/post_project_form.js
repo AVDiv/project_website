@@ -1,11 +1,10 @@
 
-// Get the input element
-const input = document.getElementById('price');
-
-// Add an event listener for the input event
-input.addEventListener('input', function() {
-  // Get the input value
-  let value = input.value;
+// Get the budget element
+const budget = document.getElementById('price');
+// Add an event listener for the budget event
+budget.addEventListener('input', function() {
+  // Get the budget value
+  let value = budget.value;
 
   // Remove any non-numeric characters
   value = value.replace(/[^\d]/g, '');
@@ -22,6 +21,6 @@ input.addEventListener('input', function() {
   // Format the value as a currency
   value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 
-  // Update the input value
-  input.value = 'Rs.' + value;
+  // Update the budget value
+  budget.value = 'Rs.' + value;
 });

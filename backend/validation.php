@@ -1,19 +1,10 @@
 <?php
 
 class Validation{
-    // Mitigations, sanitizations and verifications
-    // Html mitigation
-    function html_mitigation($data): string
-    {
-        $data = str_replace(' ', ' ', $data); // Replace non-breaking space with space
-        $data = trim($data); // Remove whitespace from both sides
-        $data = stripslashes($data); // Remove backslashes
-        $data = htmlspecialchars($data); // Convert special characters to HTML entities
-        return $data;
-    }
+    // verifications
     function unicode_verifier($data){
         $is_pass = false;
-        if(preg_match("/^[\x{20}-\x{7E} \n]*$/u", $data)){
+        if(preg_match("/^[\x{20}-\x{7E} \x{0A}\x{0D}]*$/u", $data)){
             $is_pass = true;
         }
         return $is_pass;
@@ -236,7 +227,7 @@ function validate_password($password, $confirm_password){
          */
         $is_pass = false;
         if(!empty($description)){
-            if(preg_match("/^[\x{20}-\x{7E}\n]*$/", $description) && strlen($description) >= 120 && strlen($description) <= 800){
+            if(preg_match("/^[\x{20}-\x{7E}\x{0A}\x{0D}]*$/", $description) && strlen($description) >= 120 && strlen($description) <= 800){
                 $is_pass = true;
             }
             if(!($this->unicode_verifier($description))){
@@ -290,10 +281,11 @@ function validate_password($password, $confirm_password){
          */
         $is_pass = false;
         if(!empty($proposal)){
-            if(preg_match("/^[\x{20}-\x{7E}\n]*$/", $proposal) && strlen($proposal) >= 100 && strlen($proposal) <= 800){
+            if(preg_match("/^[\x{20}-\x{7E}\x{0A}\x{0D}]*$/", $proposal) && strlen($proposal) >= 100 && strlen($proposal) <= 800){
                 $is_pass = true;
             }
             if(!($this->unicode_verifier($proposal))){
+
                 $is_pass = false;
             }
         }
