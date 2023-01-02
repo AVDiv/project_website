@@ -120,6 +120,7 @@ class Controller{
         $result_user_dp = $this->model->get_user_profile_picture($user_id);
         if ($result_users === -1 || $result_user_dp === -1) return 2; // User details could not be retrieved at the moment
         if (!$result_users) return 1; // User does not exist
+
         $user_details = array(
             'user_id' => $result_users['ID'],
             'firstname' => $result_users['firstname'],
@@ -328,6 +329,7 @@ class Controller{
         $is_valid_description = $this->verify->validate_project_description($description);
         $budget = (int)str_replace(',', '', substr($budget, 3));
         $is_valid_budget = $this->verify->validate_project_budget($budget);
+        echo $description;
         if ($is_valid_title && $is_valid_description && $is_valid_budget) {
             // Create random string of 10 chars for the project shortlink
             $valid_chars = '0123456789abcdefghijklmnopqrstuvwxyz';

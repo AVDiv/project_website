@@ -65,19 +65,19 @@ echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_deta
         else if ($error_code == 4){ echo "Cannot create project at this time!";}
         ?>
     </p>
-    <form class="d-flex justify-content-center align-items-center" method="post">
+    <form class="d-flex justify-content-center align-items-center" id="form" method="post">
         <div style="padding: 45px;padding-bottom: 0;border-radius: 20px;box-shadow: 0px 2px 10px rgba(33,37,41,0.1);width: 1000px;min-height: 498px;">
             <div style="margin-top: 20px;">
                 <h6>Name:</h6><input name="title" class="form-control" type="text" minlength="8" maxlength="60" required>
             </div>
             <div style="margin-top: 20px;">
-                <h6>Description:</h6><textarea name="description" class="form-control" style="height: 183px;" minlength="120" maxlength="800" required></textarea>
+                <h6>Description:</h6><textarea id="description" name="description" class="form-control" style="height: 183px;" minlength="120" maxlength="800" required></textarea>
             </div>
             <div style="margin-top: 20px;">
                 <h6>Budget:</h6><input name="budget" class="form-control" type="text" id="price" placeholder="Rs. 15000" maxlength="12" required>
             </div>
             <div class="d-flex justify-content-center align-items-center">
-                <input class="submit-btn" type="submit" name="submit" value="Post project" style="padding: 10px 15px; margin: 30px;border: none;border-radius: 8px;background-color: var(--color-blue);color: white;font-weight: 600;">
+                <input id="submit" class="submit-btn" type="submit" name="submit" value="Post project" style="padding: 10px 15px; margin: 30px;border: none;border-radius: 8px;background-color: var(--color-blue);color: white;font-weight: 600;">
             </div>
         </div>
     </form>
