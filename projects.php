@@ -53,11 +53,11 @@ if(!empty($_GET['id'])){
             }
         }
     }
-} //else {
-//    header("HTTP/1.0 404 Not Found");
-//    header("Location: ".$link->path('404_page'));
-//    die();
-//}
+} else {
+    header("HTTP/1.0 404 Not Found");
+    header("Location: ".$link->path('404_page'));
+    die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
