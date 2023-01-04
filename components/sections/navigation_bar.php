@@ -11,13 +11,13 @@
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item dropdown" style="font-weight: 600;padding: 0 20px;letter-spacing: 0.5px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Work</a><i class="fa-solid fa-caret-down"></i>
                                 <div class="dropdown-menu" style="box-shadow: 5px 5px #CDD7E1;">
-                                    <a class="dropdown-item" href="#">Propose Projects</a>
+                                    <a class="dropdown-item" href="'. $links->path('search_page') .'?m=1">Propose Projects</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown" style="font-weight: 600;padding: 0 20px;letter-spacing: 0.5px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Services</a><i class="fa-solid fa-caret-down"></i>
                                 <div class="dropdown-menu" style="box-shadow: 5px 5px #CDD7E1;">
                                     <a class="dropdown-item" href="'. $links->path('post_project_page') .'">Post Project</a>
-                                    <a class="dropdown-item" href="#">Find Freelancer</a>
+                                    <a class="dropdown-item" href="'. $links->path('search_page') .'?m=2">Find Freelancer</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown" style="font-weight: 600;padding: 0 20px;letter-spacing: 0.5px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">About us</a><i class="fa-solid fa-caret-down"></i>
