@@ -28,6 +28,7 @@ class Links{
         'profile_page' => '/user.php',
         // APIs
         'otp_resend_api'=> '/api/send_otp.php',
+        'search_api'=> '/api/search.php',
         // Components
         'navbar'=> '/components/navigation_bar.php',
         // CSS files
@@ -46,6 +47,7 @@ class Links{
         'contact_us_css' => '/assets/css/contact.css',
         'bs_grid_images_css' => '/assets/css/Projects-Grid-images.css',
         'project_css' => '/assets/css/project.css',
+        'search_css' => '/assets/css/search.css',
         // JS scripts
         'bs_js' => '/assets/bootstrap/js/bootstrap.min.js',
         'navbar_js' => '/assets/js/navigation.js',
@@ -54,6 +56,7 @@ class Links{
         'signup_js' => '/assets/js/signup.js',
         'post_project_js' => '/assets/js/post_project_form.js',
         'propose_project_js' => '/assets/js/propose_project_form.js',
+        'search_function_js' => '/assets/js/search_functionality.js',
         // Media
         'logo'=>'/assets/media/images/Logo.png',
         'logo_fd'=>'/assets/media/images/Logo I.png',
