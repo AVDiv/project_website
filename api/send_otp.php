@@ -48,5 +48,3 @@ if($pp->logged_in){
     header("Location: ".$link->path('404_page')); // Redirect to 404 page
     die();
 }
-
-

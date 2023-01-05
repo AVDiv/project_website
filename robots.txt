@@ -3,13 +3,14 @@ Disallow: /
 
 User-agent: Googlebot
 Allow: /index.php
+Allow: /user.php
+Allow: /auth/
 Allow: /search.php
 Allow: /about/our_team.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
 Disallow: /assets/
-Disallow: /auth/
 
 
 User-agent: Googlebot-Image
@@ -18,16 +19,17 @@ Allow: /assets/media/images/Logo I.png
 
 User-agent: Bingbot
 Allow: /index.php
+Allow: /auth/
 Allow: /search.php
 Allow: /about/our_team.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
 Disallow: /assets/
-Disallow: /auth/
 
 User-agent: Slurp
 Allow: /index.php
+Allow: /auth/
 Allow: /search.php
 Allow: /about/our_team.php
 Allow: /about/terms.php
@@ -45,20 +47,19 @@ Disallow: /auth/
 
 User-agent: Baiduspider
 Allow: /index.php
+Allow: /auth/
 Allow: /about/our_team.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
 Disallow: /assets/
-Disallow: /auth/
 
 User-agent: BraveBot
 Allow: /index.php
+Allow: /auth/
 Allow: /search.php
 Allow: /about/our_team.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
 Disallow: /assets/
-Disallow: /auth/
-

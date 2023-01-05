@@ -5,5 +5,5 @@ phoneNumber.addEventListener('input', event => {
      // Add formatting
     event.target.value = value
         .replace(/\D/g, '') // Remove non-numeric characters
-        .replace(/^(\d{1,3})(\d{3})(\d{3})(\d{4})$/, '+$1 ($2) $3 $4');
+        .replace(/^(\d{1,3})(\d{2})(\d{3})(\d{4})$/, '+$1 ($2) $3 $4');
 });
