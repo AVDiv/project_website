@@ -1,4 +1,13 @@
-https://pixihire.cf/index.php
-https://pixihire.cf/auth/login.php
-https://pixihire.cf/auth/signup.php
-https://pixihire.cf/error/404.php
+https://pixihire.cf/
+https://pixihire.cf/auth/login
+https://pixihire.cf/auth/signup
+https://pixihire.cf/error/404
+https://pixihire.cf/about/contact_us
+https://pixihire.cf/about/team
+https://pixihire.cf/about/terms
+https://pixihire.cf/about/privacy
+https://pixihire.cf/about/nsbm
+https://pixihire.cf/about/contact_us
+https://pixihire.cf/user
+https://pixihire.cf/projects
+https://pixihire.cf/post_projects

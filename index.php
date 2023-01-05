@@ -39,7 +39,7 @@ echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_deta
         <div id="Context">
             <h1 class="fw-bold" style="color: var(--color-dark-blue);font-size: 45px;font-weight: 600;">Want to get some task done?</h1>
             <p class="fw-bold" style="color: var(--color-white);font-size: 22px;margin: 30px 0;font-weight: 600;">Find and hire top-rated freelancers for your business needs. Streamline your outsourcing with our platform.&nbsp;<br></p>
-            <div id="Button"><a class="text-uppercase fw-bold" href="#" style="color: var(--color-white);text-decoration: none;background: var(--color-dark-blue);padding: 10px 20px;border-radius: 5px;border-style: none;font-size: 17px;font-weight: 600;">get started&nbsp;<i class="fa-solid fa-arrow-right"></i></a></div>
+            <div id="Button"><a class="text-uppercase fw-bold" href="<?php echo $link->path('signup_page'); ?>" style="color: var(--color-white);text-decoration: none;background: var(--color-dark-blue);padding: 10px 20px;border-radius: 5px;border-style: none;font-size: 17px;font-weight: 600;">get started&nbsp;<i class="fa-solid fa-arrow-right"></i></a></div>
         </div>
         <div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center" id="Image"><img src="<?php echo $link->path('hero_img'); ?>" style="width: 100%;" alt="image"></div>
     </div>

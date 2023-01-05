@@ -84,7 +84,7 @@ if($pp->logged_in){
             <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                 <div class="py-4">
                     <h4 style="text-align: center;">Thinula Hansana</h4>
-                    <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                    <p>Hi, I'm Thinula an undergraduate at NSBM who's studying for a BSc (Hons) Software Engineering Degree. I'm excited to learn new technologies and improve my skillset.</p>
                 </div>
             </div>
             <ul class="list-inline mb-0" style="text-align: center;">
