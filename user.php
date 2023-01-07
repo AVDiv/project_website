@@ -4,7 +4,7 @@ session_start();
 include_once 'components/scripts/links.php';
 include_once 'components/scripts/page_processing.php';
 include_once 'backend/controller.php';
-include_once 'backend/mitigator.php';
+include_once 'backend/html_utilities.php';
 // Initializations
 $link = new Links();
 $pp = new page_processor();

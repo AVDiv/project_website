@@ -582,4 +582,50 @@
                 return -1;
             }
         }
+        // Model function to get the latest projects
+        function get_projects_latest($set){
+            $start = ($set-1) * 10;
+            $end = $set * 10;
+            try{
+                // Count the total
+                $stmt = $this->connection->prepare("SELECT COUNT(ID) FROM projects WHERE is_active = 1");
+                $stmt->execute();
+                $count = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // Fetch the data
+                $stmt = $this->connection->prepare("SELECT * FROM projects WHERE is_active = 1 ORDER BY created_date DESC LIMIT :start, :end");
+                $stmt->bindParam(":start", $start, PDO::PARAM_INT);
+                $stmt->bindParam(":end", $end, PDO::PARAM_INT);
+                $stmt->execute();
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($data){
+                    $result = array(
+                        "length" => $count[0]["COUNT(ID)"],
+                        "data" => $data
+                    );
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get projects from search term similar to project title
+        function get_projects_similar_title($term){
+            try{
+                $stmt = $this->connection->prepare("SELECT * FROM projects WHERE is_active=1 AND project_title REGEXP :search_term");
+                $stmt->bindParam(":search_term", $term);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
     }
