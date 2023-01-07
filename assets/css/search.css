@@ -26,6 +26,27 @@ select > option {
   color: black;
   text-align: center;
 }
+@keyframes preload-animation {
+  0% {
+    transform: translate(0, 0) rotate(0);
+  }
+  25% {
+    transform: translate(100%, 0) rotate(90deg);
+  }
+  50% {
+    transform: translate(100%, 100%) rotate(90deg);
+  }
+  75% {
+    transform: translate(0, 100%) rotate(180deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(180deg);
+  }
+
+}
+#pre-loader-holder .roller {
+  animation: preload-animation 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
 
 @media (max-width: 570px) {
   .price {

@@ -76,7 +76,7 @@ if($pp->logged_in){
             </select></div><input id="search-input" type="text" style="height: 55px;border-radius: 25px;position: relative;width: 100%;outline: none;padding-right: 180px;padding-left: 65px;border: 1px solid rgb(204,204,204) ;" placeholder="Search anything..." <?php echo ($param_query?'value="'.$param_query.'"':''); ?> <?php echo ($param_mode?'data-mode="'.$param_mode.'"':''); ?> <?php echo ($param_page?'data-page="'.$param_page.'"':''); ?> data-url="<?php echo $link->path('search_api'); ?>"/>
     </div>
     <div class="container result-section" style="display: none;transition-duration: 2s;">
-        <h6 class="search-analytics" style="margin-top: 10px;margin-left: 20px;color: rgb(153,153,153);pointer-events:none;">Showing 10 of 100 results</h6>
+        <h6 id="result-counter" class="search-analytics" style="margin-top: 10px;margin-left: 20px;color: rgb(153,153,153);pointer-events:none;">Showing 10 of 100 results</h6>
         <div class="d-none" id="user-result-holder" style="margin-top: 60px;">
             <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
                 <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
@@ -110,29 +110,10 @@ if($pp->logged_in){
             </div>
         </div>
         <div class="d-none" id="project-result-holder" style="margin-top: 60px;" data-projectUrl="<?php echo $link->path('project_page'); ?>" data-userUrl="<?php echo $link->path('profile_page'); ?>">
-            <div class="row project-result" style="padding: 30px 20px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);backdrop-filter: opacity(0.44) blur(30px);border-radius: 25px;margin-bottom: 25px;">
-                <div class="col" id="project-result-info" style="padding-left: 40px;position: relative;border-left: 3px solid rgb(0,120,241) ;">
-                    <div style="margin-bottom: 15px;">
-                        <h4 style="font-weight: bold;margin-bottom: 0px;">Project title</h4>
-                        <h5 style="position: relative;font-weight: bold;color: rgb(183,183,183);">by username</h5>
-                    </div>
-                    <p style="margin-bottom: 0px;">description</p>
-                </div>
-                <div class="col-3 d-flex justify-content-end align-items-center col-sm-5">
-                    <h5 class="price" style="color: rgb(0,133,255);font-weight: bold;">Rs. 12,000</h5>
-                </div>
-            </div>
-            <div class="row project-result" style="padding: 30px 20px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);backdrop-filter: opacity(0.44) blur(30px);border-radius: 25px;border: 1px solid rgb(237,237,237);margin-bottom: 25px;">
-                <div class="col" id="project-result-info-1" style="padding-left: 40px;position: relative;border-left: 3px solid rgb(0,120,241) ;">
-                    <div style="margin-bottom: 15px;">
-                        <h4 style="font-weight: bold;margin-bottom: 0px;">Project title</h4>
-                        <h5 style="position: relative;font-weight: bold;color: rgb(183,183,183);">by username</h5>
-                    </div>
-                    <p style="margin-bottom: 0px;">description</p>
-                </div>
-                <div class="col-3 d-flex justify-content-end align-items-center col-sm-5">
-                    <h5 class="price" style="color: rgb(0,133,255);font-weight: bold;">Rs. 12,000</h5>
-                </div>
+        </div>
+        <div class="d-none justify-content-center align-items-center" id="pre-loader-holder" style="margin-top: 60px;">
+            <div style="position: relative;width: 70px;height: 70px; background-color: #FAFAFA;">
+                <div style="width: 50%;height: 50%;background-color: var(--color-lite-blue);" class="roller"></div>
             </div>
         </div>
         <div class="d-flex justify-content-around align-items-center" id="result-navigators" style="margin-top: 50px;"><button class="btn btn-primary" type="button" style="padding: 10px 30px;border-radius: 10px;border-left-style: none;">Prev</button><button class="btn btn-primary" type="button" style="padding: 10px 30px;border-radius: 10px;border-left-style: none;">Next</button></div>
