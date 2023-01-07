@@ -17,9 +17,9 @@ function footer_component()
                     <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
                         <h3>Services</h3>
                         <ul class="list-unstyled">
-                            <li><a class="link-light" href="#">Web design</a></li>
-                            <li><a class="link-light" href="#">Development</a></li>
-                            <li><a class="link-light" href="#">Hosting</a></li>
+                            <li><a class="link-light" href="'. $links->path('post_project_page') .'">Post Projects</a></li>
+                            <li><a class="link-light" href="'. $links->path('search_page') .'?m=1">Find projects</a></li>
+                            <li><a class="link-light" href="'. $links->path('search_page') .'?m=2">Find Freelancers</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
@@ -32,12 +32,7 @@ function footer_component()
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
-                        <h3>Careers</h3>
-                        <ul class="list-unstyled">
-                            <li><a class="link-light" href="#">Job openings</a></li>
-                            <li><a class="link-light" href="#">Employee success</a></li>
-                            <li><a class="link-light" href="#">Benefits</a></li>
-                        </ul>
+                        
                     </div>
                     <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last item social">
                         <div class="fw-bold d-flex align-items-center mb-2"><img src="'. $links->path("logo_fd") .'" alt="Pixihire logo" height="50px"></div>

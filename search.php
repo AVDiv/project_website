@@ -63,7 +63,7 @@ if($pp->logged_in){
     include 'components/sections/navigation_bar.php';
     echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_details($pp->user_id)["profile_pic"]:""));
 ?>
-<div id="main-container" class="main-container" style="width: 100%;height: 100%;min-height: 100vh;transition-duration:1s;">
+    <div id="main-container" class="main-container" style="width: 100%;height: 100%;min-height: 100vh;transition-duration:1s;transition-timing-function: cubic-bezier(0.54, 0.15, 0.3, 0.65);">
     <h1 style="font-weight: bold;color: rgb(177,177,177);margin-bottom: 30px;transition-duration: 0.5s;opacity: 1;text-align: center;width: auto;height: auto;">Finding for someting? Search it.</h1>
     <div class="container" style="position: relative;">
         <div class="d-flex justify-content-center align-items-center search-accessories" style="transition-duration: 1s;position: absolute;width: 100%;height: 100%;z-index: 10;pointer-events: none;">
@@ -73,13 +73,13 @@ if($pp->logged_in){
             </svg><select id="search-mode" class="search-mode" style="position: absolute;right: 32px;padding: 9px 14px;border-radius: 100px;background: linear-gradient(91deg, #46ccf9, #1686fe);border-style: none;color: rgb(255,255,255);font-weight: bold;text-align: center;outline: none;pointer-events: auto;appearance: none;">
                 <option value="1" selected="">Projects</option>
                 <option value="2">Freelancers</option>
-            </select></div><input id="search-input" type="text" style="height: 55px;border-radius: 25px;position: relative;width: 100%;outline: none;padding-right: 180px;padding-left: 65px;border: 1px solid rgb(204,204,204) ;" placeholder="Search anything..." <?php echo ($param_query?'value="'.$param_query.'"':''); ?> <?php echo ($param_mode?'data-mode="'.$param_mode.'"':''); ?> <?php echo ($param_page?'data-page="'.$param_page.'"':''); ?> data-url=""<?php echo $link->path('search_api'); ?>/>
+            </select></div><input id="search-input" type="text" style="height: 55px;border-radius: 25px;position: relative;width: 100%;outline: none;padding-right: 180px;padding-left: 65px;border: 1px solid rgb(204,204,204) ;" placeholder="Search anything..." <?php echo ($param_query?'value="'.$param_query.'"':''); ?> <?php echo ($param_mode?'data-mode="'.$param_mode.'"':''); ?> <?php echo ($param_page?'data-page="'.$param_page.'"':''); ?> data-url="<?php echo $link->path('search_api'); ?>"/>
     </div>
     <div class="container result-section" style="display: none;transition-duration: 2s;">
         <h6 class="search-analytics" style="margin-top: 10px;margin-left: 20px;color: rgb(153,153,153);pointer-events:none;">Showing 10 of 100 results</h6>
-        <div id="user-result-holder" style="margin-top: 60px;">
+        <div class="d-none" id="user-result-holder" style="margin-top: 60px;">
             <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
-                <div class="col user-info-holder-col" style="border-width: 0;border-color: rgb(0,128,255);border-left-style: solid;">
+                <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
                     <div class="d-flex align-items-center align-content-center user-info-holder"><img style="width: 60px;height: 60px;">
                         <div style="margin-left: 35px;">
                             <h3 style="font-weight: bold;margin-bottom: 3px;">Full name</h3>
@@ -89,7 +89,7 @@ if($pp->logged_in){
                 </div>
             </div>
             <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
-                <div class="col user-info-holder-col" style="border-width: 0;border-color: rgb(0,128,255);border-left-style: solid;">
+                <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
                     <div class="d-flex align-items-center align-content-center user-info-holder"><img style="width: 60px;height: 60px;">
                         <div style="margin-left: 35px;">
                             <h3 style="font-weight: bold;margin-bottom: 3px;">Full name</h3>
@@ -99,7 +99,7 @@ if($pp->logged_in){
                 </div>
             </div>
             <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
-                <div class="col user-info-holder-col" style="border-width: 0;border-color: rgb(0,128,255);border-left-style: solid;">
+                <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
                     <div class="d-flex align-items-center align-content-center user-info-holder"><img style="width: 60px;height: 60px;">
                         <div style="margin-left: 35px;">
                             <h3 style="font-weight: bold;margin-bottom: 3px;">Full name</h3>
@@ -109,21 +109,9 @@ if($pp->logged_in){
                 </div>
             </div>
         </div>
-        <div class="d-none" id="project-result-holder" style="margin-top: 60px;">
+        <div class="d-none" id="project-result-holder" style="margin-top: 60px;" data-projectUrl="<?php echo $link->path('project_page'); ?>" data-userUrl="<?php echo $link->path('profile_page'); ?>">
             <div class="row project-result" style="padding: 30px 20px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);backdrop-filter: opacity(0.44) blur(30px);border-radius: 25px;margin-bottom: 25px;">
                 <div class="col" id="project-result-info" style="padding-left: 40px;position: relative;border-left: 3px solid rgb(0,120,241) ;">
-                    <div style="margin-bottom: 15px;">
-                        <h4 style="font-weight: bold;margin-bottom: 0px;">Project title</h4>
-                        <h5 style="position: relative;font-weight: bold;color: rgb(183,183,183);">by username</h5>
-                    </div>
-                    <p style="margin-bottom: 0px;">description</p>
-                </div>
-                <div class="col-3 d-flex justify-content-end align-items-center col-sm-5">
-                    <h5 class="price" style="color: rgb(0,133,255);font-weight: bold;">Rs. 12,000</h5>
-                </div>
-            </div>
-            <div class="row project-result" style="padding: 30px 20px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);backdrop-filter: opacity(0.44) blur(30px);border-radius: 25px;border: 1px solid rgb(237,237,237);margin-bottom: 25px;">
-                <div class="col" id="project-result-info-1" style="padding-left: 40px;position: relative;border-left: 3px solid rgb(0,120,241) ;">
                     <div style="margin-bottom: 15px;">
                         <h4 style="font-weight: bold;margin-bottom: 0px;">Project title</h4>
                         <h5 style="position: relative;font-weight: bold;color: rgb(183,183,183);">by username</h5>
