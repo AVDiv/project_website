@@ -86,7 +86,7 @@ if($pp->logged_in){
                 <div style="width: 50%;height: 50%;background-color: var(--color-lite-blue);" class="roller"></div>
             </div>
         </div>
-        <div class="d-flex justify-content-around align-items-center" id="result-navigators" style="margin-top: 50px;"><button class="btn btn-primary" type="button" style="padding: 10px 30px;border-radius: 10px;border-left-style: none;">Prev</button><button class="btn btn-primary" type="button" style="padding: 10px 30px;border-radius: 10px;border-left-style: none;">Next</button></div>
+        <div class="d-flex justify-content-around align-items-center" id="result-navigators" style="margin-top: 50px;"><button id="prev-page-button" class="btn btn-primary" type="button" style="padding: 10px 30px;border-radius: 10px;border-left-style: none;">Prev</button><button  id="next-page-button" class="btn btn-primary" type="button" style="padding: 10px 30px;border-radius: 10px;border-left-style: none;">Next</button></div>
     </div>
 </div>
 <script src="<?php echo $link->path('search_function_js'); ?>"></script>

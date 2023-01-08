@@ -6,6 +6,9 @@ const pre_loader = document.getElementById('pre-loader-holder');
 const user_result_holder = document.getElementById('user-result-holder');
 const project_result_holder = document.getElementById('project-result-holder');
 const result_counter = document.getElementById('result-counter');
+const prev_page_button = document.getElementById('prev-page-button');
+const next_page_button = document.getElementById('next-page-button');
+
 
 let search_page = '1';
 let results = null;
@@ -27,7 +30,16 @@ search_input.addEventListener('keyup', function(event){
         search_request(search_input.value, search_mode.value, search_page);
     }
 });
-
+// Next page button
+next_page_button.addEventListener('click', function(){
+    search_page = parseInt(search_page) + 1;
+    search_request(search_input.value, search_mode.value, search_page);
+});
+// Previous page button
+prev_page_button.addEventListener('click', function(){
+    search_page = parseInt(search_page) - 1;
+    search_request(search_input.value, search_mode.value, search_page);
+});
 function search_request(query, mode, page){
     main_container.classList.add('searched');
     // Display preloader
@@ -42,6 +54,23 @@ function search_request(query, mode, page){
     project_result_holder.innerHTML = '';
     user_result_holder.innerHTML = '';
     result_counter.innerText = ""; // Clear result counter
+    // Update URL
+    let search_params = {'m':'1'};
+    if(query){
+        search_params['q'] = query;
+    }
+    if(mode){
+        search_params['m'] = mode;
+    }
+    if(page){
+        search_params['p'] = page;
+        if (page === '1'){
+            delete search_params['p'];
+        }
+    }
+    updateUrlParams(search_params);
+
+    // Send the request
     search_api_call(query, mode, page);
 }
 function search_api_call(query, mode, page){
@@ -55,7 +84,7 @@ function search_api_call(query, mode, page){
         // Display the results
         if (mode === '1') {
             // Print project result components with respective values on the result holder
-            for (let i = 0; i < results['length']; i++) {
+            for (let i = 0; i < results.data.length; i++) {
                 project_result_holder.insertAdjacentHTML('beforeend', `
                     <div class="row project-result" style="padding: 30px 20px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);backdrop-filter: opacity(0.44) blur(30px);border-radius: 25px;border: 1px solid rgb(237,237,237);margin-bottom: 25px;">
                         <div class="col" style="padding-left: 40px;position: relative;border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
@@ -75,7 +104,7 @@ function search_api_call(query, mode, page){
             project_result_holder.classList.remove('d-none');
             project_result_holder.classList.add('d-block');
         } else if (mode === '2') {
-            for (let i = 0; i < results['length']; i++) {
+            for (let i = 0; i < results.data.length; i++) {
                 user_result_holder.insertAdjacentHTML('beforeend', `
                     <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
                         <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
@@ -96,6 +125,18 @@ function search_api_call(query, mode, page){
         // Hide the preloader
         pre_loader.classList.remove('d-flex');
         pre_loader.classList.add('d-none');
+        // Next page button and previous page button state handler
+        if (page <= '1'){
+            prev_page_button.classList.add('disabled');
+        } else {
+            prev_page_button.classList.remove('disabled');
+        }
+
+        if (results['length'] <= (10*page)){
+            next_page_button.classList.add('disabled');
+        } else {
+            next_page_button.classList.remove('disabled');
+        }
         // Animate the end of the search
         end_animation();
     }
@@ -124,4 +165,26 @@ function end_animation(){
             }, i * 25);
         }
     }
+}
+
+function updateUrlParams(newParams) {
+    // Get the current URL and search string
+    var currentUrl = window.location.href;
+    var searchString = window.location.search;
+    var newParamsObj = new URLSearchParams();
+    console.log(currentUrl);
+    // Remove the search string from the URL
+    var url = currentUrl;
+    if (searchString !== '') {
+        url = currentUrl.replace(searchString, '');
+    }
+    // Prepare search params
+    for (var key in newParams) {
+        newParamsObj.set(key, newParams[key]);
+    }
+    // Replace the search string in the current URL
+    var newUrl = url+'?'+newParamsObj.toString();
+    console.log(newUrl);
+    // Update the URL in the browser's history without reloading the page
+    history.replaceState({}, '', newUrl);
 }

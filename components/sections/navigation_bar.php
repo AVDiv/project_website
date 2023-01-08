@@ -37,7 +37,7 @@
                             ):(
                             '<li class="nav-item dropdown" style="font-weight: 600;padding: 0 20px;letter-spacing: 0.5px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><img id="nav-profile-pic" src="'. ($profile_picture!==""?$profile_picture:$links->path('avatar_img')) .'" width="35px" height="35px" style="border-radius: 100px;" alt="profile picture"></a>
                                 <div class="dropdown-menu dropdown-right" style="box-shadow: 5px 5px #CDD7E1;">
-                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-chart-line"></i>&nbsp;Dashboard</a>
+                                    <a class="dropdown-item" href="'. $links->path('dashboard_page') .'"><i class="fa-solid fa-chart-line"></i>&nbsp;Dashboard</a>
                                     <a class="dropdown-item" href="'. $links->path('profile_edit_page') .'"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit profile</a>
                                     <a class="dropdown-item" href="'. $links->path('logout_page') .'"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a>
                                 </div>

@@ -11,6 +11,7 @@ class Links{
         'login_page'=> '/auth/login.php',
         'signup_page'=> '/auth/signup.php',
         '404_page'=> '/error/404.php',
+        'dashboard_page'=> '/dashboard.php',
         'terms_page'=> '/about/terms.php',
         'nsbm_page'=> '/about/nsbm.php',
         'privacy_page'=> '/about/privacy.php',
