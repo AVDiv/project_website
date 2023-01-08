@@ -611,13 +611,47 @@
                 return -1;
             }
         }
-        // Model function to get projects from search term similar to project title
-        function get_projects_similar_title($term){
+        // Model function to get projects from search term exactly same to the project title
+        function get_projects_exact_title($search_term){
             try{
-                $stmt = $this->connection->prepare("SELECT * FROM projects WHERE is_active=1 AND project_title REGEXP :search_term");
-                $stmt->bindParam(":search_term", $term);
+                $stmt = $this->connection->prepare("SELECT * FROM projects WHERE project_title = :search_term AND is_active = 1 ORDER BY created_date DESC");
+                $stmt->bindParam(":search_term", $search_term);
                 $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get projects from search term similar to project title
+        function get_projects_similar_title($search_term){
+            try{
+                $stmt = $this->connection->prepare("SELECT * FROM `projects` WHERE `is_active` = 1 AND `project_title` REGEXP :search_term ORDER BY `created_date`");
+                $stmt->bindParam(":search_term", $search_term, PDO::PARAM_STR);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get projects from search term similar to project description
+        function get_projects_similar_description($search_term){
+            try{
+                $stmt = $this->connection->prepare("SELECT * FROM projects WHERE is_active=1 AND project_description REGEXP :search_term ORDER BY created_date");
+                $stmt->bindParam(":search_term", $search_term);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 if($result){
                     return $result;
                 }else{

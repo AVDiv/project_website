@@ -112,7 +112,7 @@ if($pp->logged_in){
         <div class="d-none" id="project-result-holder" style="margin-top: 60px;" data-projectUrl="<?php echo $link->path('project_page'); ?>" data-userUrl="<?php echo $link->path('profile_page'); ?>">
         </div>
         <div class="d-none justify-content-center align-items-center" id="pre-loader-holder" style="margin-top: 60px;">
-            <div style="position: relative;width: 70px;height: 70px; background-color: #FAFAFA;">
+            <div style="position: relative;width: 70px;height: 70px; background-color: #F7F7F7;">
                 <div style="width: 50%;height: 50%;background-color: var(--color-lite-blue);" class="roller"></div>
             </div>
         </div>

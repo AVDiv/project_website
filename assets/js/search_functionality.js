@@ -33,9 +33,16 @@ function search_request(query, mode, page){
     // Display preloader
     pre_loader.classList.remove('d-none');
     pre_loader.classList.add('d-flex');
+    // Hide the result holders
+    project_result_holder.classList.remove('d-block');
+    project_result_holder.classList.add('d-none');
+    user_result_holder.classList.remove('d-block');
+    user_result_holder.classList.add('d-none');
+    // Clear the result holders
+    project_result_holder.innerHTML = '';
+    user_result_holder.innerHTML = '';
     result_counter.innerText = ""; // Clear result counter
     search_api_call(query, mode, page);
-    end_animation();
 }
 function search_api_call(query, mode, page){
     // Do a search
@@ -44,13 +51,13 @@ function search_api_call(query, mode, page){
         // Fetch the results
         results = JSON.parse(req.responseText);
         // Display result counter
-        result_counter.innerText = `Showing ${results['length']<10?results['length']:"10"} of ${results.length} results`;
+        result_counter.innerText = `Showing ${results['length']-(10*(parseInt(page)-1))<10?results['length']:"10"} of ${results.length} results`;
         // Display the results
         if (mode === '1') {
             // Print project result components with respective values on the result holder
             for (let i = 0; i < results['length']; i++) {
                 project_result_holder.insertAdjacentHTML('beforeend', `<div class="row project-result" style="padding: 30px 20px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);backdrop-filter: opacity(0.44) blur(30px);border-radius: 25px;border: 1px solid rgb(237,237,237);margin-bottom: 25px;">
-                <div class="col" id="project-result-info-1" style="padding-left: 40px;position: relative;border-left: 3px solid rgb(0,120,241) ;">
+                <div class="col" style="padding-left: 40px;position: relative;border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
                     <div style="margin-bottom: 15px;">
                         <h4 style="font-weight: bold;margin-bottom: 0px;"><a style="text-decoration: none;font: inherit;color: var(--color-dark-blue);" href="${project_result_holder.dataset.projecturl+"?id="+results['data'][i]['Shortlink']}">${results['data'][i]['Title']}</a></h4>
                         <h5 style="position: relative;font-weight: bold;color: rgb(183,183,183);">by <a style="text-decoration: none;font: inherit;color: inherit;" href="${project_result_holder.dataset.userurl+"?u="+results['data'][i]['Client']}">@${results['data'][i]['Client']}</a></h5>
@@ -62,24 +69,45 @@ function search_api_call(query, mode, page){
                 </div>
             </div>`);
             }
-            // Display result holder
+            // Show the result holders
             project_result_holder.classList.remove('d-none');
             project_result_holder.classList.add('d-block');
+        } else if (mode === '2') {
+
+            // Show the result holders
+            user_result_holder.classList.remove('d-none');
+            user_result_holder.classList.add('d-block');
         }
         // Hide the preloader
         pre_loader.classList.remove('d-flex');
         pre_loader.classList.add('d-none');
+        // Animate the end of the search
+        end_animation();
     }
     req.open('GET', search_input.dataset.url+'?query='+query+'&mode='+mode+'&page='+page);
     req.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
     req.send();
 }
 function end_animation(){
-    for (let i = 1; i < 6; i+=0.01) {
-        setTimeout(function(){
-            for (let j = 0; j < user_result_holder.childElementCount; j++) {
-                user_result_holder.children[j].children[0].style.borderWidth = i+'px';
-            }
-        }, i*15);
+    // Animate the end of the search
+    if (search_mode.value === '1') {
+        // Project mode
+        for (let i = 0; i <= 5; i += 0.01) {
+            console.log("Project mode");
+            setTimeout(function () {
+                for (let j = 0; j < project_result_holder.childElementCount; j++) {
+                    project_result_holder.children[j].children[0].style.borderWidth = i + 'px';
+                }
+            }, i * 25);
+        }
+    } else if (search_mode.value === '2') {
+        // User mode
+        for (let i = 0; i <= 5; i += 0.01) {
+            setTimeout(function () {
+                for (let j = 0; j < user_result_holder.childElementCount; j++) {
+                    user_result_holder.children[j].children[0].style.borderWidth = i + 'px';
+                }
+            }, i * 25);
+        }
     }
 }
