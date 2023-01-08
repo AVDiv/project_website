@@ -25,30 +25,27 @@ if($pp->logged_in){
     if(!empty($_GET['mode']) && ($_GET['mode']==='1' || $_GET['mode']==='2')){
         // If GET details are available, check if the mode is valid
         $search_mode = $_GET['mode'];
+        if(!empty($_GET['query'])){ // Search query is available,search for relevant items
+            $search_query = $_GET['query'];
+        }
+
+        if(!empty($_GET['page'])){ // Search page is available, search for relevant items
+            $search_page = (int)$_GET['page'];
+        } else { // Search page is not available, set to 1
+            $search_page = 1;
+        }
         // If mode is 1, search by project
         if($search_mode==='1'){
-            if(!empty($_GET['query'])){ // Search query is available,search for relevant items
-                $search_query = $_GET['query'];
-            }
-
-            if(!empty($_GET['page'])){ // Search page is available, search for relevant items
-                $search_page = (int)$_GET['page'];
-            } else { // Search page is not available, set to 1
-                $search_page = 1;
-            }
             // Search for relevant items
             $search_data = $controller->get_projects_by_search($search_query, $search_page);
-//            $search_result = $search_data['result'];
-//            $search_length = $search_data['length']
-            echo json_encode($search_data);
 
         }else{  // If mode is 2, search by user
-            echo 'empty';
+            // Search for relevant items
+            $search_data = $controller->get_users_by_search($search_query, $search_page);
         }
+        echo json_encode($search_data);
     } else { // If empty mode, send 404
-        echo 'empty';
-//        echo $_GET['mode'];
-        http_response_code(403); // Forbidden
+        http_response_code(404); // Send 404 error
         die();
     }
 } else {

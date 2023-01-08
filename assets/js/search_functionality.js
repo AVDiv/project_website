@@ -56,24 +56,39 @@ function search_api_call(query, mode, page){
         if (mode === '1') {
             // Print project result components with respective values on the result holder
             for (let i = 0; i < results['length']; i++) {
-                project_result_holder.insertAdjacentHTML('beforeend', `<div class="row project-result" style="padding: 30px 20px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);backdrop-filter: opacity(0.44) blur(30px);border-radius: 25px;border: 1px solid rgb(237,237,237);margin-bottom: 25px;">
-                <div class="col" style="padding-left: 40px;position: relative;border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
-                    <div style="margin-bottom: 15px;">
-                        <h4 style="font-weight: bold;margin-bottom: 0px;"><a style="text-decoration: none;font: inherit;color: var(--color-dark-blue);" href="${project_result_holder.dataset.projecturl+"?id="+results['data'][i]['Shortlink']}">${results['data'][i]['Title']}</a></h4>
-                        <h5 style="position: relative;font-weight: bold;color: rgb(183,183,183);">by <a style="text-decoration: none;font: inherit;color: inherit;" href="${project_result_holder.dataset.userurl+"?u="+results['data'][i]['Client']}">@${results['data'][i]['Client']}</a></h5>
+                project_result_holder.insertAdjacentHTML('beforeend', `
+                    <div class="row project-result" style="padding: 30px 20px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);backdrop-filter: opacity(0.44) blur(30px);border-radius: 25px;border: 1px solid rgb(237,237,237);margin-bottom: 25px;">
+                        <div class="col" style="padding-left: 40px;position: relative;border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
+                            <div style="margin-bottom: 15px;">
+                                <h4 style="font-weight: bold;margin-bottom: 0px;"><a style="text-decoration: none;font: inherit;color: var(--color-dark-blue);" href="${project_result_holder.dataset.projecturl+"?id="+results['data'][i]['Shortlink']}">${results['data'][i]['Title']}</a></h4>
+                                <h5 style="position: relative;font-weight: bold;color: rgb(183,183,183);">by <a style="text-decoration: none;font: inherit;color: inherit;" href="${project_result_holder.dataset.userurl+"?u="+results['data'][i]['Client']}">@${results['data'][i]['Client']}</a></h5>
+                            </div>
+                            <p style="margin-bottom: 0px;">${results['data'][i]['Description']}</p>
+                        </div>
+                        <div class="col-3 d-flex justify-content-end align-items-center col-sm-5">
+                            <h5 class="price" style="color: rgb(0,133,255);font-weight: bold;">${"Rs."+results['data'][i]['Budget'].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</h5>
+                        </div>
                     </div>
-                    <p style="margin-bottom: 0px;">${results['data'][i]['Description']}</p>
-                </div>
-                <div class="col-3 d-flex justify-content-end align-items-center col-sm-5">
-                    <h5 class="price" style="color: rgb(0,133,255);font-weight: bold;">${"Rs."+results['data'][i]['Budget'].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</h5>
-                </div>
-            </div>`);
+                `);
             }
             // Show the result holders
             project_result_holder.classList.remove('d-none');
             project_result_holder.classList.add('d-block');
         } else if (mode === '2') {
-
+            for (let i = 0; i < results['length']; i++) {
+                user_result_holder.insertAdjacentHTML('beforeend', `
+                    <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
+                        <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
+                            <div class="d-flex align-items-center align-content-center user-info-holder"><img style="width: 60px;height: 60px;border: none;border-radius: 100px;object-fit: cover;" src="${results['data'][i]['Profile_picture']!==""?results['data'][i]['Profile_picture']:user_result_holder.dataset.defaultimg}">
+                                <div style="margin-left: 35px;">
+                                    <h3 style="font-weight: bold;margin-bottom: 3px;"><a href="${user_result_holder.dataset.profileurl+"?u="+results.data[i].Username}" style="text-decoration: none; font: inherit; color: var(--color-dark-blue);">${results['data'][i]['Name']}</a></h3>
+                                    <h5 style="color: rgb(152,152,152);">@${results['data'][i]['Username']}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            }
             // Show the result holders
             user_result_holder.classList.remove('d-none');
             user_result_holder.classList.add('d-block');
@@ -93,7 +108,6 @@ function end_animation(){
     if (search_mode.value === '1') {
         // Project mode
         for (let i = 0; i <= 5; i += 0.01) {
-            console.log("Project mode");
             setTimeout(function () {
                 for (let j = 0; j < project_result_holder.childElementCount; j++) {
                     project_result_holder.children[j].children[0].style.borderWidth = i + 'px';

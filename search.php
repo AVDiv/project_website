@@ -77,37 +77,7 @@ if($pp->logged_in){
     </div>
     <div class="container result-section" style="display: none;transition-duration: 2s;">
         <h6 id="result-counter" class="search-analytics" style="margin-top: 10px;margin-left: 20px;color: rgb(153,153,153);pointer-events:none;">Showing 10 of 100 results</h6>
-        <div class="d-none" id="user-result-holder" style="margin-top: 60px;">
-            <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
-                <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
-                    <div class="d-flex align-items-center align-content-center user-info-holder"><img style="width: 60px;height: 60px;">
-                        <div style="margin-left: 35px;">
-                            <h3 style="font-weight: bold;margin-bottom: 3px;">Full name</h3>
-                            <h5 style="color: rgb(152,152,152);">@username</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
-                <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
-                    <div class="d-flex align-items-center align-content-center user-info-holder"><img style="width: 60px;height: 60px;">
-                        <div style="margin-left: 35px;">
-                            <h3 style="font-weight: bold;margin-bottom: 3px;">Full name</h3>
-                            <h5 style="color: rgb(152,152,152);">@username</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
-                <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
-                    <div class="d-flex align-items-center align-content-center user-info-holder"><img style="width: 60px;height: 60px;">
-                        <div style="margin-left: 35px;">
-                            <h3 style="font-weight: bold;margin-bottom: 3px;">Full name</h3>
-                            <h5 style="color: rgb(152,152,152);">@username</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="d-none" id="user-result-holder" style="margin-top: 60px;" data-defaultimg="<?php echo $link->path('avatar_img'); ?>" data-profileurl="<?php echo $link->path('profile_page'); ?>">
         </div>
         <div class="d-none" id="project-result-holder" style="margin-top: 60px;" data-projectUrl="<?php echo $link->path('project_page'); ?>" data-userUrl="<?php echo $link->path('profile_page'); ?>">
         </div>

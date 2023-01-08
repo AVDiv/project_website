@@ -461,7 +461,7 @@ class Controller{
                         //  Preparing search results for packing
                         $search_results = array(
                             'length' => count($search_results),
-                            'data' => $search_results
+                            'data' => array_slice($search_results, ($page-1)*10, 10)
                         );
                     }
                 } else{
@@ -512,39 +512,67 @@ class Controller{
             if($term){ // If search term is not empty
                 $is_valid_search_term = $this->verify->unicode_verifier($term);
                 if($is_valid_search_term){
-                    $search_results = $this->model->get_users_similar_username($term, $page);
-                    if($search_results===false || $search_results===-1){
+                    // Do seperate search for query
+                    $exact_name_search_results = $this->model->get_users_exact_name($term);
+                    $similar_name_search_results = $this->model->get_users_similar_name($term);
+                    $exact_username_search_results = $this->model->get_users_exact_username($term);
+                    $similar_username_search_results = $this->model->get_users_similar_username($term);
+                    if($exact_name_search_results===false && $similar_name_search_results===false && $exact_username_search_results===false && $similar_username_search_results===false){
+                        return 1;
+                    } elseif ($exact_name_search_results===-1 && $similar_name_search_results===-1 && $exact_username_search_results===-1 && $similar_username_search_results===-1){
                         return 2;
                     } else{
-                        return $search_results;
+                        // Merge all search results
+                        $search_results = array_merge(
+                            (gettype($exact_name_search_results)=='array'?$exact_name_search_results:array('0' => array("Empty"=>"1"))),
+                            (gettype($similar_name_search_results)=='array'?$similar_name_search_results:array('0' => array("Empty"=>"1"))),
+                            (gettype($exact_username_search_results)=='array'?$exact_username_search_results:array('0' => array("Empty"=>"1"))),
+                            (gettype($similar_username_search_results)=='array'?$similar_username_search_results:array('0' => array("Empty"=>"1")))
+                        );
+                        $search_results = array_filter($search_results, function($value){
+                            return $value['Empty'] != 1;
+                        });
+                        // Rename array keys
+                        $search_results = array_values($search_results);
+                        // Removing duplicate search results
+                        $search_results = array_map('serialize', $search_results);
+                        $search_results = array_unique($search_results);
+                        $search_results = array_map('unserialize', $search_results);
+                        //  Preparing search results for packing
+                        $search_results = array(
+                            'length' => count($search_results),
+                            'data' => array_slice($search_results, ($page-1)*10, 10)
+                        );
                     }
                 } else{
                     return 1;
                 }
             } else{ // If search term is empty, return all users from time order
-                $search_results = $this->model->get_users_oldest($page);
-                if($search_results===-1){
-                    return 2;
-                } elseif ($search_results===false) {
-                    return 1;
-                }else{
-                    // Rename the data and mitigate unwanted characters
-                    $search_length = $search_results['length'];
-                    $search_data = $search_results['data'];
-                    $search_data = array_map(function($search_data_item) {
-                       return array(
-                           'Username' => html_mitigation($search_data_item['username']),
-                            'Email' => html_mitigation($search_data_item['email']),
-                            'Time' => html_mitigation($search_data_item['created_date'])
-                       );
-                    }, $search_data);
-                    // Reassemble renamed data
-                    $search_results = array(
-                        'length' => $search_length,
-                        'data' => $search_data
+                $search_results = $this->model->get_oldest_users($page);
+            }
+            // Packing results for user interface
+            if($search_results===-1){
+                return 2;
+            } elseif ($search_results===false) {
+                return 1;
+            }else{
+                // Rename the data and mitigate unwanted characters
+                $search_length = $search_results['length'];
+                $search_data = $search_results['data'];
+                $search_data = array_map(function($search_data_item) {
+                    return array(
+                        'Name' => html_mitigation(($search_data_item['firstname'] . ' ' . $search_data_item['lastname'])),
+                        'Username' => html_mitigation($search_data_item['username']),
+                        'Joined_on' => html_mitigation($search_data_item['creation_date']),
+                        'Profile_picture' => html_mitigation($this->model->get_user_profile_picture($search_data_item['ID']))
                     );
-                    return $search_results;
-                }
+                }, $search_data);
+                // Reassemble renamed data
+                $search_results = array(
+                    'length' => $search_length,
+                    'data' => $search_data
+                );
+                return $search_results;
             }
         } else{
             return 1;
