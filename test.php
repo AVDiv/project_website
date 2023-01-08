@@ -1,3 +1,3 @@
 <?php
-  phpinfo();
+  echo getenv('COMPOSER_VENDOR_DIR');
 ?>
