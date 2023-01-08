@@ -30,7 +30,16 @@ search_input.addEventListener('keyup', function(event){
         search_request(search_input.value, search_mode.value, search_page);
     }
 });
-
+// Next page button
+next_page_button.addEventListener('click', function(){
+    search_page = parseInt(search_page) + 1;
+    search_request(search_input.value, search_mode.value, search_page);
+});
+// Previous page button
+prev_page_button.addEventListener('click', function(){
+    search_page = parseInt(search_page) - 1;
+    search_request(search_input.value, search_mode.value, search_page);
+});
 function search_request(query, mode, page){
     main_container.classList.add('searched');
     // Display preloader
@@ -75,7 +84,7 @@ function search_api_call(query, mode, page){
         // Display the results
         if (mode === '1') {
             // Print project result components with respective values on the result holder
-            for (let i = 0; i < results['length']; i++) {
+            for (let i = 0; i < results.data.length; i++) {
                 project_result_holder.insertAdjacentHTML('beforeend', `
                     <div class="row project-result" style="padding: 30px 20px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);backdrop-filter: opacity(0.44) blur(30px);border-radius: 25px;border: 1px solid rgb(237,237,237);margin-bottom: 25px;">
                         <div class="col" style="padding-left: 40px;position: relative;border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
@@ -95,7 +104,7 @@ function search_api_call(query, mode, page){
             project_result_holder.classList.remove('d-none');
             project_result_holder.classList.add('d-block');
         } else if (mode === '2') {
-            for (let i = 0; i < results['length']; i++) {
+            for (let i = 0; i < results.data.length; i++) {
                 user_result_holder.insertAdjacentHTML('beforeend', `
                     <div class="row" style="padding: 20px 35px;border-radius: 25px;box-shadow: 0px 5px 10px rgba(0,0,0,0.1);border: 1px solid rgb(237,237,237);margin-bottom: 20px;">
                         <div class="col user-info-holder-col" style="border-width: 0px;border-color: rgb(0,128,255);border-left-style: solid;">
@@ -116,6 +125,18 @@ function search_api_call(query, mode, page){
         // Hide the preloader
         pre_loader.classList.remove('d-flex');
         pre_loader.classList.add('d-none');
+        // Next page button and previous page button state handler
+        if (page <= '1'){
+            prev_page_button.classList.add('disabled');
+        } else {
+            prev_page_button.classList.remove('disabled');
+        }
+
+        if (results['length'] <= (10*page)){
+            next_page_button.classList.add('disabled');
+        } else {
+            next_page_button.classList.remove('disabled');
+        }
         // Animate the end of the search
         end_animation();
     }
