@@ -443,7 +443,7 @@ class Controller{
                     } elseif ($exact_title_search_results===-1 && $similar_title_search_results===-1 && $similar_description_search_results===-1){
                         return 2;
                     } else{
-                        // Merge all search results and prepare for packing
+                        // Merge all search results
                         $search_results = array_merge(
                             (gettype($exact_title_search_results)=='array'?$exact_title_search_results:array('0' => array("Empty"=>"1"))),
                             (gettype($similar_title_search_results)=='array'?$similar_title_search_results:array('0' => array("Empty"=>"1"))),
@@ -452,7 +452,13 @@ class Controller{
                         $search_results = array_filter($search_results, function($value){
                             return $value['Empty'] != 1;
                         });
+                        // Rename array keys
                         $search_results = array_values($search_results);
+                        // Removing duplicate search results
+                        $search_results = array_map('serialize', $search_results);
+                        $search_results = array_unique($search_results);
+                        $search_results = array_map('unserialize', $search_results);
+                        //  Preparing search results for packing
                         $search_results = array(
                             'length' => count($search_results),
                             'data' => $search_results
