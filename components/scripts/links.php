@@ -78,6 +78,12 @@ class Links{
         'linkedin_logo' => '/assets/media/images/linkedin.png',
         'instagram_logo' => '/assets/media/images/instagram.png',
         'project_wall_img' => '/assets/media/images/wall.png',
+        'team_avin_img' => '/assets/media/images/avin.png',
+        'team_thinula_img' => '/assets/media/images/thinula.jpg',
+        'team_hansaka_img' => '/assets/media/images/hansaka.jpg',
+        'team_nidula_img' => '/assets/media/images/nidula.jpg',
+        'team_praneeth_img' => '/assets/media/images/praneeth.jpg',
+        'team_dilshan_img' => '/assets/media/images/dilshan.jpg',
     );
     function path($filename){
         return $this->project_domain.$this->links[$filename];
