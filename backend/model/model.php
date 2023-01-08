@@ -662,4 +662,117 @@
                 return -1;
             }
         }
+        // Model function to get the oldest users
+        function get_oldest_users($set){
+            $start = ($set-1) * 10;
+            $end = $set * 10;
+            try{
+                // Count the total
+                $stmt = $this->connection->prepare("SELECT COUNT(ID) FROM users");
+                $stmt->execute();
+                $count = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // Fetch the data
+                $stmt = $this->connection->prepare("SELECT ID, firstname, lastname, username, creation_date FROM users ORDER BY creation_date ASC LIMIT :start, :end");
+                $stmt->bindParam(":start", $start, PDO::PARAM_INT);
+                $stmt->bindParam(":end", $end, PDO::PARAM_INT);
+                $stmt->execute();
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($data){
+                    $result = array(
+                        "length" => $count[0]["COUNT(ID)"],
+                        "data" => $data
+                    );
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get users from the search term exactly same to the name
+        function get_users_exact_name($search_term){
+            try{
+                // Seperate the name
+                $name = explode(" ", $search_term);
+                $firstname = $name[0];
+                $lastname = "";
+                if(isset($name[1])) {
+                    $lastname = $name[1];
+                }
+                $stmt = $this->connection->prepare("SELECT ID, firstname, lastname, username, creation_date FROM users WHERE firstname = :firstname OR lastname = :lastname ORDER BY creation_date ASC");
+                $stmt->bindParam(":firstname", $search_term);
+                $stmt->bindParam(":lastname", $search_term);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get users from the search term exactly same to the username
+        function get_users_exact_username($search_term){
+            try{
+                $stmt = $this->connection->prepare("SELECT ID, firstname, lastname, username, creation_date FROM users WHERE username = :search_term ORDER BY creation_date ASC");
+                $stmt->bindParam(":search_term", $search_term);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get users from the search term similar to the name
+        function get_users_similar_name($search_term){
+            try{
+                // Seperate the name
+                $name = explode(" ", $search_term);
+                $firstname = $name[0];
+                $lastname = "1";
+                if(isset($name[1])) {
+                    $lastname = $name[1];
+                }
+                $stmt = $this->connection->prepare("SELECT ID, firstname, lastname, username, creation_date FROM users WHERE firstname REGEXP :firstname OR lastname REGEXP :lastname ORDER BY creation_date ASC");
+                $stmt->bindParam(":firstname", $firstname);
+                $stmt->bindParam(":lastname", $lastname);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
+        // Model function to get users from the search term similar to the username
+        function get_users_similar_username($search_term){
+            try{
+                $stmt = $this->connection->prepare("SELECT ID, firstname, lastname, username, creation_date FROM users WHERE username REGEXP :search_term ORDER BY creation_date ASC");
+                $stmt->bindParam(":search_term", $search_term);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($result){
+                    return $result;
+                }else{
+                    return false;
+                }
+            } catch(PDOException $e){
+                echo "PDO(MySQL) Error: " . $e->getMessage();
+                return -1;
+            }
+        }
     }

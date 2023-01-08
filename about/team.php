@@ -43,10 +43,10 @@ if($pp->logged_in){
     </div>
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-4 d-flex justify-content-evenly align-items-center">
         <div class="col" style="padding: 12px;margin-left: 5px;margin-right: 5px;border-radius: 10px;box-shadow: 3px 5px 10px rgba(33,37,41,0.1);">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;object-fit: cover;" src="<?php echo $link->path('team_avin_img') ?>">
                 <div class="py-4">
                     <h4 style="text-align: center;">Avin Divakara</h4>
-                    <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                    <p>Hi, I'm Avin, Currently following the BSc. in Software Engineering degree in NSBM Green University. I'm an enthusiast in music and technology.</p>
                 </div>
                 <ul class="list-inline mb-0" style="text-align: center;">
                     <li class="list-inline-item"><a href="https://www.facebook.com/avin.divakara/"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook">
@@ -62,7 +62,7 @@ if($pp->logged_in){
             </div>
         </div>
         <div class="col" style="padding: 12px;margin-left: 5px;margin-right: 5px;border-radius: 10px;box-shadow: 3px 5px 10px rgba(33,37,41,0.1);">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;object-fit: cover;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                 <div class="py-4">
                     <h4 style="text-align: center;">Sithil Pathirana</h4>
                     <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
@@ -81,7 +81,7 @@ if($pp->logged_in){
             </ul>
         </div>
         <div class="col" style="padding: 12px;margin-left: 5px;margin-right: 5px;border-radius: 10px;box-shadow: 3px 5px 10px rgba(33,37,41,0.1);">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;object-fit: cover;object-position: top;" src="<?php echo $link->path('team_thinula_img') ?>">
                 <div class="py-4">
                     <h4 style="text-align: center;">Thinula Hansana</h4>
                     <p>Hi, I'm Thinula an undergraduate at NSBM who's studying for a BSc (Hons) Software Engineering Degree. I'm excited to learn new technologies and improve my skillset.</p>
@@ -100,10 +100,10 @@ if($pp->logged_in){
             </ul>
         </div>
         <div class="col" style="padding: 12px;margin-left: 5px;margin-right: 5px;border-radius: 10px;box-shadow: 3px 5px 10px rgba(33,37,41,0.1);">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;object-fit: cover;" src="<?php echo $link->path('team_praneeth_img') ?>">
                 <div class="py-4">
                     <h4 style="text-align: center;">Praneeth Senanayake</h4>
-                    <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                    <p>Hello, my name is Praneeth Senanayake, and 20 years old. I am a BSc (Hons) Software Engineering student at NSBM Green University. After completion of my first degree, I am planning to join university of Plymouth in the UK for my higher studies.</p>
                 </div>
             </div>
             <ul class="list-inline mb-0" style="text-align: center;">
@@ -119,10 +119,10 @@ if($pp->logged_in){
             </ul>
         </div>
         <div class="col" style="padding: 12px;margin-left: 5px;margin-right: 5px;border-radius: 10px;box-shadow: 3px 5px 10px rgba(33,37,41,0.1);">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;object-fit: cover;" src="<?php echo $link->path('team_dilshan_img') ?>">
                 <div class="py-4">
                     <h4 style="text-align: center;">Dilshan Tharaka</h4>
-                    <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                    <p>Hi, my name is Dilshan Tharaka ans I am  18 years old. I live in Eheliyagoda. I am a BSc (Hons) Software Engineering student at NSBM Green University.  I like to study new technologies in the world with my friends.</p>
                 </div>
             </div>
             <ul class="list-inline mb-0" style="text-align: center;">
@@ -138,9 +138,9 @@ if($pp->logged_in){
             </ul>
         </div>
         <div class="col" style="padding: 12px;margin-left: 5px;margin-right: 5px;border-radius: 10px;box-shadow: 3px 5px 10px rgba(33,37,41,0.1);">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;object-fit: cover;" src="<?php echo $link->path('team_hansaka_img') ?>">
                 <div class="py-4">
-                    <h4 style="text-align: center;">Hansaka Ransath</h4>
+                    <h4 style="text-align: center;">Hansaka Ransith</h4>
                     <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
                 </div>
             </div>
@@ -157,7 +157,7 @@ if($pp->logged_in){
             </ul>
         </div>
         <div class="col" style="padding: 12px;margin-left: 5px;margin-right: 5px;border-radius: 10px;box-shadow: 3px 5px 10px rgba(33,37,41,0.1);">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;border-radius: 30px;object-fit: cover;" src="<?php echo $link->path('team_nidula_img') ?>">
                 <div class="py-4">
                     <h4 style="text-align: center;">Nidula Jayasinghe</h4>
                     <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
