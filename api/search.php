@@ -29,7 +29,6 @@ if($pp->logged_in){
         if($search_mode==='1'){
             if(!empty($_GET['query'])){ // Search query is available,search for relevant items
                 $search_query = $_GET['query'];
-                echo 'aa';
             }
 
             if(!empty($_GET['page'])){ // Search page is available, search for relevant items
@@ -40,7 +39,7 @@ if($pp->logged_in){
             // Search for relevant items
             $search_data = $controller->get_projects_by_search($search_query, $search_page);
 //            $search_result = $search_data['result'];
-//            $search_length = $search_data['length'];
+//            $search_length = $search_data['length']
             echo json_encode($search_data);
 
         }else{  // If mode is 2, search by user

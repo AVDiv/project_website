@@ -434,7 +434,78 @@ class Controller{
             if($term){ // If search term is not empty
                 $is_valid_search_term = $this->verify->unicode_verifier($term);
                 if($is_valid_search_term){
-                    $search_results = $this->model->get_projects_similar_title($term, $page);
+                    // Do seperate search for query
+                    $exact_title_search_results = $this->model->get_projects_exact_title($term);
+                    $similar_title_search_results = $this->model->get_projects_similar_title($term);
+                    $similar_description_search_results = $this->model->get_projects_similar_description($term);
+                    if($exact_title_search_results===false && $similar_title_search_results===false && $similar_description_search_results===false){
+                        return 1;
+                    } elseif ($exact_title_search_results===-1 && $similar_title_search_results===-1 && $similar_description_search_results===-1){
+                        return 2;
+                    } else{
+                        // Merge all search results and prepare for packing
+                        $search_results = array_merge(
+                            (gettype($exact_title_search_results)=='array'?$exact_title_search_results:array('0' => array("Empty"=>"1"))),
+                            (gettype($similar_title_search_results)=='array'?$similar_title_search_results:array('0' => array("Empty"=>"1"))),
+                            (gettype($similar_description_search_results)=='array'?$similar_description_search_results:array('0' => array("Empty"=>"1")))
+                        );
+                        $search_results = array_filter($search_results, function($value){
+                            return $value['Empty'] != 1;
+                        });
+                        $search_results = array(
+                            'length' => count($search_results),
+                            'data' => $search_results
+                        );
+                    }
+                } else{
+                    return 1;
+                }
+            } else{ // If search term is empty, return all projects from time order
+                $search_results = $this->model->get_projects_latest($page);
+            }
+            // Packing results for user interface
+            if($search_results===-1){
+                return 2;
+            } elseif ($search_results===false) {
+                return 1;
+            }else{
+                // Rename the data and mitigate unwanted characters
+                $search_length = $search_results['length'];
+                $search_data = $search_results['data'];
+                $search_data = array_map(function($search_data_item) {
+                        return array(
+                            'Title' => html_mitigation($search_data_item['project_title']),
+                            'Description' => html_mitigation((substr($search_data_item['project_description'], 0, 100) . '...')),
+                            'Budget' => html_mitigation($search_data_item['budget']),
+                            'Shortlink' => html_mitigation($search_data_item['shortlink']),
+                            'Client' => html_mitigation($this->get_user_details($search_data_item['u_ID'])['username']),
+                            'Time' => html_mitigation($search_data_item['created_date'])
+                        );
+                }, $search_data);
+                // Reassemble renamed data
+                $search_results = array(
+                    'length' => $search_length,
+                    'data' => $search_data
+                );
+                return $search_results;
+            }
+        } else{
+            return 1;
+        }
+    }
+    // Get User details from the search query provided by the user
+    function get_users_by_search($term, $page){
+        // Error codes
+        // {search results} - No error
+        // 1 - No results found
+        // 2 - Internal server error(500 code)
+        $is_valid_page_number = is_numeric($page);
+        if($is_valid_page_number){
+            $page = (int)$page;
+            if($term){ // If search term is not empty
+                $is_valid_search_term = $this->verify->unicode_verifier($term);
+                if($is_valid_search_term){
+                    $search_results = $this->model->get_users_similar_username($term, $page);
                     if($search_results===false || $search_results===-1){
                         return 2;
                     } else{
@@ -443,8 +514,8 @@ class Controller{
                 } else{
                     return 1;
                 }
-            } else{ // If search term is empty, return all projects from time order
-                $search_results = $this->model->get_projects_latest($page);
+            } else{ // If search term is empty, return all users from time order
+                $search_results = $this->model->get_users_oldest($page);
                 if($search_results===-1){
                     return 2;
                 } elseif ($search_results===false) {
@@ -455,11 +526,8 @@ class Controller{
                     $search_data = $search_results['data'];
                     $search_data = array_map(function($search_data_item) {
                        return array(
-                           'Title' => html_mitigation($search_data_item['project_title']),
-                            'Description' => html_mitigation((substr($search_data_item['project_description'], 0, 100) . '...')),
-                            'Budget' => html_mitigation($search_data_item['budget']),
-                            'Shortlink' => html_mitigation($search_data_item['shortlink']),
-                            'Client' => html_mitigation($this->get_user_details($search_data_item['u_ID'])['username']),
+                           'Username' => html_mitigation($search_data_item['username']),
+                            'Email' => html_mitigation($search_data_item['email']),
                             'Time' => html_mitigation($search_data_item['created_date'])
                        );
                     }, $search_data);
