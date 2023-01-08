@@ -39,6 +39,8 @@ function search_request(query, mode, page){
     user_result_holder.classList.remove('d-block');
     user_result_holder.classList.add('d-none');
     // Clear the result holders
+    project_result_holder.innerHTML = '';
+    user_result_holder.innerHTML = '';
     result_counter.innerText = ""; // Clear result counter
     search_api_call(query, mode, page);
 }

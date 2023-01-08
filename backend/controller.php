@@ -452,6 +452,7 @@ class Controller{
                         $search_results = array_filter($search_results, function($value){
                             return $value['Empty'] != 1;
                         });
+                        $search_results = array_values($search_results);
                         $search_results = array(
                             'length' => count($search_results),
                             'data' => $search_results
