@@ -20,7 +20,7 @@ if($pp->logged_in){
     }
 } else {
     // User is not logged in
-    header("Location: ".$link->path('login_page')."?redirect=".$link->path('profile_edit_page')); // Redirect to login page
+    header("Location: ".$link->path('login_page')."?redirect=https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); // Redirect to login page
     die();
 }
 ?>
