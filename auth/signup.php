@@ -92,7 +92,7 @@
                             <div class="<?php echo $error_code==3 || $error_code===13?'error':'' ?>"><label class="form-label inputHead"><input class="form-control inputf" type="text" name="username" required minlength="2" maxlength="20" placeholder="_uSer_123_" style="width: 480px;"><p class="float-placeholder">Username <span>*</span></p><p class="error-text"><?php echo $error_code === 3 ? 'Username you typed is invalid' : ($error_code === 13 ? 'This username is taken!' : '') ?></p></label></div>
                         </div>
                         <div class="d-xxl-flex justify-content-xxl-center">
-                            <div class="<?php echo $error_code===5 || $error_code===15?'error':'' ?>"><label class="form-label inputHead"><input class="form-control inputf" id="phone-number" type="tel" name="phone" required placeholder="+XXX (XXX) XXX XXXX" minlength="18" maxlength="19" style="width: 220px;"><p class="float-placeholder">Phone number <span>*</span></p><p class="error-text"><?php echo $error_code===5?'Phone number you typed is invalid!': ($error_code===15?'An account with this number exists!':'') ?></p></label></div>
+                            <div class="<?php echo $error_code===5 || $error_code===15?'error':'' ?>"><label class="form-label inputHead"><input class="form-control inputf" id="phone-number" type="tel" name="phone" required placeholder="+XXX (XX) XXX XXXX" minlength="18" maxlength="19" style="width: 220px;"><p class="float-placeholder">Phone number <span>*</span></p><p class="error-text"><?php echo $error_code===5?'Phone number you typed is invalid!': ($error_code===15?'An account with this number exists!':'') ?></p></label></div>
                             <div class="<?php echo $error_code===6 || $error_code===7 || $error_code===8?'error':'' ?>"><label class="form-label inputHead"><input class="form-control inputf" type="date" name="dob" required style="width: 220px;"><p class="float-placeholder">Date of birth <span>*</span></p><p class="error-text"><?php if($error_code===6){
                                 echo 'Invalid format!';
                             }elseif ($error_code===7){
@@ -104,7 +104,7 @@
                             } ?></p></label></div>
                         </div>
                         <div class="d-xxl-flex justify-content-xxl-evenly">
-                            <div class="d-xxl-flex align-items-xxl-center" style="width: 190px;"><button class="btn btn-primary submitBtn" id="submitBtn" type="submit" style="margin-right: 0;margin-left: 10px;">Next</button></div>
+                            <div class="d-xxl-flex align-items-xxl-center next-btn" style="width: 190px;"><button class="btn btn-primary submitBtn" id="submitBtn" type="submit" style="margin-right: 0;margin-left: 10px;">Next</button></div>
                             <div class="d-xxl-flex align-items-xxl-center">
                                 <h1 class="secondHead" style="margin-top: 0;margin-bottom: 0;font-size: 16px;padding-left: 0;">Already got an account?<a id="login" href="<?php echo $link->path('login_page') ?>" style="padding-bottom: 0;">Login</a></h1>
                             </div>
