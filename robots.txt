@@ -10,6 +10,7 @@ Allow: /about/our_team.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
+Allow: /sitemap.txt
 Disallow: /assets/
 
 
@@ -25,6 +26,7 @@ Allow: /about/our_team.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
+Allow: /sitemap.txt
 Disallow: /assets/
 
 User-agent: Slurp
@@ -35,6 +37,7 @@ Allow: /about/our_team.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
+Allow: /sitemap.txt
 Disallow: /assets/
 Disallow: /auth/
 
@@ -42,6 +45,7 @@ User-agent: DuckDuckBot
 Allow: /index.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
+Allow: /sitemap.txt
 Disallow: /assets/
 Disallow: /auth/
 
@@ -52,6 +56,7 @@ Allow: /about/our_team.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
+Allow: /sitemap.txt
 Disallow: /assets/
 
 User-agent: BraveBot
@@ -62,4 +67,5 @@ Allow: /about/our_team.php
 Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
+Allow: /sitemap.txt
 Disallow: /assets/

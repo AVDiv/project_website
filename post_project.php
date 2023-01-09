@@ -36,7 +36,7 @@ if($pp->logged_in){
         }
     }
 } else {
-    header("Location: ".$link->path('login_page')); // Redirect to login page
+    header("Location: ".$link->path('login_page')."?redirect=https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); // Redirect to login page
     die();
 }
 ?>
