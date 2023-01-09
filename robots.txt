@@ -38,8 +38,6 @@ Allow: /about/terms.php
 Allow: /about/privacy.php
 Allow: /about/our_university.php
 Allow: /sitemap.txt
-Disallow: /assets/
-Disallow: /auth/
 
 User-agent: DuckDuckBot
 Allow: /index.php
