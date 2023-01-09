@@ -2,31 +2,31 @@
 // Class with links
 class Links{
     // For production
-    public $project_domain = "https://pixihire.cf";
+//    public $project_domain = "https://pixihire.cf";
     // For development
-//   public $project_domain = "http://localhost:881/project_website";
+   public $project_domain = "http://localhost:881/project_website";
     private $links = array(
         // Pages
         'home_page'=> '/',
-        'login_page'=> '/auth/login.php',
-        'signup_page'=> '/auth/signup.php',
-        '404_page'=> '/error/404.php',
-        'dashboard_page'=> '/dashboard.php',
-        'terms_page'=> '/about/terms.php',
-        'nsbm_page'=> '/about/nsbm.php',
-        'privacy_page'=> '/about/privacy.php',
-        'contact_page'=> '/about/contact_us.php',
-        'team_page'=> '/about/team.php',
-        'forgot_password_page'=> '/auth/forgot_password.php',
-        'email_verify_page'=> '/auth/verify/email_verify.php',
-        'privacy_policy_page'=> '/about/privacy.php',
-        'profile_edit_page' => '/account/edit_profile.php',
-        'logout_page' => '/account/logout.php',
-        'contact_us_page' => '/about/contact_us.php',
-        'post_project_page' => '/post_project.php',
-        'project_page' => '/projects.php',
-        'search_page' => '/search.php',
-        'profile_page' => '/user.php',
+        'login_page'=> '/auth/login',
+        'signup_page'=> '/auth/signup',
+        '404_page'=> '/error/404',
+        'dashboard_page'=> '/dashboard',
+        'terms_page'=> '/about/terms',
+        'nsbm_page'=> '/about/nsbm',
+        'privacy_page'=> '/about/privacy',
+        'contact_page'=> '/about/contact_us',
+        'team_page'=> '/about/team',
+        'forgot_password_page'=> '/auth/forgot_password',
+        'email_verify_page'=> '/auth/verify/email_verify',
+        'privacy_policy_page'=> '/about/privacy',
+        'profile_edit_page' => '/account/edit_profile',
+        'logout_page' => '/account/logout',
+        'contact_us_page' => '/about/contact_us',
+        'post_project_page' => '/post_project',
+        'project_page' => '/projects',
+        'search_page' => '/search',
+        'profile_page' => '/user',
         // APIs
         'otp_resend_api'=> '/api/send_otp.php',
         'search_api'=> '/api/search.php',
