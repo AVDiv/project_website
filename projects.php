@@ -193,6 +193,14 @@ echo navbar_component($pp->logged_in, (!empty($user_details['profile_pic'])?$use
             </div>
             <div><button id="see-more-btn" class="btn btn-primary d-block" type="button" style="margin: auto;padding: 10px 25px;">See more...</button></div>
         ';
+    } elseif($ui_mode == 4){
+        echo '
+        <div class="container d-flex flex-column justify-content-center align-items-center" style="width: 100%;">
+            <i class="far fa-check-circle" style="font-size: 70px;color: var(--color-lite-blue);"></i>
+            <h3 style="margin-top: 15px;color: var(--color-dark-blue);">This project is already assigned</h3>
+            <a href="#" style="padding: 10px 15px;text-align: center;font-weight: bold;color: rgb(255,255,255);background: var(--color-dark-blue);border-radius: 10px;text-decoration: none;">Check status</a>
+        </div>
+        ';
     }
     ?>
 </div>
