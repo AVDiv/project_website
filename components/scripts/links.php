@@ -2,16 +2,16 @@
 // Class with links
 class Links{
     // For production
-   public $project_domain = "https://pixihire.cf";
+//   public $project_domain = "https://pixihire.cf";
     // For development
-   // public $project_domain = "http://localhost:881/project_website";
+    public $project_domain = "http://localhost:881/project_website";
     private $links = array(
         // Pages
         'home_page'=> '/',
         'login_page'=> '/auth/login.php',
         'signup_page'=> '/auth/signup.php',
         '404_page'=> '/error/404.php',
-        'dashboard_page'=> '/dashboard.php',
+        'dashboard_page'=> '/search.php',
         'terms_page'=> '/about/terms.php',
         'nsbm_page'=> '/about/nsbm.php',
         'privacy_page'=> '/about/privacy.php',

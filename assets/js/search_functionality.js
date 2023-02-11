@@ -30,6 +30,10 @@ search_input.addEventListener('keyup', function(event){
         search_request(search_input.value, search_mode.value, search_page);
     }
 });
+// On mode change do search
+search_mode.addEventListener('change', function(){
+    search_request(search_input.value, search_mode.value, search_page);
+});
 // Next page button
 next_page_button.addEventListener('click', function(){
     search_page = parseInt(search_page) + 1;

@@ -20,7 +20,7 @@
     <!-- Navigation bar -->
     <?php
         include dirname(__DIR__).'/components/sections/navigation_bar.php';
-        echo navbar_component($pp->logged_in, "");
+        echo navbar_component($pp->logged_in, ($pp->logged_in?$controller->get_user_details($pp->user_id)["profile_pic"]:""));
     ?>
     <div class="d-flex">
         <div class="d-flex text-container">
