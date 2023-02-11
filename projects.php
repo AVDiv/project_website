@@ -15,7 +15,7 @@ $project_details = null;
 $project_user_details = null;
 $user_details = null;
 $project_proposal = null;
-$ui_mode = 0; // 0: Not logged in, 1: Freelancer, 2: Freelancer(Already submitted) ,  3: Project owner
+$ui_mode = 0; // 0: Not logged in, 1: Freelancer, 2: Freelancer(Already submitted) ,  3: Project owner, 4: Project owner(Already assigned)
 if(!empty($_GET['id'])){
     $project_details = $controller->get_project_details($_GET['id']);
     if($project_details == 1 || $project_details == 2){
@@ -122,6 +122,7 @@ echo navbar_component($pp->logged_in, (!empty($user_details['profile_pic'])?$use
             </div>
             <div class="d-flex justify-content-center" style="height: auto;margin-top: 30px;"><input id="submit-btn" class="form-control" type="submit" name="submit" value="Send" /></div>
         </form>
+        <script src="'. $link->path('propose_project_js') .'"></script>
         ';
     } elseif ($ui_mode == 2) {
         echo '<form method="post" style="padding: 32px;border-radius: 10px;border: 1px solid rgb(197,197,197);box-shadow: 0px 5px 10px rgba(33,37,41,0.05);color: var(--color-dark-blue);">
@@ -138,11 +139,71 @@ echo navbar_component($pp->logged_in, (!empty($user_details['profile_pic'])?$use
             <div class="d-flex justify-content-center" style="height: auto;margin-top: 30px;"><input id="submit-btn" class="form-control" type="submit" name="submit" value="Send" disabled/></div>
         </form>';
     } elseif ($ui_mode == 3) {
-        echo '';
+        echo '
+            <h1 style="font-size: 32px;">Assignees</h1>
+            <div id="assignees-holder" style="margin-top: 30px;" data-url="'. $link->path('proposals_api') .'">
+                <div class="row" style="padding: 30px 20px;border-radius: 15px;border: 1px solid rgb(220,220,220);box-shadow: 0px 5px 10px rgba(0,0,0,0.1);margin-bottom: 20px;">
+                    <div class="col">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center"><img width="100" height="80" style="width: 50px;height: 50px;border-radius: 100px;border: 1px solid rgb(232,232,232) ;">
+                                    <div class="d-flex flex-column justify-content-center" style="margin-left: 15px;">
+                                        <h5 style="margin-bottom: 3px;font-weight: bold;">Name</h5>
+                                        <h6>@username</h6>
+                                    </div>
+                                </div>
+                                <div style="height: 100%;"><button class="btn btn-primary" type="button">Assign</button></div>
+                            </div>
+                            <p style="margin-top: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi aliquam neque eu sem feugiat, vel semper tellus aliquet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam ut fringilla lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis egestas convallis nisl, vitae accumsan velit placerat ac. Proin vitae orci nec est suscipit convallis sit amet semper mauris. Praesent euismod fermentum ante, et vestibulum massa placerat sed. Quisque pharetra odio non neque bibendum imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris eu vehicula risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus mollis, enim vitae vestibulum tempus, ex est molestie nisl, blandit rutrum lectus metus at orci. Morbi consequat rhoncus condimentum.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 30px 20px;border-radius: 15px;border: 1px solid rgb(220,220,220);box-shadow: 0px 5px 10px rgba(0,0,0,0.1);margin-bottom: 20px;">
+                    <div class="col">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center"><img width="100" height="80" style="width: 50px;height: 50px;border-radius: 100px;border: 1px solid rgb(232,232,232) ;">
+                                    <div class="d-flex flex-column justify-content-center" style="margin-left: 15px;">
+                                        <h5 style="margin-bottom: 3px;font-weight: bold;">Name</h5>
+                                        <h6>@username</h6>
+                                    </div>
+                                </div>
+                                <div style="height: 100%;"><button class="btn btn-primary" type="button">Assign</button></div>
+                            </div>
+                            <p style="margin-top: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi aliquam neque eu sem feugiat, vel semper tellus aliquet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam ut fringilla lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis egestas convallis nisl, vitae accumsan velit placerat ac. Proin vitae orci nec est suscipit convallis sit amet semper mauris. Praesent euismod fermentum ante, et vestibulum massa placerat sed. Quisque pharetra odio non neque bibendum imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris eu vehicula risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus mollis, enim vitae vestibulum tempus, ex est molestie nisl, blandit rutrum lectus metus at orci. Morbi consequat rhoncus condimentum.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 30px 20px;border-radius: 15px;border: 1px solid rgb(220,220,220);box-shadow: 0px 5px 10px rgba(0,0,0,0.1);margin-bottom: 20px;">
+                    <div class="col">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center"><img width="100" height="80" style="width: 50px;height: 50px;border-radius: 100px;border: 1px solid rgb(232,232,232) ;">
+                                    <div class="d-flex flex-column justify-content-center" style="margin-left: 15px;">
+                                        <h5 style="margin-bottom: 3px;font-weight: bold;">Name</h5>
+                                        <h6>@username</h6>
+                                    </div>
+                                </div>
+                                <div style="height: 100%;"><button class="btn btn-primary" type="button">Assign</button></div>
+                            </div>
+                            <p style="margin-top: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi aliquam neque eu sem feugiat, vel semper tellus aliquet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam ut fringilla lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis egestas convallis nisl, vitae accumsan velit placerat ac. Proin vitae orci nec est suscipit convallis sit amet semper mauris. Praesent euismod fermentum ante, et vestibulum massa placerat sed. Quisque pharetra odio non neque bibendum imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris eu vehicula risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus mollis, enim vitae vestibulum tempus, ex est molestie nisl, blandit rutrum lectus metus at orci. Morbi consequat rhoncus condimentum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div><button id="see-more-btn" class="btn btn-primary d-block" type="button" style="margin: auto;padding: 10px 25px;">See more...</button></div>
+        ';
+    } elseif($ui_mode == 4){
+        echo '
+        <div class="container d-flex flex-column justify-content-center align-items-center" style="width: 100%;">
+            <i class="far fa-check-circle" style="font-size: 70px;color: var(--color-lite-blue);"></i>
+            <h3 style="margin-top: 15px;color: var(--color-dark-blue);">This project is already assigned</h3>
+            <a href="#" style="padding: 10px 15px;text-align: center;font-weight: bold;color: rgb(255,255,255);background: var(--color-dark-blue);border-radius: 10px;text-decoration: none;">Check status</a>
+        </div>
+        ';
     }
     ?>
 </div>
-<script src="<?php echo $link->path('propose_project_js') ?>"></script>
 <!-- Footer -->
 <?php
 include 'components/sections/footer.php';

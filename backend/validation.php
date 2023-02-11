@@ -80,7 +80,7 @@ class Validation{
          */
         $is_pass = false;
         if(!empty($phone)){
-            if(preg_match("/^[+][0-9]{2,3}\s[(][0-9]{3}[)]\s[0-9]{3}\s[0-9]{4}$/", $phone)){
+            if(preg_match("/^[+][0-9]{2,3}\s[(][0-9]{2}[)]\s[0-9]{3}\s[0-9]{4}$/", $phone)){
                 $is_pass = true;
             }
             if(!($this->unicode_verifier($phone))){

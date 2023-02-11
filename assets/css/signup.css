@@ -220,11 +220,38 @@ input[type=date]:focus {
         width: 401px;
         height: 289px;
     }
+    .secondHead{
+        padding-left: 0px;
+    }
 }
 
 @media (max-width: 1399px) {
     #imageCol {
         display: none;
+    }
+    #signup .col{
+        width: 100%;
+        justify-content: center;
+    }
+    .container{
+        width: 800px;
+    }
+    .secondHead{
+        padding-left: 0px;
+        text-align: center;
+    }
+    .about{
+        margin: auto;
+        text-align: center;
+    }
+    label, input{
+        width: 100%!important;
+    }
+    form > div > div {
+        margin: auto;
+    }
+    .next-btn{
+        margin: auto;
     }
 }
 

@@ -21,6 +21,11 @@ $search_length = null;
 $pp->is_logged_in($_COOKIE); // Check if user is logged in
 // If logged in, proceed to the rest of the task, if not show a 404 error
 if($pp->logged_in){
+    if(!$pp->is_verified_account($pp->user_id)){
+        // Account is not verified
+        header("Location: ".$links->path('email_verify_page')); // Redirect to verification page
+        die();
+    }
 //     If logged in, check if GET details are avaialable
     if(!empty($_GET['mode']) && ($_GET['mode']==='1' || $_GET['mode']==='2')){
         // If GET details are available, check if the mode is valid
